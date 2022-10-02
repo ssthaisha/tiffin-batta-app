@@ -15,6 +15,7 @@ export default function SigninScreen() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPw, setShowPw] = useState(false);
 
   return (
     <LinearGradient
@@ -63,28 +64,22 @@ export default function SigninScreen() {
               onBlur={() => {
                 setTextInput2Fossued(true);
               }}
-              secureTextEntry={true}
+              secureTextEntry={!showPw}
               textContentType={"password"}
               value={password}
               onChangeText={(t) => setPassword(t)}
-              right={<TextInput.Icon name="eye" />}
+              // right={<TextInput.Icon name="eye" />}
             />
             <Animatable.View>
-              <Icon
-                name="visibility.off"
-                iconStyle={{ color: colors.grey3 }}
-                type="material"
-                style={{}}
+              <Ionicons
+                name={showPw ? "eye-off" : "eye"}
+                size={24}
+                color="black"
+                onPress={() => setShowPw(!showPw)}
               />
             </Animatable.View>
 
-            <View>
-              <TextInput
-                style={styles.TextInput2}
-                placeholder="Password "
-                right={<Ionicons name="eye" size={24} color="black" />}
-              />
-            </View>
+            <View></View>
           </View>
         </View>
       </View>
