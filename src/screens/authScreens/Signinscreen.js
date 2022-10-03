@@ -20,7 +20,7 @@ export default function SigninScreen() {
   return (
     <LinearGradient
       // Background Linear Gradient
-      colors={["#ffff00", "#3bbb98", "#192f6a"]}
+      colors={["#ff1220", "#ef8c52"]}
       style={styles.background}
     >
       <View style={styles.container}>
@@ -86,17 +86,24 @@ export default function SigninScreen() {
     </LinearGradient>
   );
 }
+<View style={{ alignItems: "center", marginTop: 700 }}>
+  <Text style={styles.text1}> Forget password </Text>
+</View>;
+
+<View style={{ alignItems: "center", marginTop: 710 }}>
+  <Text style={styles.text1}>Sign-Up</Text>
+</View>;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   title: {
-    color: "red",
+    color: "white",
     fontSize: 32,
   },
   text1: {
-    color: colors.grey3,
+    color: colors.grey5,
     fontSize: 16,
   },
   textInput1Style: {
@@ -107,7 +114,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingLeft: 15,
     paddingVertical: 20,
-    fontSize: 24,
+    fontSize: 14,
     backgroundColor: "#fefefe",
   },
 
@@ -123,7 +130,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingLeft: 15,
     paddingVertical: 20,
-    fontSize: 24,
+    fontSize: 14,
     backgroundColor: "#fefefe",
   },
   background: {

@@ -6,7 +6,7 @@ export const colors = {
   grey4: "#bdc6cf",
   grey5: "#e1e8ee",
   Cardcomment: "#86939e",
-  statusbar: "#ff8c52",
+  statusbar: "red",
 };
 
 export const parameters = {
