@@ -4,9 +4,8 @@ import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { colors, parameters } from "../global/styles";
 import { Icon } from "react-native-elements";
 
-export default function Header(title, type) {
-  return;
-  {
+export default function Header(title, type, navigation) {
+  return (
     <View style={styles.header}>
       <View style={{ marginleft: 20 }}>
         <Icon
@@ -14,15 +13,17 @@ export default function Header(title, type) {
           name={type}
           color={colors.headerText}
           size={28}
-          onPress={() => {}}
+          onPress={() => {
+            navigation.goBack();
+          }}
         />
       </View>
 
       <View>
         <Text style={styles.headerText}>{title}</Text>
       </View>
-    </View>;
-  }
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
