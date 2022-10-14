@@ -7,6 +7,7 @@ import WelcomeScreen from "./src/screens/authScreens/SignInWelcomeScreen";
 import Register from "./src/screens/authScreens/Register";
 import HomeScreen from "./src/screens/authScreens/HomeScreen";
 import Loading from "./src/screens/authScreens/Loading";
+import ChefProfile from "./src/screens/authScreens/ChefProfile";
 
 export default function App() {
   return (
@@ -14,9 +15,10 @@ export default function App() {
       <StatusBar barstyle="light-content" backgroundColor={colors.statusbar} />
       {/* <SigninScreen /> */}
       {/* <WelcomeScreen /> */}
-      {/* <Register /> */}
-      <HomeScreen />
+      <Register />
+      {/* <HomeScreen /> */}
       {/* <Loading /> */}
+      {/* <ChefProfile /> */}
     </View>
   );
 }

@@ -26,7 +26,7 @@ export default function Register() {
       style={styles.background}
     >
       <View style={styles.container}>
-        <View style={{ marginLeft: 5, marginTop: 100, alignItems: "center" }}>
+        <View style={{ marginLeft: 5, marginTop: 120, alignItems: "center" }}>
           <Text style={styles.title}> Register your account </Text>
         </View>
         <View style={{ alignItems: "center", marginTop: 10 }}>

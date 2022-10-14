@@ -13,6 +13,8 @@ import { Icon } from "react-native-elements";
 import Homeheader from "../../component/Homeheader";
 import { colors, parameters } from "../../global/styles";
 
+import { filterData } from "../../global/data";
+
 export default function HomeScreen() {
   const [delivery, setdelivery] = useState(true);
   const [indexCheck, setindexCheck] = useState("0");
@@ -37,7 +39,7 @@ export default function HomeScreen() {
               <View
                 style={{
                   ...styles.deliverybutton,
-                  backgroundcolor: delivery ? colors.buttons : colors.grey4,
+                  backgroundColor: delivery ? colors.buttons : colors.grey4,
                 }}
               >
                 <Text style={styles.deliveryText}>Delivery</Text>
@@ -51,7 +53,7 @@ export default function HomeScreen() {
               <View
                 style={{
                   ...styles.deliverybutton,
-                  backgroundcolor: delivery ? colors.grey4 : colors.buttons,
+                  backgroundColor: delivery ? colors.grey4 : colors.buttons,
                 }}
               >
                 <Text style={styles.deliveryText}>Pickup</Text>
@@ -112,14 +114,59 @@ export default function HomeScreen() {
             Category
           </Text>
         </View>
-        <View></View>
-
-        {/* <View>
-            <FlatList
+        <View>
+          <FlatList
             horizontal={true}
             showsHorizontalScrollIndicator={false}
+            data={filterData}
+            keyExtractor={(item) => item.id}
+            extraData={indexCheck}
+            renderItem={({ item, index }) => (
+              <Pressable
+                onPress={() => {
+                  setindexCheck(item, id);
+                }}
+              >
+                <View
+                  style={
+                    indexCheck === item.id
+                      ? { ...styles.smallCardSelected }
+                      : { ...styles.smallCard }
+                  }
+                >
+                  <Image
+                    style={{ height: 60, width: 60, borderRadius: 30 }}
+                    source={item.Image}
+                  />
 
-        </View> */}
+                  <View>
+                    <Text
+                      style={
+                        indexCheck === item.id
+                          ? { ...styles.smallCardTextSelected }
+                          : { ...styles.smallCardText }
+                      }
+                    >
+                      {item.name}
+                    </Text>
+                  </View>
+                </View>
+              </Pressable>
+            )}
+          />
+          <Text
+            style={{
+              color: colors.grey2,
+              paddingHorizontal: 10,
+              fontSize: 26,
+              fontWeight: "bold",
+              backgroundColor: colors.grey5,
+              paddingLeft: 20,
+            }}
+          >
+            Offers
+          </Text>
+        </View>
       </ScrollView>
     </View>
   );
@@ -164,7 +211,7 @@ const styles = StyleSheet.create({
     marginRight: 30,
   },
   smallCard: {
-    borderradius: 15,
+    borderRadius: 15,
     backgroundColor: colors.grey5,
     justifyContent: "center",
     alignItems: "center",
@@ -174,7 +221,7 @@ const styles = StyleSheet.create({
     height: 100,
   },
   smallCardSelected: {
-    borderradius: 15,
+    borderRadius: 15,
     backgroundColor: colors.buttons,
     justifyContent: "center",
     alignItems: "center",

@@ -10,7 +10,7 @@ export default function Header(title, type) {
       <View style={{ marginleft: 20 }}>
         <Icon
           type="material.community"
-          name={type}
+          name={arrow - left}
           color={colors.headerText}
           size={28}
         />

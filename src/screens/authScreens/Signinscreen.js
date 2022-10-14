@@ -123,7 +123,7 @@ export default function SigninScreen() {
             />
           </View>
           <View style={{ marginTop: 10, marginLeft: 20 }}>
-            <Text style={{ ...styles.text1, textDecorationLine: "underline" }}>
+            <Text style={{ ...styles.text2, textDecorationLine: "underline" }}>
               New On Tiffinbatta
             </Text>
           </View>
@@ -150,6 +150,10 @@ const styles = StyleSheet.create({
   },
   text1: {
     color: colors.grey5,
+    fontSize: 16,
+  },
+  text2: {
+    color: colors.grey3,
     fontSize: 16,
   },
   textInput1Style: {

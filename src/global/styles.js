@@ -7,6 +7,7 @@ export const colors = {
   grey5: "#e1e8ee",
   Cardcomment: "#86939e",
   statusbar: "#668162",
+  cardBackground: "#fefefe",
 };
 
 export const parameters = {
@@ -41,11 +42,12 @@ export const parameters = {
     borderColor: "#668162",
     height: 40,
     paddingHorizontal: 20,
-    width: "70%",
+    width: "45%",
+    marginTop: 10,
   },
   createButtonTitle: {
     color: "#43484d",
-    fontSize: 20,
+    fontSize: 12,
     fontWeight: "bold",
     justifyContent: "center",
     alignContent: "center",
