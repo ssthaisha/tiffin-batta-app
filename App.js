@@ -9,7 +9,7 @@ import HomeScreen from "./src/screens/authScreens/HomeScreen";
 import Loading from "./src/screens/authScreens/Loading";
 import ChefProfile from "./src/screens/authScreens/ChefProfile";
 import FoodDetails from "./src/screens/authScreens/FoodDetails";
-import Weekmenu from "./src/screens/authScreens/Weekmenu";
+import WeekMenu from "./src/screens/authScreens/WeekMenu";
 // import RootNavigator from "./src/Navigation/RootNavigator";
 
 export default function App() {
@@ -19,12 +19,12 @@ export default function App() {
       {/* <SigninScreen /> */}
       {/* <WelcomeScreen /> */}
       {/* <Register /> */}
-      {/* <HomeScreen /> */}
+      <HomeScreen />
       {/* <Loading /> */}
       {/* <ChefProfile /> */}
       {/* <FoodDetails /> */}
       {/* <RootNavigator /> */}
-      <Weekmenu />
+      {/* <WeekMenu /> */}
     </View>
   );
 }

@@ -17,7 +17,7 @@ import { colors, parameters } from "../../global/styles";
 import { foodData } from "../../global/data";
 import { SafeAreaView } from "react-native";
 
-export default function Weekmenu() {
+export default function WeekMenu() {
   const { height } = Dimensions.get("window");
   return (
     <ScrollView>
@@ -144,7 +144,7 @@ export default function Weekmenu() {
         </View>
       </View>
       <View style={{ flex: 4, justifyContent: "flex-end", marginBottom: 20 }}>
-        <View style={{ marginHorizontal: 20, marginTop: 20 }}>
+        <View style={{ marginHorizontal: 20, marginTop: 50 }}>
           <Button
             title="Subscribe for week "
             buttonStyle={styles.cartButton}
@@ -166,17 +166,10 @@ export default function Weekmenu() {
           />
         </View>
       </View>
-
-      <View style={{ marginHorizontal: 40, marginTop: 20 }}>
-        <Button
-          title="Add to cart"
-          buttonStyle={styles.cartButton}
-          titleStyle={styles.cartButtonTitle}
-        />
-      </View>
     </ScrollView>
   );
 }
+
 const styles = StyleSheet.create({
   cartButton: {
     backgroundColor: colors.buttons,
