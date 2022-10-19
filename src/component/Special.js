@@ -13,51 +13,45 @@ import {
 import { Icon } from "react-native-elements";
 import { colors, parameters } from "../global/styles";
 
-export default function FoodCard({
+export default function Special({
   OnPressFoodCard,
   restaurantName,
   deliveryAvailable,
   discountAvailable,
   discountPercent,
-  numberOfReview,
-  kitchenAddress,
-  farAway,
-  averageReview,
   images,
   screenWidth,
   ChefName,
+  productData,
 }) {
   return (
     <TouchableOpacity>
       <View style={{ ...styles.cardView, width: screenWidth }}>
         <Image
           style={{ ...styles.image, width: screenWidth }}
-          source={images}
+          source={productData.images}
         />
         <View>
-          <Text style={styles.chefName}>{ChefName}</Text>
+          <Text style={styles.pName}>{productData.name}</Text>
         </View>
         <View style={{ flex: 1, flexDirection: "row" }}>
-          <View style={styles.distance}>
-            <Icon
-              name="place"
-              type="material"
-              color={colors.grey2}
-              size={18}
-              iconStyle={{
-                marginTop: 3,
-              }}
-            />
-            <Text style={styles.Min}> {farAway} Min</Text>
+          <View style={styles.pprice}>
+            <Text>Price</Text>
+            <Text style={styles.Min}> {price}</Text>
           </View>
           <View style={{ flex: 9, flexDirection: "row" }}>
-            <Text style={styles.address}>{kitchenAddress}</Text>
+            <Text>Add to cart</Text>
+            <Icon
+              type="material-community"
+              name="cart"
+              color={colors.grey5}
+              size={35}
+            />
           </View>
         </View>
 
-        <View style={styles.review}>
-          <Text style={styles.average}>{averageReview}</Text>
-          <Text style={styles.numberOfReview}>{numberOfReview} reviews</Text>
+        <View style={styles.sidecorner}>
+          <Text style={styles.average}>{ChefName}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -81,14 +75,14 @@ const styles = StyleSheet.create({
     height: 150,
   },
 
-  chefName: {
+  pName: {
     fontSize: 17,
     fontWeight: "bold",
     color: colors.grey1,
     marginTop: 5,
     marginLeft: 10,
   },
-  distance: {
+  pprice: {
     flex: 4,
     flexDirection: "row",
     borderRightColor: colors.grey4,
@@ -102,13 +96,7 @@ const styles = StyleSheet.create({
     color: colors.grey3,
   },
 
-  address: {
-    fontSize: 12,
-    paddingTop: 5,
-    color: colors.grey2,
-    paddingHorizontal: 10,
-  },
-  review: {
+  sidecorner: {
     position: "absolute",
     top: 0,
     right: 10,
@@ -125,11 +113,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginTop: -3,
-  },
-  numberOfReview: {
-    color: "white",
-    fontSize: 13,
-    marginRight: 0,
-    marginLeft: 0,
   },
 });

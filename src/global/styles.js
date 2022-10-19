@@ -53,6 +53,25 @@ export const parameters = {
     alignContent: "center",
     marginTop: -3,
   },
+  cartButton: {
+    backgroundColor: colors.buttons,
+    justifyContent: "center",
+    alignContent: "center",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#43484d",
+    height: 50,
+    paddingHorizontal: 20,
+    width: "100%",
+  },
+  cartButtonTitle: {
+    color: colors.cardBackground,
+    fontSize: 20,
+    fontWeight: "bold",
+    justifyContent: "center",
+    alignContent: "center",
+    marginTop: -3,
+  },
 };
 
 export const title = {

@@ -8,12 +8,16 @@ import {
   FlatList,
   Pressable,
   Image,
+  Dimensions,
 } from "react-native";
 import { Icon } from "react-native-elements";
 import Homeheader from "../../component/Homeheader";
 import { colors, parameters } from "../../global/styles";
 
-import { filterData } from "../../global/data";
+import { ChefData, filterData } from "../../global/data";
+import FoodCard from "../../component/foodcard";
+
+const SCREEN_WIDTH = Dimensions.get("window").width;
 
 export default function HomeScreen() {
   const [delivery, setdelivery] = useState(true);
@@ -100,6 +104,24 @@ export default function HomeScreen() {
           </View>
         </View>
 
+        <View
+          style={{
+            marginBottom: 10,
+            flexDirection: "row",
+            marginHorizontal: 10,
+            alignItems: "center",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <TouchableOpacity>
+            <Text style={styles.selectchef}>Choose Your Chef</Text>
+          </TouchableOpacity>
+          <Image
+            source={require("../../../assets/image13.jpg")}
+            style={{ width: 40, height: 50 }}
+          />
+        </View>
+
         <View>
           <Text
             style={{
@@ -164,10 +186,70 @@ export default function HomeScreen() {
               paddingLeft: 20,
             }}
           >
-            Offers
+            Subscribe Our Chef
           </Text>
         </View>
+        <FlatList
+          styles={{ marginTop: 15, margingBottom: 10 }}
+          horizontal={true}
+          data={ChefData}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <View style={{ marginTop: 10, marginRight: 5, marginLeft: 5 }}>
+              <FoodCard
+                screenWidth={SCREEN_WIDTH * 0.7}
+                images={item.images}
+                ChefName={item.ChefName}
+                farAway={item.farAway}
+                kitchenAddress={item.kitchenAddress}
+                averageReview={item.averageReview}
+                numberOfReview={item.numberOfReview}
+              />
+            </View>
+          )}
+        />
+        <View>
+          <Text
+            style={{
+              color: colors.grey2,
+              paddingHorizontal: 10,
+              fontSize: 26,
+              fontWeight: "bold",
+              backgroundColor: colors.grey5,
+              paddingLeft: 20,
+              marginVertical: 10,
+            }}
+          >
+            {" "}
+            One Time Delivery Available On
+          </Text>
+        </View>
+        <FlatList
+          styles={{ marginTop: 15, margingBottom: 10 }}
+          horizontal={true}
+          data={ChefData}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <View style={{ marginVertical: 10, marginRight: 5, marginLeft: 5 }}>
+              <FoodCard
+                screenWidth={SCREEN_WIDTH * 0.7}
+                images={item.images}
+                ChefName={item.ChefName}
+                farAway={item.farAway}
+                kitchenAddress={item.kitchenAddress}
+                averageReview={item.averageReview}
+                numberOfReview={item.numberOfReview}
+              />
+            </View>
+          )}
+        />
       </ScrollView>
+      <View style={styles.floatButton}>
+        <TouchableOpacity>
+          <Icon name="place" type="material" size={32} color={colors.buttons} />
+          <Text style={{ color: colors.grey2 }}>Map</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -237,5 +319,28 @@ const styles = StyleSheet.create({
   smallCardText: {
     fontWeight: "bold",
     color: colors.grey2,
+  },
+  selectchef: {
+    alignItems: "center",
+    backgroundColor: colors.buttons,
+    borderRadius: 15,
+    borderColor: colors.grey1,
+    borderWidth: 1,
+    fontSize: 24,
+    justifyContent: "center",
+    paddingHorizontal: 30,
+    alignContent: "center",
+    paddingVertical: 3,
+  },
+  floatButton: {
+    position: "absolute",
+    bottom: 10,
+    right: 15,
+    backgroundColor: "#fefefe",
+    elevation: 10,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    alignItems: "center",
   },
 });

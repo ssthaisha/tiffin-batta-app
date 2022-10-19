@@ -8,6 +8,9 @@ import Register from "./src/screens/authScreens/Register";
 import HomeScreen from "./src/screens/authScreens/HomeScreen";
 import Loading from "./src/screens/authScreens/Loading";
 import ChefProfile from "./src/screens/authScreens/ChefProfile";
+import FoodDetails from "./src/screens/authScreens/FoodDetails";
+import Weekmenu from "./src/screens/authScreens/Weekmenu";
+// import RootNavigator from "./src/Navigation/RootNavigator";
 
 export default function App() {
   return (
@@ -15,10 +18,13 @@ export default function App() {
       <StatusBar barstyle="light-content" backgroundColor={colors.statusbar} />
       {/* <SigninScreen /> */}
       {/* <WelcomeScreen /> */}
-      <Register />
+      {/* <Register /> */}
       {/* <HomeScreen /> */}
       {/* <Loading /> */}
       {/* <ChefProfile /> */}
+      {/* <FoodDetails /> */}
+      {/* <RootNavigator /> */}
+      <Weekmenu />
     </View>
   );
 }
