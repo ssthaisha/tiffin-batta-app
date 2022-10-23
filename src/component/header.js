@@ -4,18 +4,15 @@ import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { colors, parameters } from "../global/styles";
 import { Icon } from "react-native-elements";
 
-export default function Header(title, type, navigation) {
+export default function Header(title, type) {
   return (
     <View style={styles.header}>
       <View style={{ marginleft: 20 }}>
         <Icon
           type="material.community"
-          name={type}
+          name={arrow - left}
           color={colors.headerText}
           size={28}
-          onPress={() => {
-            navigation.goBack();
-          }}
         />
       </View>
 
