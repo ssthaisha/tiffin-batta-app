@@ -52,6 +52,7 @@ export const parameters = {
     justifyContent: "center",
     alignContent: "center",
     marginTop: -3,
+    marginLeft:-5,
   },
   cartButton: {
     backgroundColor: colors.buttons,
