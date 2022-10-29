@@ -1,12 +1,13 @@
 import React, { useState, useRef } from "react";
 
 import { View, Text, StyleSheet, Dimensions, TextInput } from "react-native";
-import { colors, parameters } from "../../global/styles";
+import { colors, parameters } from "../../../global/styles";
 import * as Animatable from "react-native-animatable";
 import { Icon, Button, SocialIcon } from "react-native-elements";
-import Header from "../../component/Header";
+// import Header from "../../component/Header";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
+import axios from "axios";
 
 export default function SigninScreen() {
   const [TextInput2Fossued, setTextInput2Fossued] = useState(false);
@@ -17,6 +18,26 @@ export default function SigninScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPw, setShowPw] = useState(false);
+
+  const handleLogin = () => {
+    axios({
+      method: "POST",
+      baseURL: "http://192.168.1.72:3005/api",
+      url: "/auth/login",
+      headers: { "Content-Type": "application/json" },
+      data: {
+        email,
+        password,
+        role: "CUSTOMER",
+      },
+    })
+      .then((res) => {
+        alert(`${res.data.email} ${res.data.name} You are logged in!!`);
+        console.log(res);
+      })
+      .catch((err) => console.log(err, email, "check error"));
+  };
+
   return (
     <>
       <LinearGradient
@@ -26,7 +47,9 @@ export default function SigninScreen() {
         style={styles.background}
       >
         <View style={styles.container}>
-          <View style={{ marginLeft: 20, marginTop: 50, alignItems: "center" }}>
+          <View
+            style={{ marginLeft: 20, marginTop: 150, alignItems: "center" }}
+          >
             <Text style={styles.title}> Sign-in </Text>
           </View>
           <View style={{ alignItems: "center", marginTop: 10 }}>
@@ -88,6 +111,7 @@ export default function SigninScreen() {
               title="SIGN-IN"
               buttonStyle={parameters.styledButton}
               titleStyle={parameters.buttonTitle}
+              onPress="handleLogin"
             />
           </View>
 
@@ -98,30 +122,10 @@ export default function SigninScreen() {
             </Text>
           </View>
 
-          <View
-            style={{ alignItems: "center", marginTop: 20, marginBottom: 20 }}
-          >
+          <View style={{ alignItems: "center", marginTop: 20 }}>
             <Text style={{ fontSize: 20, fontWeight: "bold" }}>OR</Text>
           </View>
 
-          <View style={{ marginHorizontal: 10, marginTop: 10 }}>
-            <SocialIcon
-              title="Sign In With facebook"
-              button
-              type="facebook"
-              style={styles.SocialIcon}
-              onPress={() => {}}
-            />
-          </View>
-          <View style={{ marginHorizontal: 10, marginTop: 10 }}>
-            <SocialIcon
-              title="Sign In With google"
-              button
-              type="google"
-              style={styles.SocialIcon}
-              onPress={() => {}}
-            />
-          </View>
           <View style={{ marginTop: 10, marginLeft: 20 }}>
             <Text style={{ ...styles.text2, textDecorationLine: "underline" }}>
               New On Tiffinbatta
@@ -146,7 +150,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "white",
-    fontSize: 32,
+    fontSize: 38,
   },
   text1: {
     color: colors.grey5,

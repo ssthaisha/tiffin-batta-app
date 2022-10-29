@@ -4,11 +4,10 @@ import { View, Text, StyleSheet, Dimensions, TextInput } from "react-native";
 import { colors, parameters } from "../../global/styles";
 import * as Animatable from "react-native-animatable";
 import { Icon, Button, SocialIcon } from "react-native-elements";
-import Header from "../../component/Header";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function SigninScreen() {
+export default function Login() {
   const [TextInput2Fossued, setTextInput2Fossued] = useState(false);
 
   const textInput1 = useRef(1);
@@ -26,8 +25,10 @@ export default function SigninScreen() {
         style={styles.background}
       >
         <View style={styles.container}>
-          <View style={{ marginLeft: 20, marginTop: 50, alignItems: "center" }}>
-            <Text style={styles.title}> Sign-in </Text>
+          <View
+            style={{ marginLeft: 20, marginTop: 120, alignItems: "center" }}
+          >
+            <Text style={styles.title}> Sign-In </Text>
           </View>
           <View style={{ alignItems: "center", marginTop: 10 }}>
             <Text style={styles.text1}>
@@ -96,44 +97,6 @@ export default function SigninScreen() {
               {" "}
               Forget password?{" "}
             </Text>
-          </View>
-
-          <View
-            style={{ alignItems: "center", marginTop: 20, marginBottom: 20 }}
-          >
-            <Text style={{ fontSize: 20, fontWeight: "bold" }}>OR</Text>
-          </View>
-
-          <View style={{ marginHorizontal: 10, marginTop: 10 }}>
-            <SocialIcon
-              title="Sign In With facebook"
-              button
-              type="facebook"
-              style={styles.SocialIcon}
-              onPress={() => {}}
-            />
-          </View>
-          <View style={{ marginHorizontal: 10, marginTop: 10 }}>
-            <SocialIcon
-              title="Sign In With google"
-              button
-              type="google"
-              style={styles.SocialIcon}
-              onPress={() => {}}
-            />
-          </View>
-          <View style={{ marginTop: 10, marginLeft: 20 }}>
-            <Text style={{ ...styles.text2, textDecorationLine: "underline" }}>
-              New On Tiffinbatta
-            </Text>
-          </View>
-
-          <View style={{ alignItems: "flex-end", marginHorizontal: 20 }}>
-            <Button
-              title="Create an account"
-              buttonStyle={parameters.createButton}
-              titleStyle={parameters.createButtonTitle}
-            />
           </View>
         </View>
       </LinearGradient>

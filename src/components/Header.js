@@ -5,24 +5,22 @@ import { colors, parameters } from "../global/styles";
 import { Icon } from "react-native-elements";
 
 export default function Header(title, type) {
-  return;
-  {
+  return (
     <View style={styles.header}>
       <View style={{ marginleft: 20 }}>
         <Icon
           type="material.community"
-          name={type}
+          name={arrow - left}
           color={colors.headerText}
           size={28}
-          onPress={() => {}}
         />
       </View>
 
       <View>
         <Text style={styles.headerText}>{title}</Text>
       </View>
-    </View>;
-  }
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
