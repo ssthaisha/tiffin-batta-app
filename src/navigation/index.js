@@ -21,7 +21,6 @@ import {
   Platform,
 } from "react-native";
 import { getAppUpdate } from "../services/APIs/utilities";
-import { getUniqueId, getVersion } from "react-native-device-info";
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();

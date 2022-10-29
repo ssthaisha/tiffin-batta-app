@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image } from "react-native";
+import { View, Image, Text } from "react-native";
 // import { Logo } from "../assets/images";
 
 export const Splash = () => {
@@ -12,13 +12,13 @@ export const Splash = () => {
         backgroundColor: "#78D4CC",
       }}
     >
-      {/* <Image
-        source={Logo}
+      <Image
+        source={require("../../assets/image4.png")}
         height={300}
         width={300}
         style={{ height: 300, width: 300, resizeMode: "contain" }}
-      /> */}
-      <Text>Hello</Text>
+      />
+      {/* <Text>Hello</Text> */}
     </View>
   );
 };

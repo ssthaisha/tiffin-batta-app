@@ -14,8 +14,6 @@ import {
   REGISTER,
 } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { offline } from "@redux-offline/redux-offline";
-import offlineConfig from "@redux-offline/redux-offline/lib/defaults";
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
@@ -45,7 +43,6 @@ export const store = configureStore({
   reducer: persistedReducer,
   devTools: devMode,
   middleware,
-  enhancers: [offline(offlineConfig)],
 });
 
 sagaMiddleware.run(saga);
