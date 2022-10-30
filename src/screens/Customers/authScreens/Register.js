@@ -74,7 +74,7 @@ export default function Register() {
 
         alert(`${res.data.email} ${res.data.name} account registered!!`);
         setLoading(false);
-        // dispatch(loginSuccess(res.data));
+        dispatch(loginSuccess(res.data));
       } catch (err) {
         console.log(err);
         setLoading(false);

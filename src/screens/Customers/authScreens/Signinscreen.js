@@ -8,6 +8,9 @@ import { Icon, Button, SocialIcon } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
+import { signInUser } from "../../../services/APIs/users";
+import { useDispatch } from "react-redux";
+import Spinner from "react-native-loading-spinner-overlay/lib";
 
 export default function SigninScreen({ navigation, route }) {
   const [TextInput2Fossued, setTextInput2Fossued] = useState(false);
@@ -19,23 +22,46 @@ export default function SigninScreen({ navigation, route }) {
   const [password, setPassword] = useState("");
   const [showPw, setShowPw] = useState(false);
 
-  const handleLogin = () => {
-    axios({
-      method: "POST",
-      baseURL: "http://192.168.1.72:3005/api",
-      url: "/auth/login",
-      headers: { "Content-Type": "application/json" },
-      data: {
-        email,
-        password,
-        role: "CUSTOMER",
-      },
-    })
-      .then((res) => {
-        alert(`${res.data.email} ${res.data.name} You are logged in!!`);
-        console.log(res);
-      })
-      .catch((err) => console.log(err, email, "check error"));
+  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const handleLogin = async () => {
+    if (true) {
+      setLoading(true);
+      try {
+        const res = await signInUser({
+          email,
+          password,
+          userName: email,
+          userRole: 'CUSTOMER',
+        });
+
+        // const res = await axios({
+        //   method: "POST",
+        //   baseURL: API_URL,
+        //   url: "/auth/signup",
+        //   headers: { "Content-Type": "application/json" },
+        //   data: {
+        //     name,
+        //     email,
+        //     password,
+        //     role: "CUSTOMER",
+        //   },
+        // });
+
+        alert(`${res.data.email} ${res.data.name} logged in!!`);
+        setLoading(false);
+        dispatch(loginSuccess(res.data));
+      } catch (err) {
+        console.log(err);
+        setLoading(false);
+        alert(`${JSON.stringify(err)}`);
+        console.log(`${JSON.stringify(err)}`);
+      }
+    } else {
+      alert("Please fill the details properly!!");
+    }
   };
 
   console.log(navigation, route, "route");
@@ -48,6 +74,7 @@ export default function SigninScreen({ navigation, route }) {
         style={styles.background}
       >
         <View style={styles.container}>
+        <Spinner textContent="Loading..." visible={loading} />
           <View
             style={{ marginLeft: 20, marginTop: 150, alignItems: "center" }}
           >
@@ -112,7 +139,7 @@ export default function SigninScreen({ navigation, route }) {
               title="SIGN-IN"
               buttonStyle={parameters.styledButton}
               titleStyle={parameters.buttonTitle}
-              onPress="handleLogin"
+              onPress={handleLogin}
             />
           </View>
 

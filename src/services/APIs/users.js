@@ -9,7 +9,7 @@ export const registerUser = (data) => {
 // };
 
 export const signInUser = (data) => {
-  return apiHandler("POST", "/users/mobile/login/", false, false, data);
+  return apiHandler("POST", "/auth/login", false, false, data);
 };
 
 export const userKYCForm = (data, id) => {

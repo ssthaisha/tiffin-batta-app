@@ -105,7 +105,7 @@ export default function AppContainer() {
         <Stack.Screen
           name="Homee"
           component={HomeStack}
-          options={{ headerShown: false }}
+          options={{ headerShown: true }}
         />
       )}
       {/* <Stack.Screen
