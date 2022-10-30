@@ -1,7 +1,7 @@
 import apiHandler from "../helper";
 
 export const registerUser = (data) => {
-  return apiHandler("POST", "/users/mobile/signup/", false, false, data);
+  return apiHandler("POST", "/auth/signup", false, false, data);
 };
 
 // export const signInUser = (data) => {

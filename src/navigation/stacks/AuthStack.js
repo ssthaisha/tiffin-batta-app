@@ -15,18 +15,17 @@ const Stack = createStackNavigator();
 
 export default function AuthStack() {
   return (
-    <Stack.Navigator initialRouteName={"CustomerRegistration"}>
+    <Stack.Navigator initialRouteName={"CustomerLogIn"}>
       <Stack.Screen
-        name="CustomerRegistration"
-        component={CustomerRegistration}
+        name="CustomerLogIn"
+        component={CustomerLogIn}
         options={{
           headerShown: false,
         }}
       />
-
       <Stack.Screen
-        name="CustomerLogIn"
-        component={CustomerLogIn}
+        name="CustomerRegistration"
+        component={CustomerRegistration}
         options={{
           headerShown: false,
         }}

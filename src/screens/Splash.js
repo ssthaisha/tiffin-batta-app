@@ -14,9 +14,9 @@ export const Splash = () => {
     >
       <Image
         source={require("../../assets/image4.png")}
-        height={300}
-        width={300}
-        style={{ height: 300, width: 300, resizeMode: "contain" }}
+        height={600}
+        width={400}
+        style={{ height: 900, width: 300, resizeMode: "contain" }}
       />
       {/* <Text>Hello</Text> */}
     </View>

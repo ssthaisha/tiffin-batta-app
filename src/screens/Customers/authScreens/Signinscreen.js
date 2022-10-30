@@ -9,7 +9,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
 
-export default function SigninScreen() {
+export default function SigninScreen({ navigation, route }) {
   const [TextInput2Fossued, setTextInput2Fossued] = useState(false);
 
   const textInput1 = useRef(1);
@@ -38,6 +38,7 @@ export default function SigninScreen() {
       .catch((err) => console.log(err, email, "check error"));
   };
 
+  console.log(navigation, route, "route");
   return (
     <>
       <LinearGradient
@@ -137,6 +138,7 @@ export default function SigninScreen() {
               title="Create an account"
               buttonStyle={parameters.createButton}
               titleStyle={parameters.createButtonTitle}
+              onPress={() => navigation.navigate("CustomerRegistration")}
             />
           </View>
         </View>

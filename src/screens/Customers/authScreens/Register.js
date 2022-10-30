@@ -1,6 +1,13 @@
 import React, { useState, useRef } from "react";
 
-import { View, Text, StyleSheet, Dimensions, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  TextInput,
+  ActivityIndicator,
+} from "react-native";
 import { colors, parameters } from "../../../global/styles";
 import * as Animatable from "react-native-animatable";
 import { Icon, Button } from "react-native-elements";
@@ -8,6 +15,12 @@ import { Icon, Button } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
+import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../../../store/reducers/userSlice";
+import Spinner from "react-native-loading-spinner-overlay/lib";
+import { registerUser } from "../../../services/APIs/users";
+import { API_URL } from "../../../constants";
 
 export default function Register() {
   const [TextInput3Fossued, setTextInput3Fossued] = useState(false);
@@ -19,26 +32,58 @@ export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordRe, setPasswordRe] = useState("");
   const [showPw, setShowPw] = useState(false);
+  const [showPwRe, setShowPwRe] = useState(false);
 
-  const handleRegister = () => {
-    axios({
-      method: "POST",
-      baseURL: "http://192.168.1.72:3005/api",
-      url: "/auth/signup",
-      headers: { "Content-Type": "application/json" },
-      data: {
-        name,
-        email,
-        password,
-        role: "CUSTOMER",
-      },
-    })
-      .then((res) => {
+  const [loading, setLoading] = useState(false);
+
+  const formik = useFormik({
+    initialValues: {},
+    onSubmit: () => null,
+  });
+
+  const dispatch = useDispatch();
+
+  const isValid =
+    name.length > 3 && email.length > 5 && password === passwordRe;
+
+  const handleRegister = async () => {
+    if (isValid) {
+      setLoading(true);
+      try {
+        const res = await registerUser({
+          name,
+          email,
+          password,
+          role: "CUSTOMER",
+        });
+
+        // const res = await axios({
+        //   method: "POST",
+        //   baseURL: API_URL,
+        //   url: "/auth/signup",
+        //   headers: { "Content-Type": "application/json" },
+        //   data: {
+        //     name,
+        //     email,
+        //     password,
+        //     role: "CUSTOMER",
+        //   },
+        // });
+
         alert(`${res.data.email} ${res.data.name} account registered!!`);
-        console.log(res);
-      })
-      .catch((err) => console.log(err, name, email, "check error"));
+        setLoading(false);
+        // dispatch(loginSuccess(res.data));
+      } catch (err) {
+        console.log(err);
+        setLoading(false);
+        alert(`${JSON.stringify(err)}`);
+        console.log(`${JSON.stringify(err)}`);
+      }
+    } else {
+      alert("Please fill the details properly!!");
+    }
   };
 
   return (
@@ -49,6 +94,7 @@ export default function Register() {
       style={styles.background}
     >
       <View style={styles.container}>
+        <Spinner textContent="Loading..." visible={loading} />
         <View style={{ marginLeft: 5, marginTop: 150, alignItems: "center" }}>
           <Text style={styles.title}> Register your account </Text>
         </View>
@@ -90,7 +136,7 @@ export default function Register() {
             </Animatable.View>
 
             <TextInput
-              style={{ width: "80%" }}
+              style={{ width: "80%", paddingHorizontal: 10 }}
               placeholder="Password"
               ref={textInput3}
               onFocus={() => {
@@ -105,12 +151,48 @@ export default function Register() {
               onChangeText={(t) => setPassword(t)}
               // right={<TextInput.Icon name="eye" />}
             />
-            <Animatable.View>
+            <Animatable.View style={{ paddingHorizontal: 10 }}>
               <Ionicons
                 name={showPw ? "eye-off" : "eye"}
                 size={22}
                 color="black"
                 onPress={() => setShowPw(!showPw)}
+              />
+            </Animatable.View>
+          </View>
+
+          <View style={styles.textInput3Styles}>
+            <Animatable.View>
+              <Icon
+                name="lock"
+                iconStyle={{ color: colors.grey3 }}
+                type="material"
+                style={{}}
+              />
+            </Animatable.View>
+
+            <TextInput
+              style={{ width: "80%", paddingHorizontal: 10 }}
+              placeholder="Confirm Password"
+              ref={textInput3}
+              onFocus={() => {
+                setTextInput3Fossued(false);
+              }}
+              onBlur={() => {
+                setTextInput3Fossued(true);
+              }}
+              secureTextEntry={!showPwRe}
+              textContentType={"password"}
+              value={passwordRe}
+              onChangeText={(t) => setPasswordRe(t)}
+              // right={<TextInput.Icon name="eye" />}
+            />
+            <Animatable.View style={{ paddingHorizontal: 10 }}>
+              <Ionicons
+                name={showPwRe ? "eye-off" : "eye"}
+                size={22}
+                color="black"
+                onPress={() => setShowPwRe(!showPwRe)}
               />
             </Animatable.View>
           </View>
@@ -167,6 +249,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 12,
     marginHorizontal: 20,
+    marginBottom: 20,
     borderColor: "#86939e",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -180,6 +263,15 @@ const styles = StyleSheet.create({
   },
   background: {
     flex: 1,
+    position: "relative",
     // backgroundColor: "red",
+  },
+  spinner: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    margin: "auto",
   },
 });
