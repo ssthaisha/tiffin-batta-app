@@ -4,10 +4,17 @@ import { View, Text, StyleSheet, Dimensions, TextInput } from "react-native";
 import { colors, parameters } from "../../global/styles";
 import * as Animatable from "react-native-animatable";
 import { Icon, Button, SocialIcon } from "react-native-elements";
+// import Header from "../../component/Header";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
+import axios from "axios";
+import { signInUser } from "../../services/APIs/users";
+import { useDispatch } from "react-redux";
+import Spinner from "react-native-loading-spinner-overlay/lib";
+import { loginSuccess, login } from "../../store/reducers/userSlice";
+import { showMessage } from "react-native-flash-message";
 
-export default function Login() {
+export default function SigninScreen({ navigation, route }) {
   const [TextInput2Fossued, setTextInput2Fossued] = useState(false);
 
   const textInput1 = useRef(1);
@@ -16,6 +23,63 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPw, setShowPw] = useState(false);
+
+  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const handleLogin = async () => {
+    if (true) {
+      setLoading(true);
+      try {
+        // const res = await signInUser({
+        //   email,
+        //   password,
+        //   userName: email,
+        //   userRole: 'CUSTOMER',
+        // });
+
+        // const res = await axios({
+        //   method: "POST",
+        //   baseURL: API_URL,
+        //   url: "/auth/signup",
+        //   headers: { "Content-Type": "application/json" },
+        //   data: {
+        //     name,
+        //     email,
+        //     password,
+        //     role: "CUSTOMER",
+        //   },
+        // });
+
+        dispatch(login(({
+          email,
+          password,
+          userName: email,
+          userRole: 'CUSTOMER',
+        })));
+        showMessage({
+          type: 'success',
+          message: "Logged in!!",
+          duration: 3000,
+          style: {
+            paddingVertical: 20,
+          }
+        })
+        // alert(`${res.data.email} ${res.data.name} logged in!!`);
+        setLoading(false);
+      } catch (err) {
+        console.log(err);
+        setLoading(false);
+        alert(`${JSON.stringify(err)}`);
+        console.log(`${JSON.stringify(err)}`);
+      }
+    } else {
+      alert("Please fill the details properly!!");
+    }
+  };
+
+  // console.log(navigation, route, "route");
   return (
     <>
       <LinearGradient
@@ -25,10 +89,11 @@ export default function Login() {
         style={styles.background}
       >
         <View style={styles.container}>
+        <Spinner textContent="Loading..." visible={loading} />
           <View
-            style={{ marginLeft: 20, marginTop: 120, alignItems: "center" }}
+            style={{ marginLeft: 20, marginTop: 150, alignItems: "center" }}
           >
-            <Text style={styles.title}> Sign-In </Text>
+            <Text style={styles.title}> Sign-in </Text>
           </View>
           <View style={{ alignItems: "center", marginTop: 10 }}>
             <Text style={styles.text1}>
@@ -89,6 +154,7 @@ export default function Login() {
               title="SIGN-IN"
               buttonStyle={parameters.styledButton}
               titleStyle={parameters.buttonTitle}
+              onPress={handleLogin}
             />
           </View>
 
@@ -97,6 +163,25 @@ export default function Login() {
               {" "}
               Forget password?{" "}
             </Text>
+          </View>
+
+          <View style={{ alignItems: "center", marginTop: 20 }}>
+            <Text style={{ fontSize: 20, fontWeight: "bold" }}>OR</Text>
+          </View>
+
+          <View style={{ marginTop: 10, marginLeft: 20 }}>
+            <Text style={{ ...styles.text2, textDecorationLine: "underline" }}>
+              New On Tiffinbatta
+            </Text>
+          </View>
+
+          <View style={{ alignItems: "flex-end", marginHorizontal: 20 }}>
+            <Button
+              title="Create an account"
+              buttonStyle={parameters.createButton}
+              titleStyle={parameters.createButtonTitle}
+              onPress={() => navigation.navigate("CustomerRegistration")}
+            />
           </View>
         </View>
       </LinearGradient>
@@ -109,7 +194,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "white",
-    fontSize: 32,
+    fontSize: 38,
   },
   text1: {
     color: colors.grey5,

@@ -3,23 +3,23 @@ import createSagaMiddleware from "redux-saga";
 
 import reducer from "./root-reducer.js";
 import saga from "./root-saga.js";
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from "redux-persist";
+// import {
+//   persistStore,
+//   persistReducer,
+//   FLUSH,
+//   REHYDRATE,
+//   PAUSE,
+//   PERSIST,
+//   PURGE,
+//   REGISTER,
+// } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
 };
 
-const persistedReducer = persistReducer(persistConfig, reducer);
+// const reducer = persistReducer(persistConfig, reducer);
 
 const devMode = process.env.NODE_ENV === "development";
 
@@ -28,9 +28,9 @@ const sagaMiddleware = createSagaMiddleware();
 const middleware = [
   ...getDefaultMiddleware({
     thunk: false,
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
+    // serializableCheck: {
+    //   ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    // },
   }),
   sagaMiddleware,
 ];
@@ -40,13 +40,13 @@ if (devMode) {
 }
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: reducer,
   devTools: devMode,
   middleware,
 });
 
 sagaMiddleware.run(saga);
 
-export const persistor = persistStore(store);
-
-// export   store;
+// export const persistor = persistStore(store);
+// 
+// export   const store;

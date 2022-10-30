@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 import * as Animatable from "react-native-animatable";
-import { colors, parameters } from "../../global/styles";
+import { colors, parameters } from "../../../global/styles";
 import Swiper from "react-native-swiper";
 
 import { Icon, Button, SocialIcon } from "react-native-elements";
@@ -42,21 +42,21 @@ export default function WelcomeScreen() {
         <Swiper>
           <View style={styles.slide1}>
             <Image
-              source={require("../../../assets/image1.jpg")}
+              source={require("../../../../assets/image1.jpg")}
               style={{ height: "200%", width: "100%" }}
             />
           </View>
 
           <View style={styles.slide2}>
             <Image
-              source={require("../../../assets/image2.jpg")}
+              source={require("../../../../assets/image2.jpg")}
               style={{ height: "200%", width: "100%" }}
             />
           </View>
 
           <View style={styles.slide3}>
             <Image
-              source={require("../../../assets/image3.jpg")}
+              source={require("../../../../assets/image3.jpg")}
               style={{ height: "200%", width: "100%" }}
             />
           </View>

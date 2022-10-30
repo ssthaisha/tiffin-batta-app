@@ -4,7 +4,7 @@ import { Icon } from "react-native-elements";
 import { Ionicons } from "@expo/vector-icons";
 import { colors, parameters } from "../global/styles";
 
-export default function ChefHeader() {
+export default function ChefHeader({ navigation }) {
   return (
     <View style={styles.header}>
       <View
@@ -14,7 +14,7 @@ export default function ChefHeader() {
           marginLeft: 5,
         }}
       >
-        <Ionicons name="arrow-back" size={35} color={colors.grey5} />
+        <Ionicons name="arrow-back" size={35} color={colors.grey5} onPress={() => navigation.goBack()} />
       </View>
       <View
         style={{

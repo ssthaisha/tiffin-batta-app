@@ -18,11 +18,11 @@ import { foodData, specialfoodData } from "../../global/data";
 
 const itemWidth = width / 2 - 20;
 
-export default function ChefProfile() {
+export default function ChefProfile({ navigation }) {
   return (
     <>
       <View style={styles.container}>
-        <ChefHeader />
+        <ChefHeader navigation={navigation} />
 
         <View style={{ marginTop: 20, alignItems: "center" }}>
           <Text

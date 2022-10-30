@@ -11,7 +11,8 @@ import axios from "axios";
 import { signInUser } from "../../../services/APIs/users";
 import { useDispatch } from "react-redux";
 import Spinner from "react-native-loading-spinner-overlay/lib";
-import { loginSuccess } from "../../../store/reducers/userSlice";
+import { loginSuccess, login } from "../../../store/reducers/userSlice";
+import { showMessage } from "react-native-flash-message";
 
 export default function SigninScreen({ navigation, route }) {
   const [TextInput2Fossued, setTextInput2Fossued] = useState(false);
@@ -31,12 +32,12 @@ export default function SigninScreen({ navigation, route }) {
     if (true) {
       setLoading(true);
       try {
-        const res = await signInUser({
-          email,
-          password,
-          userName: email,
-          userRole: 'CUSTOMER',
-        });
+        // const res = await signInUser({
+        //   email,
+        //   password,
+        //   userName: email,
+        //   userRole: 'CUSTOMER',
+        // });
 
         // const res = await axios({
         //   method: "POST",
@@ -51,9 +52,22 @@ export default function SigninScreen({ navigation, route }) {
         //   },
         // });
 
-        alert(`${res.data.email} ${res.data.name} logged in!!`);
+        dispatch(login(({
+          email,
+          password,
+          userName: email,
+          userRole: 'CUSTOMER',
+        })));
+        showMessage({
+          type: 'success',
+          message: "Logged in!!",
+          duration: 3000,
+          style: {
+            paddingVertical: 20,
+          }
+        })
+        // alert(`${res.data.email} ${res.data.name} logged in!!`);
         setLoading(false);
-        dispatch(loginSuccess(res.data));
       } catch (err) {
         console.log(err);
         setLoading(false);
@@ -65,7 +79,7 @@ export default function SigninScreen({ navigation, route }) {
     }
   };
 
-  console.log(navigation, route, "route");
+  // console.log(navigation, route, "route");
   return (
     <>
       <LinearGradient

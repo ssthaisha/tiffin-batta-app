@@ -16,55 +16,23 @@ import { colors, parameters } from "../../global/styles";
 
 import { ChefData, filterData } from "../../global/data";
 import FoodCard from "../../components/Foodcard";
+import { useSelector } from "react-redux";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   const [delivery, setdelivery] = useState(true);
   const [indexCheck, setindexCheck] = useState("0");
 
+  const { user } = useSelector(state => state.auth);
+
   return (
     <View style={styles.container}>
-      <Homeheader />
+      <Homeheader navigation={navigation}/>
       <ScrollView stickyHeaderIndices={[0]} showsVerticalScrollIndicator={true}>
-        <View>
-          <View
-            style={{
-              marginTop: 10,
-              flexDirection: "row",
-              justifyContent: "space-evenly",
-            }}
-          >
-            <TouchableOpacity
-              onPress={() => {
-                setdelivery(true);
-              }}
-            >
-              <View
-                style={{
-                  ...styles.deliverybutton,
-                  backgroundColor: delivery ? colors.buttons : colors.grey4,
-                }}
-              >
-                <Text style={styles.deliveryText}>Delivery</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                setdelivery(false);
-              }}
-            >
-              <View
-                style={{
-                  ...styles.deliverybutton,
-                  backgroundColor: delivery ? colors.grey4 : colors.buttons,
-                }}
-              >
-                <Text style={styles.deliveryText}>Pickup</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
+       
+          
+          
 
         <View style={styles.filterView}>
           <View style={styles.addressView}>
@@ -92,9 +60,7 @@ export default function HomeScreen() {
               />
               <Text style={{ marginLeft: 5 }}>Now</Text>
             </View>
-          </View>
-
-          <View>
+            <View>
             <Icon
               type="material-community"
               name="tune"
@@ -102,6 +68,9 @@ export default function HomeScreen() {
               size={26}
             />
           </View>
+          </View>
+
+        
         </View>
 
         <View
@@ -117,8 +86,8 @@ export default function HomeScreen() {
             <Text style={styles.selectchef}>Choose Your Chef</Text>
           </TouchableOpacity>
           <Image
-            source={require("../../../assets/icon.png")}
-            style={{ width: 40, height: 50 }}
+            source={require("../../../assets/image13.jpg")}
+            style={{ width: 40, height: 50, borderRadius: 30 }}
           />
         </View>
 
@@ -184,6 +153,7 @@ export default function HomeScreen() {
               fontWeight: "bold",
               backgroundColor: colors.grey5,
               paddingLeft: 20,
+              fontFamily: "hk-grotesk.bold-itallic"
             }}
           >
             Subscribe Our Chef
