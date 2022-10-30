@@ -11,6 +11,7 @@ import axios from "axios";
 import { signInUser } from "../../../services/APIs/users";
 import { useDispatch } from "react-redux";
 import Spinner from "react-native-loading-spinner-overlay/lib";
+import { loginSuccess } from "../../../store/reducers/userSlice";
 
 export default function SigninScreen({ navigation, route }) {
   const [TextInput2Fossued, setTextInput2Fossued] = useState(false);
