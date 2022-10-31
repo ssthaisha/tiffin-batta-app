@@ -23,11 +23,11 @@ const storeUserAndTokens = async (data) => {
     await AsyncStorage.setItem("user", jsonValue);
     await AsyncStorage.setItem("token", data.token);
     // await AsyncStorage.setItem("refresh", data.refresh);
-    console.log(data, 'check to store');
+    // console.log(data, 'check to store');
   } catch (e) {
     // saving error
-      console.log(e);
-      alert("Error in storing data");
+    console.log(e);
+    alert("Error in storing data");
   }
 };
 
@@ -47,7 +47,7 @@ function* loginFlow(action) {
   } catch (errorPromise) {
     const error = yield errorPromise;
     yield put(loginError({ message: "Login" }));
-    console.log(error, 'errorr')
+    console.log(error, "errorr");
     //  showMessage({
     //   message: "Login failed !!!",
     //   type: "danger",

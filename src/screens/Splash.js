@@ -1,6 +1,10 @@
 import React from "react";
 import { View, Image, Text } from "react-native";
 // import { Logo } from "../assets/images";
+import {
+  height as DEVICE_HEIGHT,
+  width as DEVICE_WIDTH,
+} from "../services/scale";
 
 export const Splash = () => {
   return (
@@ -14,9 +18,13 @@ export const Splash = () => {
     >
       <Image
         source={require("../../assets/image4.png")}
-        height={600}
-        width={400}
-        style={{ height: 900, width: 300, resizeMode: "contain" }}
+        height={DEVICE_HEIGHT}
+        width={DEVICE_WIDTH}
+        style={{
+          height: DEVICE_HEIGHT,
+          width: DEVICE_WIDTH,
+          resizeMode: "contain",
+        }}
       />
       {/* <Text>Hello</Text> */}
     </View>

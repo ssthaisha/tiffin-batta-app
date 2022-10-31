@@ -4,12 +4,28 @@ export const registerUser = (data) => {
   return apiHandler("POST", "/auth/signup", false, false, data);
 };
 
+export const registerChef = (data) => {
+  return apiHandler("POST", "/chefs/signup", false, false, data);
+};
+
+export const registerDriver = (data) => {
+  return apiHandler("POST", "/drivers/signup", false, false, data);
+};
+
 // export const signInUser = (data) => {
 //   return apiHandler("POST", "/token/", false, false, data);
 // };
 
 export const signInUser = (data) => {
   return apiHandler("POST", "/auth/login", false, false, data);
+};
+
+export const signInChef = (data) => {
+  return apiHandler("POST", "/chefs/login", false, false, data);
+};
+
+export const signInDriver = (data) => {
+  return apiHandler("POST", "/drivers/login", false, false, data);
 };
 
 export const userKYCForm = (data, id) => {

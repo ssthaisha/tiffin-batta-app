@@ -19,7 +19,7 @@ import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../../store/reducers/userSlice";
 import Spinner from "react-native-loading-spinner-overlay/lib";
-import { registerUser } from "../../../services/APIs/users";
+import { registerChef } from "../../../services/APIs/users";
 import { API_URL } from "../../../constants";
 
 export default function Register() {
@@ -29,13 +29,13 @@ export default function Register() {
   const textInput2 = useRef(2);
   const textInput3 = useRef(3);
 
-  const [name, setName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRe, setPasswordRe] = useState("");
   const [showPw, setShowPw] = useState(false);
   const [showPwRe, setShowPwRe] = useState(false);
-  const [contact, setContact] = useState("");
+  const [contactNo, setContact] = useState("");
   const [address, setAddress] = useState("");
 
   const [loading, setLoading] = useState(false);
@@ -48,17 +48,18 @@ export default function Register() {
   const dispatch = useDispatch();
 
   const isValid =
-    name.length > 3 && email.length > 5 && password === passwordRe;
+    fullName.length > 3 && email.length > 5 && password === passwordRe;
 
   const handleRegister = async () => {
     if (isValid) {
       setLoading(true);
       try {
-        const res = await registerUser({
-          name,
+        const res = await registerChef({
+          fullName,
           email,
+          contactNo,
+          address,
           password,
-          role: "CHEF",
         });
 
         // const res = await axios({
@@ -67,14 +68,14 @@ export default function Register() {
         //   url: "/auth/signup",
         //   headers: { "Content-Type": "application/json" },
         //   data: {
-        //     name,
+        //     fullName,
         //     email,
         //     password,
         //     role: "CUSTOMER",
         //   },
         // });
 
-        alert(`${res.data.email} ${res.data.name} account registered!!`);
+        alert(`${res.data.email} ${res.data.fullName} account registered!!`);
         setLoading(false);
         dispatch(loginSuccess(res.data));
       } catch (err) {
@@ -111,10 +112,10 @@ export default function Register() {
           <View>
             <TextInput
               style={styles.textInput1Style}
-              placeholder="UserName"
+              placeholder="Full Name"
               ref={textInput1}
-              value={name}
-              onChangeText={(t) => setName(t)}
+              value={fullName}
+              onChangeText={(t) => setFullName(t)}
             />
           </View>
           <View>
@@ -122,7 +123,7 @@ export default function Register() {
               style={styles.textInput1Style}
               placeholder="ContactNo"
               ref={textInput1}
-              value={contact}
+              value={contactNo}
               onChangeText={(t) => setContact(t)}
             />
           </View>
@@ -144,7 +145,6 @@ export default function Register() {
               onChangeText={(t) => setEmail(t)}
             />
           </View>
-          
 
           <View style={styles.textInput3Styles}>
             <Animatable.View>

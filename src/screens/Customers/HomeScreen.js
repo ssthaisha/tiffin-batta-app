@@ -17,6 +17,10 @@ import { colors, parameters } from "../../global/styles";
 import { ChefData, filterData } from "../../global/data";
 import FoodCard from "../../components/Foodcard";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getActiveChefs } from "../../services/APIs/customerAPIs";
+import { showMessage } from "react-native-flash-message";
+import { RefreshControl } from "react-native-gesture-handler";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
@@ -24,16 +28,43 @@ export default function HomeScreen({ navigation }) {
   const [delivery, setdelivery] = useState(true);
   const [indexCheck, setindexCheck] = useState("0");
 
-  const { user } = useSelector(state => state.auth);
+  const { user } = useSelector((state) => state.auth);
+  const getAllActiveChefs = async () => {
+    try {
+      const res = await getActiveChefs();
+      console.log(res, "check chefs");
+      // showMessage({
+      //   type: "success",
+      //   message: "Error getting chefs",
+      // });
+    } catch (err) {
+      showMessage({
+        type: "error",
+        message: "Error getting chefs",
+      });
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getAllActiveChefs();
+  }, []);
+
+  const [refreshing, setRefreshing] = useState(false);
 
   return (
     <View style={styles.container}>
-      <Homeheader navigation={navigation}/>
-      <ScrollView stickyHeaderIndices={[0]} showsVerticalScrollIndicator={true}>
-       
-          
-          
-
+      <Homeheader navigation={navigation} />
+      <ScrollView
+        stickyHeaderIndices={[0]}
+        showsVerticalScrollIndicator={true}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={getAllActiveChefs}
+          />
+        }
+      >
         <View style={styles.filterView}>
           <View style={styles.addressView}>
             <View
@@ -61,16 +92,14 @@ export default function HomeScreen({ navigation }) {
               <Text style={{ marginLeft: 5 }}>Now</Text>
             </View>
             <View>
-            <Icon
-              type="material-community"
-              name="tune"
-              color={colors.grey1}
-              size={26}
-            />
+              <Icon
+                type="material-community"
+                name="tune"
+                color={colors.grey1}
+                size={26}
+              />
+            </View>
           </View>
-          </View>
-
-        
         </View>
 
         <View
@@ -153,7 +182,7 @@ export default function HomeScreen({ navigation }) {
               fontWeight: "bold",
               backgroundColor: colors.grey5,
               paddingLeft: 20,
-              fontFamily: "hk-grotesk.bold-itallic"
+              fontFamily: "hk-grotesk.bold-itallic",
             }}
           >
             Subscribe Our Chef
