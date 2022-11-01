@@ -10,6 +10,7 @@ import { store } from "./src/store/store";
 // import Loading
 import FlashMessage from "react-native-flash-message";
 import AppContainer from "./src/navigation";
+import SubscribersList from "./src/screens/Chefs/SubscribersList";
 
 export default function App() {
   return (
@@ -19,6 +20,15 @@ export default function App() {
       </NavigationContainer>
       <FlashMessage position={"top"} />
     </Provider>
+  );
+
+  return (
+    <View style={styles.container}>
+      <StatusBar barstyle="light-content" backgroundColor={colors.statusbar} />
+      {/* <SignUpscreen /> */}
+      {/* <Login /> */}
+      <SubscribersList />
+    </View>
   );
   return (
     <View style={styles.container}>
