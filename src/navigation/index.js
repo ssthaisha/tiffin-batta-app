@@ -103,9 +103,9 @@ export default function AppContainer() {
         />
       ) : (
         <Stack.Screen
-          name="Homee"
+          name="Home"
           component={HomeStack}
-          options={{ headerShown: true }}
+          options={{ headerShown: false }}
         />
       )}
       {/* <Stack.Screen

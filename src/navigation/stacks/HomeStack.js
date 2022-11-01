@@ -8,28 +8,31 @@ import HomeScreen from "../../screens/Customers/HomeScreen";
 // import WeekMenu from "../../screens/Customers/Weekmenu";
 import ChefProfile from "../../screens/Customers/ChefProfile";
 import ChefLogin from "../../screens/Chefs/authScreens/Signinscreen";
-import DriverLogin from "../../screens/Delivery/Login"
+import DriverLogin from "../../screens/Delivery/Login";
 import { Icon } from "react-native-elements";
 import { colors } from "../../global/styles";
+import MapScreen from "../../screens/Customers/MapScreen";
 
 const Drawer = createDrawerNavigator();
 
 const HomeStack = () => {
   return (
-    <Drawer.Navigator initialRouteName={"Home"}>
+    <Drawer.Navigator
+      initialRouteName={"Home"}
+      screenOptions={{ header: () => null }}
+    >
       <Drawer.Screen
         name="Home"
         component={HomeScreen}
         options={{
           headerShown: false,
-          drawerIcon:({focussed,size}) =>(
+          drawerIcon: ({ focussed, size }) => (
             <Icon
-            type="material-community"
-            name="home"
-            color={focussed? '#7cc':colors.grey2}
-            
-          />
-          )
+              type="material-community"
+              name="home"
+              color={focussed ? "#7cc" : colors.grey2}
+            />
+          ),
         }}
       />
       <Drawer.Screen
@@ -40,31 +43,10 @@ const HomeStack = () => {
         }}
       />
       <Drawer.Screen
-        name="Driver Console"
-        component={DriverLogin}
+        name="Maps"
+        component={MapScreen}
         options={{
           headerShown: false,
-          drawerIcon:({focussed,size}) =>(
-            <Icon
-            type="material-community"
-            name="bike-fast"
-            color={focussed? '#7cc':colors.grey2}
-          />
-          )
-          }}
-      /> 
-      <Drawer.Screen
-        name="Chef console"
-        component={ChefLogin}
-        options={{
-          headerShown: false,
-          drawerIcon:({focussed,size}) =>(
-            <Icon
-            type="material-community"
-            name="chef-hat"
-            color={focussed? '#7cc':colors.grey2}
-          />
-          )  
         }}
       />
       {/* <Drawer.Screen

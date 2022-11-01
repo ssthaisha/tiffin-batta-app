@@ -79,6 +79,7 @@ export default function HomeScreen({ navigation }) {
                 name="map-marker"
                 color={colors.grey1}
                 size={26}
+                onPress={() => navigation.navigate("Maps")}
               />
               <Text style={{ marginLeft: 5 }}>Gwarko Chowk</Text>
             </View>
@@ -256,6 +257,7 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 30,
   },
   deliverybutton: {
     paddingHorizontal: 20,
