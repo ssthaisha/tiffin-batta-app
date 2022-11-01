@@ -89,7 +89,7 @@ export default function Register() {
   return (
     <LinearGradient
       // Background Linear Gradient
-      colors={["#668162", "#668162", "#fefefe"]}
+      colors={["#FD841F", "#FD841F", "#fefefe"]}
       start={{ x: 0.9, y: 0 }}
       style={styles.background}
     >
@@ -200,7 +200,7 @@ export default function Register() {
         <View style={{ marginHorizontal: 20, marginTop: 40 }}>
           <Button
             title="Create Account"
-            buttonStyle={parameters.styledButton}
+            buttonStyle={styles.styledButton}
             titleStyle={parameters.buttonTitle}
             onPress={handleRegister}
           />
@@ -273,5 +273,16 @@ const styles = StyleSheet.create({
     right: 0,
     left: 0,
     margin: "auto",
+  },
+  styledButton: {
+    backgroundColor: "#FD841F",
+    justifyContent: "center",
+    alignContent: "center",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#43484d",
+    height: 50,
+    paddingHorizontal: 20,
+    width: "100%",
   },
 });
