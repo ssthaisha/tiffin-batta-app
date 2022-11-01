@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { loginSuccess, login } from "../../store/reducers/userSlice";
 import { showMessage } from "react-native-flash-message";
+import Lottie from 'lottie-react-native';
 
 export default function SigninScreen({ navigation, route }) {
   const [TextInput2Fossued, setTextInput2Fossued] = useState(false);
@@ -91,7 +92,7 @@ export default function SigninScreen({ navigation, route }) {
         <View style={styles.container}>
         <Spinner textContent="Loading..." visible={loading} />
           <View
-            style={{ marginLeft: 20, marginTop: 150, alignItems: "center" }}
+            style={{ marginLeft: 20, marginTop: 80, alignItems: "center" }}
           >
             <Text style={styles.title}> Sign-in </Text>
           </View>
@@ -102,7 +103,12 @@ export default function SigninScreen({ navigation, route }) {
             </Text>
             <Text style={styles.text1}> Register with your account </Text>
           </View>
-          <View style={{ marginTop: 20 }}>
+
+          <View style={{height:250,width:300, alignItems:'center', marginLeft:30}}>
+            <Lottie source={require('../../../assets/deliver.json')} autoPlay/>
+          </View>
+
+          <View style={{ marginTop: 30 }}>
             <View>
               <TextInput
                 style={styles.textInput1Style}
@@ -156,23 +162,6 @@ export default function SigninScreen({ navigation, route }) {
               titleStyle={parameters.buttonTitle}
               onPress={handleLogin}
             />
-          </View>
-
-          <View style={{ alignItems: "center", marginTop: 15 }}>
-            <Text style={{ ...styles.text1, textDecorationLine: "underline" }}>
-              {" "}
-              Forget password?{" "}
-            </Text>
-          </View>
-
-          <View style={{ alignItems: "center", marginTop: 20 }}>
-            <Text style={{ fontSize: 20, fontWeight: "bold" }}>OR</Text>
-          </View>
-
-          <View style={{ marginTop: 10, marginLeft: 20 }}>
-            <Text style={{ ...styles.text2, textDecorationLine: "underline" }}>
-              New On Tiffinbatta
-            </Text>
           </View>
 
           <View style={{ alignItems: "flex-end", marginHorizontal: 20 }}>

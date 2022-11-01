@@ -92,7 +92,7 @@ export default function Register() {
   return (
     <LinearGradient
       // Background Linear Gradient
-      colors={["#668162", "#668162", "#fefefe"]}
+      colors={["#AC4425", "#AC4425", "#fefefe", "#fefefe"]}
       start={{ x: 0.9, y: 0 }}
       style={styles.background}
     >
@@ -218,11 +218,11 @@ export default function Register() {
             </Animatable.View>
           </View>
         </View>
-        <View style={{ marginHorizontal: 20, marginTop: 40 }}>
+        <View style={{ marginHorizontal: 20, marginTop: 20 }}>
           <Button
             title="Create Account"
-            buttonStyle={parameters.styledButton}
-            titleStyle={parameters.buttonTitle}
+            buttonStyle={styles.styledButton}
+            titleStyle={styles.buttonTitle}
             onPress={handleRegister}
           />
         </View>
@@ -281,6 +281,17 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     fontSize: 24,
     backgroundColor: "#fefefe",
+  },
+  styledButton: {
+    backgroundColor: "#AC4425",
+    justifyContent: "center",
+    alignContent: "center",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#43484d",
+    height: 50,
+    paddingHorizontal: 20,
+    width: "100%",
   },
   background: {
     flex: 1,

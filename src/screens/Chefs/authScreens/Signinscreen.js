@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-import { View, Text, StyleSheet, Dimensions, TextInput } from "react-native";
+import { View, Text, StyleSheet, Dimensions, TextInput, Image } from "react-native";
 import { colors, parameters } from "../../../global/styles";
 import * as Animatable from "react-native-animatable";
 import { Icon, Button, SocialIcon } from "react-native-elements";
@@ -13,6 +13,9 @@ import { useDispatch } from "react-redux";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { loginSuccess, login } from "../../../store/reducers/userSlice";
 import { showMessage } from "react-native-flash-message";
+import Lottie from 'lottie-react-native';
+import { ScreenWidth } from "react-native-elements/dist/helpers";
+
 
 export default function SigninScreen({ navigation, route }) {
   const [TextInput2Fossued, setTextInput2Fossued] = useState(false);
@@ -84,14 +87,14 @@ export default function SigninScreen({ navigation, route }) {
     <>
       <LinearGradient
         // Background Linear Gradient
-        colors={["#668162", "#668162", "#fefefe"]}
-        start={{ x: 0.8, y: 0 }}
+        colors={["#AC4425","#fefefe","#fefefe", "#fefefe", "#fefefe","#fefefe","#fefefe"]}
+        start={{ x: 1.1, y: 0 }}
         style={styles.background}
       >
         <View style={styles.container}>
         <Spinner textContent="Loading..." visible={loading} />
           <View
-            style={{ marginLeft: 20, marginTop: 150, alignItems: "center" }}
+            style={{ marginLeft: 20, marginTop: 90, alignItems: "center" }}
           >
             <Text style={styles.title}> Sign-in </Text>
           </View>
@@ -102,6 +105,11 @@ export default function SigninScreen({ navigation, route }) {
             </Text>
             <Text style={styles.text1}> Register with your account </Text>
           </View>
+            <Image source={require('../../../../assets/chef.gif')} 
+            style={{
+            height: 250, width: 300
+            }}/>
+            {/* <Lottie source={require('../../../../assets/chef.gif')}/> */}
           <View style={{ marginTop: 20 }}>
             <View>
               <TextInput
@@ -152,27 +160,10 @@ export default function SigninScreen({ navigation, route }) {
           <View style={{ marginHorizontal: 20, marginTop: 20 }}>
             <Button
               title="SIGN-IN"
-              buttonStyle={parameters.styledButton}
-              titleStyle={parameters.buttonTitle}
+              buttonStyle={styles.styledButton}
+              titleStyle={styles.buttonTitle}
               onPress={handleLogin}
             />
-          </View>
-
-          <View style={{ alignItems: "center", marginTop: 15 }}>
-            <Text style={{ ...styles.text1, textDecorationLine: "underline" }}>
-              {" "}
-              Forget password?{" "}
-            </Text>
-          </View>
-
-          <View style={{ alignItems: "center", marginTop: 20 }}>
-            <Text style={{ fontSize: 20, fontWeight: "bold" }}>OR</Text>
-          </View>
-
-          <View style={{ marginTop: 10, marginLeft: 20 }}>
-            <Text style={{ ...styles.text2, textDecorationLine: "underline" }}>
-              New On Tiffinbatta
-            </Text>
           </View>
 
           <View style={{ alignItems: "flex-end", marginHorizontal: 20 }}>
@@ -191,13 +182,14 @@ export default function SigninScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center'
   },
   title: {
-    color: "white",
+    color: "#AC4425",
     fontSize: 38,
   },
   text1: {
-    color: colors.grey5,
+    color: '#AC4410',
     fontSize: 16,
   },
   text2: {
@@ -206,7 +198,7 @@ const styles = StyleSheet.create({
   },
   textInput1Style: {
     borderWidth: 1,
-    borderColor: "#86939e",
+    borderColor: "#AC4425",
     marginHorizontal: 20,
     borderRadius: 12,
     marginBottom: 20,
@@ -220,7 +212,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 12,
     marginHorizontal: 20,
-    borderColor: "#86939e",
+    borderColor: "#AC4425",
     flexDirection: "row",
     justifyContent: "space-between",
     alignContent: "center",
@@ -241,14 +233,14 @@ const styles = StyleSheet.create({
     height: 50,
   },
   styledButton: {
-    backgroundColor: "#668162",
+    backgroundColor: "#AC4425",
     justifyContent: "center",
     alignContent: "center",
     borderRadius: 12,
     borderWidth: 1,
     borderColor: "#43484d",
-    height: 40,
-    paddingHorizontal: 20,
+    height: 50,
+    paddingHorizontal: 120,
     width: "100%",
   },
   buttonTitle: {

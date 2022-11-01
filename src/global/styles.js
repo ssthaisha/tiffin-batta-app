@@ -1,5 +1,5 @@
 export const colors = {
-  buttons: "#668162",
+  buttons: "#FD841F",
   grey1: "#43484d",
   grey2: "#5e6977",
   grey3: "#86939e",
@@ -39,7 +39,7 @@ export const parameters = {
     alignContent: "center",
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "#668162",
+    borderColor: "#FD841F",
     height: 40,
     paddingHorizontal: 20,
     width: "45%",
