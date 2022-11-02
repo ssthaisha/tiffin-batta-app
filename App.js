@@ -13,18 +13,19 @@ import AppContainer from "./src/navigation";
 import SubscribersList from "./src/screens/Chefs/SubscribersList";
 
 export default function App() {
-  return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <AppContainer />
-      </NavigationContainer>
-      <FlashMessage position={"top"} />
-    </Provider>
-  );
+  // return (
+    
+  //   <Provider store={store}>
+  //     <NavigationContainer>
+  //       <AppContainer /> 
+  //     </NavigationContainer>
+  //     <FlashMessage position={"top"} />
+  //   </Provider>
+  // );
 
   return (
     <View style={styles.container}>
-      <StatusBar barstyle="light-content" backgroundColor={colors.statusbar} />
+      <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
       {/* <SignUpscreen /> */}
       {/* <Login /> */}
       <SubscribersList />

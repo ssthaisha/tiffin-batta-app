@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  StyleSheet,
-  TouchableOpacity,
   ScrollView,
   FlatList,
   Pressable,
@@ -14,7 +12,7 @@ import { Icon } from "react-native-elements";
 import ChefHomeheader from "../../components/chefHomeHeader";
 import { colors, parameters } from "../../global/styles";
 
-import { ChefData, filterData } from "../../global/data";
+import { SUBSDATA } from "../../global/data";
 import FoodCard from "../../components/Foodcard";
 import { useSelector } from "react-redux";
 
@@ -28,7 +26,50 @@ export default function ChefHomeScreen({ navigation }) {
     <View style={styles.container}>
       <ChefHomeheader navigation={navigation}/>
       <ScrollView stickyHeaderIndices={[0]} showsVerticalScrollIndicator={true}>
+      <Text
+            style={{
+              color: colors.grey2,
+              paddingHorizontal: 10,
+              fontSize: 26,
+              fontWeight: "bold",
+              backgroundColor: colors.grey5,
+              paddingLeft: 20,
+            }}
+          >
+            Subscriber
+          </Text>
+          <View>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={SUBSDATA}
+            keyExtractor={(item) => item.id}
+            extraData={indexCheck}
+            renderItem={({ item, index }) => (
+              <Pressable
+                onPress={() => {
+                  setindexCheck(item, id);
+                }}
+              >
+                <View
+                >
+                  <Image
+                    style={{ height: 60, width: 60, borderRadius: 30 }}
+                    source={item.Image}
+                  />
 
+                  <View>
+                    <Text
+                      
+                    >
+                      {item.subsname}
+                    </Text>
+                  </View>
+                </View>
+              </Pressable>
+            )}
+          />
+          </View>
       </ScrollView>
       </View>
   )

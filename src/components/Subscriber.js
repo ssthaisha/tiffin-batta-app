@@ -13,38 +13,40 @@ import {
 import { Icon } from "react-native-elements";
 import { colors, parameters } from "../global/styles";
 
-export default function RequestCard({
-    chefDistance,
-    chefName,
+export default function Subscriber({
+  customerName,
     customerDistance,
-    pickUpPoint,
+    deliveryTime,
     deliveryPoint,
     noOfDaysToDeliver,
     screenWidth,
     rate,
+    image,
+    oName,
+
 }) {
   return (
     <TouchableOpacity>
       <View style={{ ...styles.cardView, width: screenWidth }}>
+        <View style = {{flexDirection:"row"}}>
         
+        <View>
+        <Image
+        style={{ height: 60, width: 60, borderRadius: 30 ,marginHorizontal:10,marginTop:5}}
+        source={image}
+      />
+        </View>
+        <View>
         <View>
           <Text style={styles.chefName}>{customerName}</Text>
         </View>
         <View style={{ flex: 1, flexDirection: "column" }}>
           <View style={styles.distance}>
             <Text>DeliveryTime:{deliveryTime}</Text>
-            <Icon
-              name="place"
-              type="clock"
-              color={colors.grey2}
-              size={18}
-              iconStyle={{
-                marginTop: -2,
-                paddingTop:2
-              }}
-            />
+            
+            </View>
           <View style={styles.distance}>
-            <Text>Deliverypoint:{deliveryPoint}</Text>
+            <Text>Deliverypoint: {deliveryPoint}</Text>
             <Icon
               name="place"
               type="material"
@@ -60,6 +62,9 @@ export default function RequestCard({
           <View>
             <Text style={styles.distance}>NRs:{rate} </Text>
           </View>
+          <View>
+            <Text style={styles.distance}>OrderName: {oName}</Text>
+          </View>
           
         </View>
 
@@ -67,14 +72,18 @@ export default function RequestCard({
         <Text style={styles.numberOfReview}>Days to be delivered: </Text>
           <Text style={styles.average}>{noOfDaysToDeliver}</Text>
         </View>
+      
+   </View>
+      </View>
       </View>
     </TouchableOpacity>
+  
   );
 }
 
 const styles = StyleSheet.create({
   cardView: {
-    marginHorizontal: 9,
+    marginHorizontal: 20,
     borderTopRightRadius: 5,
     borderTopLeftRadius: 5,
     borderWidth: 1,
@@ -111,9 +120,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   review: {
-    position: "absolute",
+  
     top: 0,
-    right: 10,
+    right: 0,
     backgroundColor: "rgba(52, 52, 52,0.3)",
     padding: 2,
     alignItems: "center",

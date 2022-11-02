@@ -180,6 +180,7 @@ export default function ChefProfile({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 40,
   },
   imageStyle: {
     maxHeight: 150,
