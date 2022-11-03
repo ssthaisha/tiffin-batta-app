@@ -4,7 +4,7 @@ import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
 const Loading = () => (
   <View style={styles.container}>
     <ImageBackground
-      source={require("../../../../assets/image4.png")}
+      source={require("../../../../assets/image15.png")}
       style={styles.image}
       resizeMode="cover"
     >

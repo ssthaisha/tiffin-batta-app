@@ -183,7 +183,6 @@ export default function HomeScreen({ navigation }) {
               fontWeight: "bold",
               backgroundColor: colors.grey5,
               paddingLeft: 20,
-              fontFamily: "hk-grotesk.bold-itallic",
             }}
           >
             Subscribe Our Chef
@@ -257,7 +256,6 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 40,
   },
   deliverybutton: {
     paddingHorizontal: 20,
@@ -325,7 +323,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.buttons,
     borderRadius: 15,
-    borderColor: colors.grey1,
+    borderColor: colors.grey3,
     borderWidth: 1,
     fontSize: 24,
     justifyContent: "center",

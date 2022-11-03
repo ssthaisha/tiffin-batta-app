@@ -7,6 +7,7 @@ import {
   Pressable,
   Image,
   Dimensions,
+  StyleSheet
 } from "react-native";
 import { Icon } from "react-native-elements";
 import ChefHomeheader from "../../components/chefHomeHeader";
@@ -14,34 +15,37 @@ import { colors, parameters } from "../../global/styles";
 
 import { SUBSDATA } from "../../global/data";
 import FoodCard from "../../components/Foodcard";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
-export default function ChefHomeScreen({ navigation }) {
 
-  const { user } = useSelector(state => state.auth);
+export default function ChefHomeScreen() {
+  const [indexCheck, setindexCheck] = useState("0");
+
+  // const { user } = useSelector(state => state.auth);
 
   return (
     <View style={styles.container}>
-      <ChefHomeheader navigation={navigation}/>
+      <ChefHomeheader />
       <ScrollView stickyHeaderIndices={[0]} showsVerticalScrollIndicator={true}>
-      <Text
-            style={{
+      <Text style={{
               color: colors.grey2,
               paddingHorizontal: 10,
-              fontSize: 26,
+              paddingVertical:5,
+              fontSize: 40,
               fontWeight: "bold",
               backgroundColor: colors.grey5,
               paddingLeft: 20,
             }}
           >
-            Subscriber
+            Your Subscriber
           </Text>
           <View>
           <FlatList
             horizontal={true}
             showsHorizontalScrollIndicator={false}
+            style={{ marginHorizontal: 10, marginVertical: 10 , }}
             data={SUBSDATA}
             keyExtractor={(item) => item.id}
             extraData={indexCheck}
@@ -51,7 +55,7 @@ export default function ChefHomeScreen({ navigation }) {
                   setindexCheck(item, id);
                 }}
               >
-                <View
+                <View style={{ marginHorizontal: 8, marginVertical: 10 , }}
                 >
                   <Image
                     style={{ height: 60, width: 60, borderRadius: 30 }}
@@ -74,3 +78,11 @@ export default function ChefHomeScreen({ navigation }) {
       </View>
   )
 }
+const styles = StyleSheet.create({
+  container: {
+   
+    flex: 1,
+    
+  },
+  
+});

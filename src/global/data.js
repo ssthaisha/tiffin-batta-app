@@ -1,10 +1,9 @@
 export const filterData = [
-  { name: "Lunch", Image: require("../../assets/image3.jpg"), id: "0" },
-  { name: "Snacks", Image: require("../../assets/image5.jpg"), id: "1" },
-  { name: "Dinner", Image: require("../../assets/image2.jpg"), id: "2" },
-  { name: "Sweets", Image: require("../../assets/image6.jpg"), id: "3" },
-  { name: "Sweets", Image: require("../../assets/image7.jpg"), id: "4" },
-  { name: "Authentic", Image: require("../../assets/image8.jpg"), id: "5" },
+  { name: "Veg", Image: require("../../assets/image3.jpg"), id: "0" },
+  { name: "Non-veg", Image: require("../../assets/image14.jpg"), id: "1" },
+  { name: "Sweets", Image: require("../../assets/image6.jpg"), id: "2" },
+  { name: "Sweets", Image: require("../../assets/image7.jpg"), id: "3" },
+  { name: "Authentic", Image: require("../../assets/image8.jpg"), id: "4" },
 ];
 
 export const ChefData = [
@@ -488,11 +487,15 @@ export const SUBSCRIBERS = [{
 ]
 
 export const SUBSDATA = [
-  { subsname: "Lunch", Image: require("../../assets/image10.jpg"),
+  { subsname: "Sahaj", Image: require("../../assets/image10.jpg"),
    id: "0" },
-  { subsname: "Snacks", Image: require("../../assets/image10.jpg"), id: "1" },
-  { subsname: "Dinner", Image: require("../../assets/image10.jpg"), id: "2" },
-  { subsname: "Sweets", Image: require("../../assets/image10.jpg"), id: "3" },
-  { subsname: "Sweets", Image: require("../../assets/image10.jpg"), id: "4" },
-  { subsname: "Authentic", Image: require("../../assets/image10.jpg"), id: "5" },
+  { subsname: "Sahaj", Image: require("../../assets/image10.jpg"), id: "1" },
+  { subsname: "Sahajr", Image: require("../../assets/image10.jpg"), id: "2" },
+  { subsname: "Sahajs", Image: require("../../assets/image10.jpg"), id: "3" },
+  { subsname: "Sahajs", Image: require("../../assets/image10.jpg"), id: "4" },
+  { subsname: "Sahajn", Image: require("../../assets/image10.jpg"), id: "5" },
 ];
+export const CHEFSDATA = [
+  { chefsname: "Maya Shrestha", Image: require("../../assets/image10.jpg"),
+   id: "0", bio: "I cook yummy newari dishes" },
+  ];

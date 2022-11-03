@@ -9,6 +9,7 @@ import {
   Pressable,
   Image,
   Dimensions,
+  Button
 } from "react-native";
 import { Icon, ListItem } from "react-native-elements";
 import ChefHeader from "../../components/ChefHeader";
@@ -16,16 +17,17 @@ import { colors, parameters } from "../../global/styles";
 const { width } = Dimensions.get("window");
 import { foodData, specialfoodData, CHEFSDATA } from "../../global/data";
 
+
 const itemWidth = width / 2 - 20;
 
-export default function ChefProfile({ navigation }) {
+export default function YourProfile() {
   const [indexCheck, setindexCheck] = useState("0");
 
   return (
     <>
       <View style={styles.container}>
-        <ChefHeader navigation={navigation} />
-        <View style={{ marginTop:5, alignItems: "center" }}>
+        <ChefHeader />
+        <View>
           <FlatList
             data={CHEFSDATA}
             keyExtractor={(item) => item.id}
@@ -36,7 +38,7 @@ export default function ChefProfile({ navigation }) {
                   setindexCheck(item, id);
                 }}
               >
-                <View style={{ marginTop: 5, alignItems: "center" , marginHorizontal: 130,}}>
+                <View style={{ marginTop: 20, alignItems: "center" }}>
                   <Text
                     style={{
                       fontSize: 28,
@@ -70,7 +72,6 @@ export default function ChefProfile({ navigation }) {
                       fontWeight: "bold",
                       color: colors.grey3,
                       marginVertical: 8,
-                      alignItems:"center"
                     }}
                   >
                     {item.bio}
@@ -190,6 +191,22 @@ export default function ChefProfile({ navigation }) {
             </View>
           </View>
         </ScrollView>
+        <View style={{ marginHorizontal: 20, marginVertical: 10 , }}>
+          <Button
+          color={colors.buttons}
+          buttonStyle={styles.styledButton}
+          titleStyle={parameters.createButtonTitle}
+          title="Add items"
+          icon={
+            <Icon
+              name="arrow-right"
+              size={20 }
+              
+            />
+          }
+        />
+        </View>
+
       </View>
     </>
   );
@@ -203,5 +220,30 @@ const styles = StyleSheet.create({
     maxHeight: 150,
     maxWidth: 150,
     borderRadius: 75,
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
+  createButton: {
+    backgroundColor: "#fefefe",
+    justifyContent: "center",
+    alignContent: "center",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#FD841F",
+    height: 40,
+    paddingHorizontal: 20,
+    width: "45%",
+    marginTop: 10,
+  },
+  styledButton: {
+    backgroundColor: "#FD841F",
+    justifyContent: "center",
+    alignContent: "center",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#43484d",
+    height: 50,
+    paddingHorizontal: 20,
+    width: "100%",
   },
 });

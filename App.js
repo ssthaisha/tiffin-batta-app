@@ -11,26 +11,32 @@ import { store } from "./src/store/store";
 import FlashMessage from "react-native-flash-message";
 import AppContainer from "./src/navigation";
 import SubscribersList from "./src/screens/Chefs/SubscribersList";
+import ChefHomeScreen from "./src/screens/Chefs/ChefHomeScreen";
+import YourProfile from "./src/screens/Chefs/YourProfile";
 
 export default function App() {
-  // return (
-    
-  //   <Provider store={store}>
-  //     <NavigationContainer>
-  //       <AppContainer /> 
-  //     </NavigationContainer>
-  //     <FlashMessage position={"top"} />
-  //   </Provider>
-  // );
-
   return (
-    <View style={styles.container}>
-      <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
-      {/* <SignUpscreen /> */}
-      {/* <Login /> */}
-      <SubscribersList />
-    </View>
+    
+    <Provider store={store}>
+    <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
+
+      <NavigationContainer>
+        <AppContainer /> 
+      </NavigationContainer>
+      <FlashMessage position={"top"} />
+    </Provider>
   );
+
+  // return (
+  //   <View style={styles.container}>
+  //     <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
+  //     {/* <SignUpscreen /> */}
+  //     {/* <Login /> */}
+  //     {/* <SubscribersList /> */}
+  //     {/* <ChefHomeScreen/> */}
+  //     <YourProfile/>
+  //   </View>
+  // );
   return (
     <View style={styles.container}>
       <StatusBar barstyle="light-content" backgroundColor={colors.statusbar} />
