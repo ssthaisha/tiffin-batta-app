@@ -33,8 +33,8 @@ export default function App() {
   //     {/* <SignUpscreen /> */}
   //     {/* <Login /> */}
   //     {/* <SubscribersList /> */}
-  //     {/* <ChefHomeScreen/> */}
-  //     <YourProfile/>
+  //     <ChefHomeScreen/>
+  //     {/* <YourProfile/> */}
   //   </View>
   // );
   return (

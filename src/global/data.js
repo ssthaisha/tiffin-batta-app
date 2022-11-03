@@ -1,9 +1,9 @@
 export const filterData = [
-  { name: "Veg", Image: require("../../assets/image3.jpg"), id: "0" },
-  { name: "Non-veg", Image: require("../../assets/image14.jpg"), id: "1" },
-  { name: "Sweets", Image: require("../../assets/image6.jpg"), id: "2" },
-  { name: "Sweets", Image: require("../../assets/image7.jpg"), id: "3" },
-  { name: "Authentic", Image: require("../../assets/image8.jpg"), id: "4" },
+  { name: "Veg", image: require("../../assets/image3.jpg"), id: "0" },
+  { name: "Non-veg", image: require("../../assets/image14.jpg"), id: "1" },
+  { name: "Sweets", image: require("../../assets/image7.jpg"), id: "2" },
+  { name: "Sweets", image: require("../../assets/image6.jpg"), id: "3" },
+  { name: "Authentic", image: require("../../assets/image8.jpg"), id: "5" },
 ];
 
 export const ChefData = [
@@ -487,15 +487,60 @@ export const SUBSCRIBERS = [{
 ]
 
 export const SUBSDATA = [
-  { subsname: "Sahaj", Image: require("../../assets/image10.jpg"),
-   id: "0" },
-  { subsname: "Sahaj", Image: require("../../assets/image10.jpg"), id: "1" },
-  { subsname: "Sahajr", Image: require("../../assets/image10.jpg"), id: "2" },
-  { subsname: "Sahajs", Image: require("../../assets/image10.jpg"), id: "3" },
-  { subsname: "Sahajs", Image: require("../../assets/image10.jpg"), id: "4" },
-  { subsname: "Sahajn", Image: require("../../assets/image10.jpg"), id: "5" },
+  { subsname: "Sahaj", image: require("../../assets/image10.jpg"),id: "0" },
+  { subsname: "Sahaj", image: require("../../assets/image10.jpg"), id: "1" },
+  { subsname: "Sahajr", image: require("../../assets/image10.jpg"), id: "2" },
+  { subsname: "Sahajs", image: require("../../assets/image10.jpg"), id: "3" },
+  { subsname: "Sahajs", image: require("../../assets/image10.jpg"), id: "4" },
+  { subsname: "Sahajn", image: require("../../assets/image10.jpg"), id: "5" },
 ];
 export const CHEFSDATA = [
   { chefsname: "Maya Shrestha", Image: require("../../assets/image10.jpg"),
    id: "0", bio: "I cook yummy newari dishes" },
   ];
+
+  export const NEWSUBS = [
+    {
+      id: 0,
+    customerName:"Aayusha Shrestha",
+    customerDistance: "3",
+    deliveryPoint: "Jawalakhel, Lalitpur",
+    noOfDaysToDeliver: "6",
+    deliveryTime: "9:30am",
+   
+    image: require("../../assets/image10.jpg"),
+    oName:"MIXED SET",
+  },
+  {
+    id: 1,
+  customerName:"Aayusha Shrestha",
+  customerDistance: "3",
+  deliveryPoint: "Jawalakhel, Lalitpur",
+  noOfDaysToDeliver: "6",
+  deliveryTime: "9:30am",
+  image: require("../../assets/image10.jpg"),
+  oName:"DAAL BHAT TARKARI",
+},
+{
+  id: 2,
+customerName:"Aayusha Shrestha",
+customerDistance: "3",
+deliveryPoint: "Jawalakhel, Lalitpur",
+noOfDaysToDeliver: "6",
+deliveryTime: "9:30am",
+
+image: require("../../assets/image10.jpg"),
+oName:"ROTI TARKARI",
+},
+{
+  id: 3,
+customerName:"Aayusha Shrestha",
+customerDistance: "3",
+deliveryPoint: "Jawalakhel, Lalitpur",
+noOfDaysToDeliver: "6",
+deliveryTime: "9:30am",
+
+image: require("../../assets/image10.jpg"),
+oName:"DIET FRIENDLY",
+},
+]

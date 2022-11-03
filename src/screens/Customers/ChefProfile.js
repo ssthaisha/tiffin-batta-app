@@ -25,7 +25,7 @@ export default function ChefProfile({ navigation }) {
     <>
       <View style={styles.container}>
         <ChefHeader navigation={navigation} />
-        <View style={{ marginTop:5, alignItems: "center" }}>
+        <View style={{ marginTop:5 }}>
           <FlatList
             data={CHEFSDATA}
             keyExtractor={(item) => item.id}
@@ -36,12 +36,13 @@ export default function ChefProfile({ navigation }) {
                   setindexCheck(item, id);
                 }}
               >
-                <View style={{ marginTop: 5, alignItems: "center" , marginHorizontal: 130,}}>
+                <View style={{ marginTop: 5, alignItems: "center"}}>
                   <Text
                     style={{
                       fontSize: 28,
                       fontWeight: "bold",
                       color: colors.buttons,
+                      alignContent:"center"
                     }}
                   >
                     {item.chefsname}

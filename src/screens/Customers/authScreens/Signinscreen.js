@@ -84,7 +84,7 @@ export default function SigninScreen({ navigation, route }) {
     <>
       <LinearGradient
         // Background Linear Gradient
-        colors={[ "#FD841F","#fefefe","#fefefe","#fefefe","#fefefe", "#fefefe"]}
+        colors={[ "#FF9666","#fefefe","#fefefe","#fefefe","#fefefe", "#fefefe"]}
         start={{ x: 1.1, y: 0 }}
         style={styles.background}
       >
@@ -181,11 +181,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    color: "#FD841F",
+    color: "#FF9666",
     fontSize: 38,
   },
   text1: {
-    color: "#FD841F",
+    color: "#FF9666",
     fontSize: 16,
   },
   text2: {
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
   },
   textInput1Style: {
     borderWidth: 1,
-    borderColor: "#FD841F",
+    borderColor: "#FF9666",
     marginHorizontal: 20,
     borderRadius: 12,
     marginBottom: 20,
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 12,
     marginHorizontal: 20,
-    borderColor: "#FD841F",
+    borderColor: "#FF9666",
     flexDirection: "row",
     justifyContent: "space-between",
     alignContent: "center",
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
     height: 50,
   },
   styledButton: {
-    backgroundColor: "#FD841F",
+    backgroundColor: "#FF9666",
     justifyContent: "center",
     alignContent: "center",
     borderRadius: 12,

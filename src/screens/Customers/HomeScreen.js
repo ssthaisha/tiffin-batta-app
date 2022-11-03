@@ -21,6 +21,8 @@ import { useEffect } from "react";
 import { getActiveChefs } from "../../services/APIs/customerAPIs";
 import { showMessage } from "react-native-flash-message";
 import { RefreshControl } from "react-native-gesture-handler";
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
@@ -51,6 +53,15 @@ export default function HomeScreen({ navigation }) {
   }, []);
 
   const [refreshing, setRefreshing] = useState(false);
+  const [fontsLoaded] = useFonts({
+    'hk-grotesk.bold-italic': require('../../../assets/fonts/hk-grotesk.bold-italic.ttf'),
+    'hk-grotesk.bold-legacy-italic': require('../../../assets/fonts/hk-grotesk.bold-legacy-italic.ttf'),
+
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <View style={styles.container}>
@@ -157,7 +168,7 @@ export default function HomeScreen({ navigation }) {
                 >
                   <Image
                     style={{ height: 60, width: 60, borderRadius: 30 }}
-                    source={item.Image}
+                    source={item.image}
                   />
 
                   <View>
@@ -314,10 +325,12 @@ const styles = StyleSheet.create({
   smallCardTextSelected: {
     fontWeight: "bold",
     color: colors.cardBackground,
+    fontFamily:"Inter-hk-grotesk.bold-italic",
   },
   smallCardText: {
     fontWeight: "bold",
     color: colors.grey2,
+    fontFamily:"Inter-hk-grotesk.bold-italic",
   },
   selectchef: {
     alignItems: "center",

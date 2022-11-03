@@ -17,7 +17,7 @@ export const Splash = () => {
       }}
     >
       <Image
-        source={require("../../assets/image4.png")}
+        source={require("../../assets/image15.png")}
         height={DEVICE_HEIGHT}
         width={DEVICE_WIDTH}
         style={{

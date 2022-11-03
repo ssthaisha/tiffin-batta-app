@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
     margin: "auto",
   },
   styledButton: {
-    backgroundColor: "#FD841F",
+    backgroundColor: "#FF9666",
     justifyContent: "center",
     alignContent: "center",
     borderRadius: 12,
