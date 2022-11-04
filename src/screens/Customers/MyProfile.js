@@ -51,9 +51,10 @@ export default function MyProfile() {
                         <View style={{
                             alignItems: "center",
                             justifyContent: "center",
-                            marginLeft: 5
+                            marginHorizontal: 5,
+                            marginVertical:5,
                         }}>
-                            <Ionicons name="settings-outline" size={35} color={colors.grey2} />
+                            <Ionicons name="settings-outline" size={30} color={colors.grey2} />
                         </View>
                     </TouchableOpacity>
                 </View>
