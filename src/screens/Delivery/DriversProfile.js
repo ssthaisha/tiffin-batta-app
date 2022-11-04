@@ -16,13 +16,13 @@ import { Icon, ListItem, Button } from "react-native-elements";
 import ChefHeader from "../../components/ChefHeader";
 import { colors, parameters } from "../../global/styles";
 const { width } = Dimensions.get("window");
-import { foodData, specialfoodData, CHEFSDATA, USERSDATA, SUBSLIST } from "../../global/data";
+import { foodData, specialfoodData, CHEFSDATA, USERSDATA, SUBSLIST, DRIVERSDATA } from "../../global/data";
 import SubList from "../../components/sublist";
 
 
 const SCREEN_WIDTH = width  - 20;
 
-export default function MyProfile() {
+export default function DriversProfile() {
     const [indexCheck, setindexCheck] = useState("0");
 
     return (
@@ -61,7 +61,7 @@ export default function MyProfile() {
                 </View>
                 <View>
                     <FlatList
-                        data={USERSDATA}
+                        data={DRIVERSDATA}
                         keyExtractor={(item) => item.id}
                         extraData={indexCheck}
                         renderItem={({ item, index }) => (
@@ -103,18 +103,8 @@ export default function MyProfile() {
                                             marginLeft:45
                                         }}
                                     >
-                                        {item.chefsname}
+                                        {item.name}
                                     </Text>
-                                    <TouchableOpacity>
-                                        <View style={{
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                            marginLeft: -100,
-                                        }}>
-                                            <Ionicons name="bookmark-outline" size={35} color={colors.grey2} />
-                                        </View>
-                                    </TouchableOpacity>
-                            
                                 </View>
 
                                 <View style={{ marginVertial: 5, alignItems: "center" }}>
@@ -126,7 +116,7 @@ export default function MyProfile() {
                                             marginVertical: 3,
                                         }}
                                     >
-                                        PickUp Address:  {item.address}
+                                        Address:  {item.address}
                                     </Text>
                                 </View>
                                 <View style={{ marginVertial: 5, alignItems: "center" }}>
@@ -138,7 +128,7 @@ export default function MyProfile() {
                                             marginVertical: 3,
                                         }}
                                     >
-                                        PickUp Time:  {item.lunchtime}
+                                        Ride Name:  {item.ride}
                                     </Text>
                                 </View>
                             </Pressable>
@@ -146,7 +136,6 @@ export default function MyProfile() {
                         )}
                     />
                 </View>
-
                 <View>
           <Text
             style={{
@@ -160,66 +149,21 @@ export default function MyProfile() {
             }}
           >
             {" "}
-            Your Subscription
+            Ongoing works
           </Text>
         </View>
-        <View style={{flexDirection:"row"}}>
-        <FlatList
-          horizontal={false}
-          styles={{ marginTop: 40, margingBottom: 8 }}
-          data={SUBSLIST}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => (
-            <View style={{ marginVertical: 7, marginRight: 5, marginLeft: 10 }}>
-              <SubList
-                screenWidth={SCREEN_WIDTH }
-                chefName={item.chefName}
-                daysremaining={item.daysremaining}
-                deliveryTime={item.deliveryTime}
-                image={item.image}
-                oName={item.oName}
-              />
-            </View>
-          )}
-        />
-        </View>
-
-            </View>
-        </>
-    );
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    imageStyle: {
-        maxHeight: 180,
-        maxWidth: 180,
-        borderRadius: 75,
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    createButton: {
-        backgroundColor: "#fefefe",
-        justifyContent: "center",
-        alignContent: "center",
-        borderRadius: 12,
-        borderWidth: 1,
-        borderColor: "#FD841F",
-        height: 40,
-        paddingHorizontal: 20,
-        width: "45%",
-        marginTop: 10,
-    },
-    styledButton: {
-        backgroundColor: colors.grey4,
-        justifyContent: "center",
-        alignContent: "center",
-        borderRadius: 12,
-        paddingVertical: 3,
-        paddingHorizontal: 6,
-        height: 30,
-        width: 30,
-    },
-});
+                </View>
+                </>
+    )}
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+        },
+        imageStyle: {
+            maxHeight: 180,
+            maxWidth: 180,
+            borderRadius: 75,
+            alignItems: "center",
+            justifyContent: "center"
+        },
+    })

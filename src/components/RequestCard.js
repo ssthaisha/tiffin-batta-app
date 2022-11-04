@@ -28,7 +28,7 @@ export default function RequestCard({
       <View style={{ ...styles.cardView, width: screenWidth }}>
         
         <View>
-          <Text style={styles.chefName}>{chefName}</Text>
+          <Text style={styles.chefName}>ChefName{chefName}</Text>
         </View>
         <View style={{ flex: 1, flexDirection: "column" }}>
           <View style={styles.distance}>
