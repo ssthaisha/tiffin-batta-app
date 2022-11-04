@@ -23,7 +23,7 @@ export const Splash = () => {
         style={{
           height: DEVICE_HEIGHT,
           width: DEVICE_WIDTH,
-          resizeMode: "contain",
+          resizeMode: "cover",
         }}
       />
       {/* <Text>Hello</Text> */}

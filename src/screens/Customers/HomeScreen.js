@@ -23,6 +23,8 @@ import { showMessage } from "react-native-flash-message";
 import { RefreshControl } from "react-native-gesture-handler";
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
@@ -53,14 +55,29 @@ export default function HomeScreen({ navigation }) {
   }, []);
 
   const [refreshing, setRefreshing] = useState(false);
-  const [fontsLoaded] = useFonts({
+  const [fontsLoaded,setFontsLoaded]=useState(false);
+  const fetchFonts = () => {
+    return Font.loadAsync({
     'hk-grotesk.bold-italic': require('../../../assets/fonts/hk-grotesk.bold-italic.ttf'),
     'hk-grotesk.bold-legacy-italic': require('../../../assets/fonts/hk-grotesk.bold-legacy-italic.ttf'),
 
   });
+  }
+  
+  useEffect(()=>{
+    async function prepare ()
+    {
+      await SplashScreen.preventAutoHideAsync();
+
+    }
+    prepare();
+  },[])
 
   if (!fontsLoaded) {
     return null;
+  }
+  else{
+    SplashScreen.hideAsync();
   }
 
   return (

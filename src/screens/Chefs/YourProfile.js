@@ -9,9 +9,9 @@ import {
   Pressable,
   Image,
   Dimensions,
-  Button
+
 } from "react-native";
-import { Icon, ListItem } from "react-native-elements";
+import { Icon, ListItem,  Button } from "react-native-elements";
 import ChefHeader from "../../components/ChefHeader";
 import { colors, parameters } from "../../global/styles";
 const { width } = Dimensions.get("window");
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   styledButton: {
-    backgroundColor: "#FD841F",
+    backgroundColor: "#FF9666",
     justifyContent: "center",
     alignContent: "center",
     borderRadius: 12,

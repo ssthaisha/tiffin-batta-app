@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "139011865282",
+    "project_id": "tiffinbatta-b78d3",
+    "storage_bucket": "tiffinbatta-b78d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139011865282:android:b9bd62c418e76e7303995b",
+        "android_client_info": {
+          "package_name": "com.tiffinbatta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139011865282-un4q2h1hptk0j9rh8vtus11800jh2unn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tiffinbatta",
+            "certificate_hash": "2d7df8a785d3e1b32c6a3b379674a6aa6fab6b6a"
+          }
+        },
+        {
+          "client_id": "139011865282-ukvqtdr96p9s9g9g5kf3a2ft3krtf563.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9mZ7rVAhdNp0CG6tBvd2jNz4jSnd0QzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139011865282-ukvqtdr96p9s9g9g5kf3a2ft3krtf563.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

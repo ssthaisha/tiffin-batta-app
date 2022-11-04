@@ -13,30 +13,32 @@ import AppContainer from "./src/navigation";
 import SubscribersList from "./src/screens/Chefs/SubscribersList";
 import ChefHomeScreen from "./src/screens/Chefs/ChefHomeScreen";
 import YourProfile from "./src/screens/Chefs/YourProfile";
+import MyProfile from "./src/screens/Customers/MyProfile";
 
 export default function App() {
-  return (
-    
-    <Provider store={store}>
-    <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
-
-      <NavigationContainer>
-        <AppContainer /> 
-      </NavigationContainer>
-      <FlashMessage position={"top"} />
-    </Provider>
-  );
-
   // return (
-  //   <View style={styles.container}>
-  //     <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
-  //     {/* <SignUpscreen /> */}
-  //     {/* <Login /> */}
-  //     {/* <SubscribersList /> */}
-  //     <ChefHomeScreen/>
-  //     {/* <YourProfile/> */}
-  //   </View>
+    
+  //   <Provider store={store}>
+  //   <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
+
+  //     <NavigationContainer>
+  //       <AppContainer /> 
+  //     </NavigationContainer>
+  //     <FlashMessage position={"top"} />
+  //   </Provider>
   // );
+
+  return (
+    <View style={styles.container}>
+      <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
+      {/* <SignUpscreen /> */}
+      {/* <Login /> */}
+      {/* <SubscribersList /> */}
+      {/* <ChefHomeScreen/> */}
+      <MyProfile/>
+      {/* <YourProfile/> */}
+    </View>
+  );
   return (
     <View style={styles.container}>
       <StatusBar barstyle="light-content" backgroundColor={colors.statusbar} />

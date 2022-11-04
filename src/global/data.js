@@ -498,6 +498,10 @@ export const CHEFSDATA = [
   { chefsname: "Maya Shrestha", Image: require("../../assets/image10.jpg"),
    id: "0", bio: "I cook yummy newari dishes" },
   ];
+  export const USERSDATA = [
+    {chefsname: "Lucky Karki", Image: require("../../assets/image10.jpg"),
+     id: "0", address:"Balkumari,Lalitpur", lunchtime:"10:00am"}
+    ];
 
   export const NEWSUBS = [
     {
