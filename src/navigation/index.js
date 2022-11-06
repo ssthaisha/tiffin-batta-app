@@ -7,6 +7,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Splash from "../screens/Splash";
 import AuthStack from "./stacks/AuthStack";
 import HomeStack from "./stacks/HomeStack";
+import { CustomersHomeStack, ChefsHomeStack } from "./stacks/HomeStack";
 import {
   Alert,
   BackHandler,
@@ -51,6 +52,15 @@ export default function AppContainer() {
   //   const res = await getAppUpdate({id: 1})
   //   console.log('res', res)
   // }
+  console.log(user, "check user");
+  const getStack = (role) => {
+    if (role === "CHEF") {
+      return ChefsHomeStack;
+    } else if (role === "CUSTOMER") {
+      return CustomersHomeStack;
+    }
+    return AuthStack;
+  };
 
   return (
     // <Drawer.Navigator
@@ -104,15 +114,10 @@ export default function AppContainer() {
       ) : (
         <Stack.Screen
           name="Home"
-          component={HomeStack}
+          component={getStack(user.role)}
           options={{ headerShown: false }}
         />
       )}
-      {/* <Stack.Screen
-        name="Drawer"
-        component={MyDrawer}
-        options={{headerShown: false}}
-      /> */}
     </Stack.Navigator>
   );
 }

@@ -7,7 +7,8 @@ import {
   Pressable,
   Image,
   Dimensions,
-  StyleSheet
+  StyleSheet,
+  RefreshControl,
 } from "react-native";
 import { Icon } from "react-native-elements";
 import ChefHomeheader from "../../components/chefHomeHeader";
@@ -16,30 +17,55 @@ import { colors, parameters } from "../../global/styles";
 import { NEWSUBS, SUBSDATA } from "../../global/data";
 import FoodCard from "../../components/Foodcard";
 import Subsrequest from "../../components/Subsrequest";
+import { useEffect } from "react";
+import { getSubscribersList } from "../../services/APIs/customerAPIs";
+import { useSelector } from "react-redux";
 // import { useSelector } from "react-redux";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
-
-export default function ChefHomeScreen() {
+function ChefHomeScreen({ navigation }) {
   const [indexCheck, setindexCheck] = useState("0");
+  const { user } = useSelector((state) => state.auth);
+  const [subscribers, setSubscribers] = useState([]);
 
+  const getList = async () => {
+    try {
+      const res = await getSubscribersList({ chefId: user?._id });
+      setSubscribers(res.data || []);
+      console.log(res, "chefs list");
+    } catch (err) {
+      console.log(err, "testt");
+    }
+  };
+  const [refreshing, setRefreshing] = useState(false);
+
+  useEffect(() => {
+    getList();
+  }, []);
   // const { user } = useSelector(state => state.auth);
 
   return (
     <View style={styles.container}>
-      <ChefHomeheader />
-      <ScrollView stickyHeaderIndices={[0]} showsVerticalScrollIndicator={true}>
+      <ChefHomeheader navigation={navigation} />
+      <ScrollView
+        stickyHeaderIndices={[0]}
+        showsVerticalScrollIndicator={true}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={getList} />
+        }
+      >
         <View>
-          <Text style={{
-            color: colors.grey2,
-            paddingHorizontal: 10,
-            fontSize: 26,
-            fontWeight: "bold",
-            backgroundColor: colors.grey5,
-            paddingLeft: 20,
-            marginVertical: 10,
-          }}
+          <Text
+            style={{
+              color: colors.grey2,
+              paddingHorizontal: 10,
+              fontSize: 26,
+              fontWeight: "bold",
+              backgroundColor: colors.grey5,
+              paddingLeft: 20,
+              marginVertical: 10,
+            }}
           >
             {" "}
             Your Subscriber
@@ -49,8 +75,8 @@ export default function ChefHomeScreen() {
           <FlatList
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            style={{ marginHorizontal: 10, marginVertical: 10, }}
-            data={SUBSDATA}
+            style={{ marginHorizontal: 10, marginVertical: 10 }}
+            data={subscribers}
             keyExtractor={(item) => item.id}
             extraData={indexCheck}
             renderItem={({ item, index }) => (
@@ -59,19 +85,21 @@ export default function ChefHomeScreen() {
                   setindexCheck(item, id);
                 }}
               >
-                <View style={{ marginHorizontal: 8, marginVertical: 10, }}
+                <View
+                  style={{
+                    marginHorizontal: 8,
+                    marginVertical: 10,
+                    height: 40,
+                  }}
                 >
-                  <Image
+                  {/* <Image
                     style={{ height: 60, width: 60, borderRadius: 30 }}
                     source={item.image}
-                  />
+                  /> */}
 
                   <View>
-                    <Text
-
-                    >
-                      {item.subsname}
-                    </Text>
+                    <Text>{item.fullName || ""}</Text>
+                    <Text>{item.address || ""}</Text>
                   </View>
                 </View>
               </Pressable>
@@ -100,7 +128,9 @@ export default function ChefHomeScreen() {
               data={NEWSUBS}
               keyExtractor={(item, index) => index.toString()}
               renderItem={({ item }) => (
-                <View style={{ marginVertical: 7, marginRight: 5, marginLeft: 10 }}>
+                <View
+                  style={{ marginVertical: 7, marginRight: 5, marginLeft: 10 }}
+                >
                   <Subsrequest
                     screenWidth={SCREEN_WIDTH - 10}
                     customerName={item.customerName}
@@ -115,18 +145,16 @@ export default function ChefHomeScreen() {
                 </View>
               )}
             />
-
           </ScrollView>
         </View>
       </ScrollView>
     </View>
-  )
+  );
 }
 const styles = StyleSheet.create({
   container: {
-
     flex: 1,
-
   },
-
 });
+
+export default ChefHomeScreen;

@@ -26,10 +26,19 @@ export default function FoodCard({
   images,
   screenWidth,
   ChefName,
+  ...rest
 }) {
   return (
-    <TouchableOpacity>
-      <View style={{ ...styles.cardView, width: screenWidth }}>
+    <TouchableOpacity {...rest}>
+      <View
+        style={{
+          ...styles.cardView,
+          width: screenWidth,
+          marginTop: 10,
+          marginRight: 5,
+          marginLeft: 5,
+        }}
+      >
         <Image
           style={{ ...styles.image, width: screenWidth }}
           source={images}

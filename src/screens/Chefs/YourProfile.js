@@ -9,24 +9,22 @@ import {
   Pressable,
   Image,
   Dimensions,
-
 } from "react-native";
-import { Icon, ListItem,  Button } from "react-native-elements";
+import { Icon, ListItem, Button } from "react-native-elements";
 import ChefHeader from "../../components/ChefHeader";
 import { colors, parameters } from "../../global/styles";
 const { width } = Dimensions.get("window");
 import { foodData, specialfoodData, CHEFSDATA } from "../../global/data";
 
-
 const itemWidth = width / 2 - 20;
 
-export default function YourProfile() {
+export default function YourProfile({ navigation }) {
   const [indexCheck, setindexCheck] = useState("0");
 
   return (
     <>
       <View style={styles.container}>
-        <ChefHeader />
+        <ChefHeader navigation={navigation} />
         <View>
           <FlatList
             data={CHEFSDATA}
@@ -56,13 +54,10 @@ export default function YourProfile() {
                     flexDirection: "row",
                     justifyContent: "space-between",
                     marginHorizontal: 130,
-                    alignItems: "flex-end"
+                    alignItems: "flex-end",
                   }}
                 >
-                  <Image
-                    source={item.Image}
-                    style={styles.imageStyle}
-                  />
+                  <Image source={item.Image} style={styles.imageStyle} />
                 </View>
 
                 <View style={{ marginVertial: 15, alignItems: "center" }}>
@@ -78,7 +73,6 @@ export default function YourProfile() {
                   </Text>
                 </View>
               </Pressable>
-
             )}
           />
         </View>
@@ -191,22 +185,15 @@ export default function YourProfile() {
             </View>
           </View>
         </ScrollView>
-        <View style={{ marginHorizontal: 20, marginVertical: 10 , }}>
+        <View style={{ marginHorizontal: 20, marginVertical: 10 }}>
           <Button
-          color={colors.buttons}
-          buttonStyle={styles.styledButton}
-          titleStyle={parameters.createButtonTitle}
-          title="Add items"
-          icon={
-            <Icon
-              name="arrow-right"
-              size={20 }
-              
-            />
-          }
-        />
+            color={colors.buttons}
+            buttonStyle={styles.styledButton}
+            titleStyle={parameters.createButtonTitle}
+            title="Add items"
+            icon={<Icon name="arrow-right" size={20} />}
+          />
         </View>
-
       </View>
     </>
   );
@@ -221,7 +208,7 @@ const styles = StyleSheet.create({
     maxWidth: 150,
     borderRadius: 75,
     alignItems: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   createButton: {
     backgroundColor: "#fefefe",

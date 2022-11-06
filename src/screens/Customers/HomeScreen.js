@@ -4,11 +4,13 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   ScrollView,
   FlatList,
   Pressable,
   Image,
   Dimensions,
+  RefreshControl,
 } from "react-native";
 import { Icon } from "react-native-elements";
 import Homeheader from "../../components/Homeheader";
@@ -20,23 +22,30 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getActiveChefs } from "../../services/APIs/customerAPIs";
 import { showMessage } from "react-native-flash-message";
-import { RefreshControl } from "react-native-gesture-handler";
-import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
-import * as Font from 'expo-font';
-import { AppLoading } from 'expo';
+// import { RefreshControl } from "react-native-gesture-handler";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import * as Font from "expo-font";
+import { AppLoading } from "expo";
+import { BASE_URL5 } from "../../constants";
+import Spinner from "react-native-loading-spinner-overlay/lib";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 export default function HomeScreen({ navigation }) {
   const [delivery, setdelivery] = useState(true);
-  const [indexCheck, setindexCheck] = useState("0");
-
+  const [indexCheck, setIndexCheck] = useState("0");
+  const [activeChefs, setActiveChefs] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { user } = useSelector((state) => state.auth);
+
   const getAllActiveChefs = async () => {
+    setLoading(true);
     try {
       const res = await getActiveChefs();
       console.log(res, "check chefs");
+      setActiveChefs(res.data);
+      setLoading(false);
       // showMessage({
       //   type: "success",
       //   message: "Error getting chefs",
@@ -46,6 +55,7 @@ export default function HomeScreen({ navigation }) {
         type: "error",
         message: "Error getting chefs",
       });
+      setLoading(false);
       console.log(err);
     }
   };
@@ -55,34 +65,68 @@ export default function HomeScreen({ navigation }) {
   }, []);
 
   const [refreshing, setRefreshing] = useState(false);
-  const [fontsLoaded,setFontsLoaded]=useState(false);
-  const fetchFonts = () => {
-    return Font.loadAsync({
-    'hk-grotesk.bold-italic': require('../../../assets/fonts/hk-grotesk.bold-italic.ttf'),
-    'hk-grotesk.bold-legacy-italic': require('../../../assets/fonts/hk-grotesk.bold-legacy-italic.ttf'),
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+  // const fetchFonts = () => {
+  //   return Font.loadAsync({
+  //   'hk-grotesk.bold-italic': require('../../../assets/fonts/hk-grotesk.bold-italic.ttf'),
+  //   'hk-grotesk.bold-legacy-italic': require('../../../assets/fonts/hk-grotesk.bold-legacy-italic.ttf'),
 
-  });
-  }
-  
-  useEffect(()=>{
-    async function prepare ()
-    {
-      await SplashScreen.preventAutoHideAsync();
+  // });
+  // }
 
-    }
-    prepare();
-  },[])
+  // useEffect(() => {
+  //   async function prepare() {
+  //     await SplashScreen.preventAutoHideAsync();
+  //   }
+  //   prepare();
+  // }, []);
 
-  if (!fontsLoaded) {
-    return null;
-  }
-  else{
-    SplashScreen.hideAsync();
-  }
+  // if (!fontsLoaded) {
+  //   return null;
+  // } else {
+  //   SplashScreen.hideAsync();
+  // }
+
+  const CategoryCard = ({ item, index }) => {
+    return (
+      <Pressable
+        onPress={() => {
+          setIndexCheck(item.id);
+          console.log("category", item);
+        }}
+      >
+        <View
+          style={
+            indexCheck === item.id
+              ? { ...styles.smallCardSelected }
+              : { ...styles.smallCard }
+          }
+        >
+          <Image
+            style={{ height: 60, width: 60, borderRadius: 30 }}
+            source={item.image || ""}
+          />
+
+          <View>
+            <Text
+              style={
+                indexCheck === item.id
+                  ? { ...styles.smallCardTextSelected }
+                  : { ...styles.smallCardText }
+              }
+            >
+              {item.name}
+            </Text>
+          </View>
+        </View>
+      </Pressable>
+    );
+  };
 
   return (
     <View style={styles.container}>
       <Homeheader navigation={navigation} />
+      <Spinner visible={loading} />
       <ScrollView
         stickyHeaderIndices={[0]}
         showsVerticalScrollIndicator={true}
@@ -107,7 +151,6 @@ export default function HomeScreen({ navigation }) {
                 name="map-marker"
                 color={colors.grey1}
                 size={26}
-                onPress={() => navigation.navigate("Maps")}
               />
               <Text style={{ marginLeft: 5 }}>Gwarko Chowk</Text>
             </View>
@@ -154,7 +197,7 @@ export default function HomeScreen({ navigation }) {
             style={{
               color: colors.grey2,
               paddingHorizontal: 10,
-              fontSize: 26,
+              fontSize: 24,
               fontWeight: "bold",
               backgroundColor: colors.grey5,
               paddingLeft: 20,
@@ -169,70 +212,43 @@ export default function HomeScreen({ navigation }) {
             showsHorizontalScrollIndicator={false}
             data={filterData}
             keyExtractor={(item) => item.id}
-            extraData={indexCheck}
-            renderItem={({ item, index }) => (
-              <Pressable
-                onPress={() => {
-                  setindexCheck(item, id);
-                }}
-              >
-                <View
-                  style={
-                    indexCheck === item.id
-                      ? { ...styles.smallCardSelected }
-                      : { ...styles.smallCard }
-                  }
-                >
-                  <Image
-                    style={{ height: 60, width: 60, borderRadius: 30 }}
-                    source={item.image}
-                  />
-
-                  <View>
-                    <Text
-                      style={
-                        indexCheck === item.id
-                          ? { ...styles.smallCardTextSelected }
-                          : { ...styles.smallCardText }
-                      }
-                    >
-                      {item.name}
-                    </Text>
-                  </View>
-                </View>
-              </Pressable>
-            )}
+            // extraData={indexCheck}
+            renderItem={({ item, index }) => <CategoryCard item={item} />}
           />
           <Text
             style={{
               color: colors.grey2,
               paddingHorizontal: 10,
-              fontSize: 26,
+              fontSize: 24,
               fontWeight: "bold",
               backgroundColor: colors.grey5,
               paddingLeft: 20,
             }}
+            onPress={() => navigation.navigate("Chef")}
           >
-            Subscribe Our Chef
+            Subscribe to our Chefs
           </Text>
         </View>
         <FlatList
           styles={{ marginTop: 15, margingBottom: 10 }}
           horizontal={true}
-          data={ChefData}
-          keyExtractor={(item, index) => index.toString()}
+          data={activeChefs}
+          keyExtractor={(item, index) => item._id}
           renderItem={({ item }) => (
-            <View style={{ marginTop: 10, marginRight: 5, marginLeft: 5 }}>
-              <FoodCard
-                screenWidth={SCREEN_WIDTH * 0.7}
-                images={item.images}
-                ChefName={item.ChefName}
-                farAway={item.farAway}
-                kitchenAddress={item.kitchenAddress}
-                averageReview={item.averageReview}
-                numberOfReview={item.numberOfReview}
-              />
-            </View>
+            <FoodCard
+              screenWidth={SCREEN_WIDTH * 0.7}
+              images={{ uri: BASE_URL5 + item.image }}
+              ChefName={item.fullName}
+              farAway={item.farAway || "23 Mins"}
+              kitchenAddress={item.address}
+              averageReview={item.averageReview || 3.5}
+              numberOfReview={item.numberOfReview || 10}
+              onPress={() =>
+                navigation.navigate("Chef", {
+                  details: item,
+                })
+              }
+            />
           )}
         />
         <View>
@@ -240,7 +256,7 @@ export default function HomeScreen({ navigation }) {
             style={{
               color: colors.grey2,
               paddingHorizontal: 10,
-              fontSize: 26,
+              fontSize: 24,
               fontWeight: "bold",
               backgroundColor: colors.grey5,
               paddingLeft: 20,
@@ -254,25 +270,25 @@ export default function HomeScreen({ navigation }) {
         <FlatList
           styles={{ marginTop: 15, margingBottom: 10 }}
           horizontal={true}
-          data={ChefData}
-          keyExtractor={(item, index) => index.toString()}
+          data={activeChefs.filter((a) => a.oneTimeDelivery)}
+          keyExtractor={(item, index) => item._id}
           renderItem={({ item }) => (
-            <View style={{ marginVertical: 10, marginRight: 5, marginLeft: 5 }}>
+            <View style={{ marginTop: 10, marginRight: 5, marginLeft: 5 }}>
               <FoodCard
                 screenWidth={SCREEN_WIDTH * 0.7}
-                images={item.images}
-                ChefName={item.ChefName}
-                farAway={item.farAway}
-                kitchenAddress={item.kitchenAddress}
-                averageReview={item.averageReview}
-                numberOfReview={item.numberOfReview}
+                images={{ uri: BASE_URL5 + item.image }}
+                ChefName={item.fullName}
+                farAway={item.farAway || "23 Mins"}
+                kitchenAddress={item.address}
+                averageReview={item.averageReview || 3.5}
+                numberOfReview={item.numberOfReview || 10}
               />
             </View>
           )}
         />
       </ScrollView>
       <View style={styles.floatButton}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Maps")}>
           <Icon name="place" type="material" size={32} color={colors.buttons} />
           <Text style={{ color: colors.grey2 }}>Map</Text>
         </TouchableOpacity>
@@ -342,12 +358,12 @@ const styles = StyleSheet.create({
   smallCardTextSelected: {
     fontWeight: "bold",
     color: colors.cardBackground,
-    fontFamily:"Inter-hk-grotesk.bold-italic",
+    // fontFamily: "Inter-hk-grotesk.bold-italic",
   },
   smallCardText: {
     fontWeight: "bold",
     color: colors.grey2,
-    fontFamily:"Inter-hk-grotesk.bold-italic",
+    // fontFamily: "Inter-hk-grotesk.bold-italic",
   },
   selectchef: {
     alignItems: "center",

@@ -1,12 +1,12 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Dimensions } from 'react-native';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Dimensions } from "react-native";
 
 export const getDeviceWidth = () => {
-  return Dimensions.get('window').width;
+  return Dimensions.get("window").width;
 };
 
 export const getDeviceHeight = () => {
-  return Dimensions.get('window').height;
+  return Dimensions.get("window").height;
 };
 
 export const compareDate = (a, b) => {
@@ -14,82 +14,96 @@ export const compareDate = (a, b) => {
 };
 
 export const sortFormsAlphabetical = (a, b) => {
-  if ((a.name || '').toLowerCase() < (b.name || '').toLowerCase()) {
+  if ((a.name || "").toLowerCase() < (b.name || "").toLowerCase()) {
     return -1;
   }
-  if ((a.name || '').toLowerCase() > (b.name || '').toLowerCase()) {
+  if ((a.name || "").toLowerCase() > (b.name || "").toLowerCase()) {
     return 1;
   }
   return 0;
 };
 
-export const storeUser = async(data) => {
+export const storeUser = async (data) => {
   try {
-    const res = await AsyncStorage.setItem('user', JSON.stringify(data));
-  }
-  catch(err) {
+    const res = await AsyncStorage.setItem("user", JSON.stringify(data));
+  } catch (err) {
     console.log(err);
   }
-}
+};
+
+export const storeUserAndTokens = async (data) => {
+  console.log(data, "check asnyn");
+  try {
+    const jsonValue = JSON.stringify(data);
+    await AsyncStorage.setItem("user", jsonValue);
+    await AsyncStorage.setItem("token", data.token);
+    // await AsyncStorage.setItem("refresh", data.refresh);
+    // console.log(data, 'check to store');
+  } catch (e) {
+    // saving error
+    console.log(e);
+    alert("Error in storing data");
+  }
+};
 
 export const sortArrayBy = (arr, stringField, type) => {
   return arr.sort((a, b) => {
     if (
-      (a[stringField] || '').toLowerCase() <
-      (b[stringField] || '').toLowerCase()
+      (a[stringField] || "").toLowerCase() <
+      (b[stringField] || "").toLowerCase()
     ) {
-      return type === 'asc' ? -1 : 1;
+      return type === "asc" ? -1 : 1;
     }
     if (
-      (a[stringField] || '').toLowerCase() >
-      (b[stringField] || '').toLowerCase()
+      (a[stringField] || "").toLowerCase() >
+      (b[stringField] || "").toLowerCase()
     ) {
-      return type === 'asc' ? 1 : -1;
+      return type === "asc" ? 1 : -1;
     }
     return 0;
   });
 };
 
-export const validateEmail = email => {
+export const validateEmail = (email) => {
   const re =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 };
 
-export const toTitleCase = (text = '') => {
+export const toTitleCase = (text = "") => {
   return text
     .toLowerCase()
-    .split(' ')
-    .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-    .join(' ');
+    .split(" ")
+    .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+    .join(" ");
 };
 
 export const hasDuplicate = (id, data = []) => {
-  const alreadyHasId = data.some(x => x._id === id || x.id === id);
+  const alreadyHasId = data.some((x) => x._id === id || x.id === id);
   return alreadyHasId;
 };
 
-export const getFileType = uri => {
-  const extensions = uri.split('.');
+export const getFileType = (uri) => {
+  const extensions = uri.split(".");
   switch (extensions[extensions.length - 1].toLowerCase()) {
-    case 'jpg':
-    case 'jpeg':
-    case 'png':
-    case 'bmp':
-    case 'gif':
-      return 'image';
-    case 'pdf':
-      return 'pdf';
-    case 'mp4':
-      return 'mp4';
-    case 'mp4':
-      return 'mp3';
+    case "jpg":
+    case "jpeg":
+    case "png":
+    case "bmp":
+    case "gif":
+      return "image";
+    case "pdf":
+      return "pdf";
+    case "mp4":
+      return "mp4";
+    case "mp4":
+      return "mp3";
     default:
-      return 'other';
+      return "other";
   }
 };
 
-export const isJson = str => {
+export const isJson = (str) => {
   try {
     JSON.parse(str);
   } catch (e) {
@@ -117,64 +131,64 @@ function deg2rad(deg) {
   return deg * (Math.PI / 180);
 }
 
-export const getIdFromObject = value => {
+export const getIdFromObject = (value) => {
   return value?.id || value?._id || null;
 };
 
-export const getUrlExtension = (url = '') => {
+export const getUrlExtension = (url = "") => {
   // const ext = url.split(/[#?]/)[0].split('.').pop().trim() || '';
-  const ext = url.substring(url.lastIndexOf('.') + 1, url.length) || '';
+  const ext = url.substring(url.lastIndexOf(".") + 1, url.length) || "";
   return ext.toLowerCase();
 };
 
 export const getSequenceNumber = () => {
   let date = new Date().toISOString();
 
-  let dateAndTime = date.split('.')[0];
-  console.log('object', dateAndTime);
+  let dateAndTime = date.split(".")[0];
+  console.log("object", dateAndTime);
   let sequenceNumber = dateAndTime
-    .replace(/-/g, '')
-    .replace(/T/g, '')
-    .replace(/:/g, '');
+    .replace(/-/g, "")
+    .replace(/T/g, "")
+    .replace(/:/g, "");
   return sequenceNumber;
 };
 
-export const isImage = (url = '') => {
+export const isImage = (url = "") => {
   const fileType = getUrlExtension(url);
   if (
-    fileType === 'jpg' ||
-    fileType === 'jpeg' ||
-    fileType === 'png' ||
-    fileType === 'bmp' ||
-    fileType === 'gif'
+    fileType === "jpg" ||
+    fileType === "jpeg" ||
+    fileType === "png" ||
+    fileType === "bmp" ||
+    fileType === "gif"
   ) {
     return true;
   }
 };
 
-export const isFile = (url = '') => {
+export const isFile = (url = "") => {
   const fileType = getUrlExtension(url);
   if (
-    fileType === 'pdf' ||
-    fileType === 'xls' ||
-    fileType === 'xlsx' ||
-    fileType === 'ppt' ||
-    fileType === 'pptx' ||
-    fileType === 'doc' ||
-    fileType === 'docx'
+    fileType === "pdf" ||
+    fileType === "xls" ||
+    fileType === "xlsx" ||
+    fileType === "ppt" ||
+    fileType === "pptx" ||
+    fileType === "doc" ||
+    fileType === "docx"
   ) {
     return true;
   }
 };
 
-export const isAudioVideo = (url = '') => {
+export const isAudioVideo = (url = "") => {
   const fileType = getUrlExtension(url);
-  if (fileType === 'mp4' || fileType === 'mp3') {
+  if (fileType === "mp4" || fileType === "mp3") {
     return true;
   }
 };
 
-export const renderParsedTextWithMentions = matchingString => {
+export const renderParsedTextWithMentions = (matchingString) => {
   // matches => ["[@michel:5455345]", "@michel", "5455345"]
   let markdownRegex = /\[([^ ]+?)\]\((.+)?\)/;
   let formRegex = /###([^ ]+?)## (\$\$(.+)?\$)/;
@@ -182,9 +196,9 @@ export const renderParsedTextWithMentions = matchingString => {
     return matchingString.replace(formRegex, function (markdown) {
       let tempMarkDown;
       if (markdown.trim()) {
-        tempMarkDown = markdown.replace(/###([^ ]+?)##/, '');
-        tempMarkDown = tempMarkDown.split('$$').join('Form: ');
-        tempMarkDown = tempMarkDown.split('$').join('');
+        tempMarkDown = markdown.replace(/###([^ ]+?)##/, "");
+        tempMarkDown = tempMarkDown.split("$$").join("Form: ");
+        tempMarkDown = tempMarkDown.split("$").join("");
         return tempMarkDown;
       }
     });
@@ -192,25 +206,25 @@ export const renderParsedTextWithMentions = matchingString => {
     return matchingString.replace(markdownRegex, function (markdown) {
       let tempMarkDown;
       if (markdown.trim()) {
-        tempMarkDown = markdown.replace(/\[([^ ]+?)\]/g, '');
+        tempMarkDown = markdown.replace(/\[([^ ]+?)\]/g, "");
         // tempMarkDown = tempMarkDown.split(']').join('');
-        tempMarkDown = tempMarkDown.split('(').join('@');
-        tempMarkDown = tempMarkDown.split(')').join('');
+        tempMarkDown = tempMarkDown.split("(").join("@");
+        tempMarkDown = tempMarkDown.split(")").join("");
         return tempMarkDown;
       }
     });
   }
 };
 
-export const isForm = string => {
+export const isForm = (string) => {
   let formRegex = /###([^ ]+?)## (\$\$(.+)?\$)/;
   return formRegex.test(string);
 };
-export const getIdFromFormText = string => {
-  let tempMarkDown = string.replace(/(\$\$(.+)?\$)/g, '');
-  tempMarkDown = tempMarkDown.split('###').join('');
-  tempMarkDown = tempMarkDown.split('##').join('');
-  tempMarkDown = tempMarkDown.split(' ').join('');
+export const getIdFromFormText = (string) => {
+  let tempMarkDown = string.replace(/(\$\$(.+)?\$)/g, "");
+  tempMarkDown = tempMarkDown.split("###").join("");
+  tempMarkDown = tempMarkDown.split("##").join("");
+  tempMarkDown = tempMarkDown.split(" ").join("");
   return tempMarkDown;
 };
 
@@ -221,18 +235,18 @@ export const getParsedMentions = (matchingString, matches) => {
   return matchingString.replace(markdownRegex, function (markdown) {
     let tempMarkDown;
     if (markdown.trim()) {
-      tempMarkDown = markdown.replace(/\[([^ ]+?)\]/g, '');
+      tempMarkDown = markdown.replace(/\[([^ ]+?)\]/g, "");
       // tempMarkDown = tempMarkDown.split(']').join('');
-      tempMarkDown = tempMarkDown.split('(').join('@');
-      tempMarkDown = tempMarkDown.split(')').join('');
+      tempMarkDown = tempMarkDown.split("(").join("@");
+      tempMarkDown = tempMarkDown.split(")").join("");
       return tempMarkDown;
     }
   });
 };
 
-export const withHttp = url =>
+export const withHttp = (url) =>
   url.replace(/^(?:(.*:)?\/\/)?(.*)/i, (match, schemma, nonSchemmaUrl) =>
-    schemma ? match : `https://${nonSchemmaUrl}`,
+    schemma ? match : `https://${nonSchemmaUrl}`
   );
 
 export const getParsedForm = (matchingString, matches) => {
@@ -241,39 +255,39 @@ export const getParsedForm = (matchingString, matches) => {
   return matchingString.replace(markdownRegex, function (markdown) {
     let tempMarkDown;
     if (markdown.trim()) {
-      tempMarkDown = markdown.replace(/###([^ ]+?)##/, '');
-      tempMarkDown = tempMarkDown.split('$$').join('Form: ');
-      tempMarkDown = tempMarkDown.split('$').join('');
+      tempMarkDown = markdown.replace(/###([^ ]+?)##/, "");
+      tempMarkDown = tempMarkDown.split("$$").join("Form: ");
+      tempMarkDown = tempMarkDown.split("$").join("");
       return tempMarkDown;
     }
   });
 };
 
-export const youTubeIdFromLink = url =>
+export const youTubeIdFromLink = (url) =>
   url.match(
-    /(?:https?:\/\/)?(?:www\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\/?\?v=|\/embed\/|\/)([^\s&]+)/,
+    /(?:https?:\/\/)?(?:www\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\/?\?v=|\/embed\/|\/)([^\s&]+)/
   )[1];
 
-export const getTextWithMentionsFormat = (mstring = '', members) => {
+export const getTextWithMentionsFormat = (mstring = "", members) => {
   let modified = mstring;
   let regexp = /(@\S+)/gi;
   const matches = mstring.match(regexp);
   const array = matches && matches.length ? [...matches] : [];
-  console.log('all', array);
+  console.log("all", array);
   array.forEach((match, i) => {
     const filtered = members.filter(
-      x => `@${x.name.split(' ').join('_')}` === match,
+      (x) => `@${x.name.split(" ").join("_")}` === match
     );
     if (filtered && filtered.length) {
       modified = modified.replace(
-        `@${filtered[0].name.split(' ').join('_')}`,
-        `[${filtered[0]._id || filtered[0].id}](${filtered[0].name})`,
+        `@${filtered[0].name.split(" ").join("_")}`,
+        `[${filtered[0]._id || filtered[0].id}](${filtered[0].name})`
       );
-    } else if (match === '@all') {
-      modified = modified.replace('@all', '[all](all)');
+    } else if (match === "@all") {
+      modified = modified.replace("@all", "[all](all)");
     }
   });
-  console.log('modified', modified);
+  console.log("modified", modified);
 
   return modified;
 };

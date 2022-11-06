@@ -1,6 +1,13 @@
 import React, { useState, useRef } from "react";
 
-import { View, Text, StyleSheet, Dimensions, TextInput, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  TextInput,
+  Image,
+} from "react-native";
 import { colors, parameters } from "../../../global/styles";
 import * as Animatable from "react-native-animatable";
 import { Icon, Button, SocialIcon } from "react-native-elements";
@@ -13,9 +20,9 @@ import { useDispatch } from "react-redux";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { loginSuccess, login } from "../../../store/reducers/userSlice";
 import { showMessage } from "react-native-flash-message";
-import Lottie from 'lottie-react-native';
+import Lottie from "lottie-react-native";
 import { ScreenWidth } from "react-native-elements/dist/helpers";
-
+import { storeUserAndTokens } from "../../../services/utils";
 
 export default function SigninScreen({ navigation, route }) {
   const [TextInput2Fossued, setTextInput2Fossued] = useState(false);
@@ -23,8 +30,8 @@ export default function SigninScreen({ navigation, route }) {
   const textInput1 = useRef(1);
   const textInput2 = useRef(2);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("b@bb.com");
+  const [password, setPassword] = useState("test");
   const [showPw, setShowPw] = useState(false);
 
   const [loading, setLoading] = useState(false);
@@ -33,42 +40,28 @@ export default function SigninScreen({ navigation, route }) {
 
   const handleLogin = async () => {
     if (true) {
-      setLoading(true);
+      // setLoading(true);
       try {
-        // const res = await signInUser({
-        //   email,
-        //   password,
-        //   userName: email,
-        //   userRole: 'CUSTOMER',
-        // });
-
-        // const res = await axios({
-        //   method: "POST",
-        //   baseURL: API_URL,
-        //   url: "/auth/signup",
-        //   headers: { "Content-Type": "application/json" },
-        //   data: {
-        //     name,
-        //     email,
-        //     password,
-        //     role: "CUSTOMER",
-        //   },
-        // });
-
-        dispatch(login(({
+        const res = await signInUser({
           email,
           password,
           userName: email,
-          userRole: 'CUSTOMER',
-        })));
+          userRole: "CHEF",
+        });
+        // console.log(res, "resss");
+        storeUserAndTokens(res.data);
+        dispatch(loginSuccess(res.data));
         showMessage({
-          type: 'success',
-          message: "Logged in!!",
+          type: "success",
+          message: "Logged in test!!",
           duration: 3000,
           style: {
             paddingVertical: 20,
-          }
-        })
+          },
+        });
+
+        console.log("testtt", res.data);
+
         // alert(`${res.data.email} ${res.data.name} logged in!!`);
         setLoading(false);
       } catch (err) {
@@ -87,15 +80,21 @@ export default function SigninScreen({ navigation, route }) {
     <>
       <LinearGradient
         // Background Linear Gradient
-        colors={["#AC4425","#fefefe","#fefefe", "#fefefe", "#fefefe","#fefefe","#fefefe"]}
+        colors={[
+          "#AC4425",
+          "#fefefe",
+          "#fefefe",
+          "#fefefe",
+          "#fefefe",
+          "#fefefe",
+          "#fefefe",
+        ]}
         start={{ x: 1.1, y: 0 }}
         style={styles.background}
       >
         <View style={styles.container}>
-        <Spinner textContent="Loading..." visible={loading} />
-          <View
-            style={{ marginLeft: 20, marginTop: 90, alignItems: "center" }}
-          >
+          <Spinner textContent="Loading..." visible={loading} />
+          <View style={{ marginLeft: 20, marginTop: 90, alignItems: "center" }}>
             <Text style={styles.title}> Sign-in </Text>
           </View>
           <View style={{ alignItems: "center", marginTop: 10 }}>
@@ -105,11 +104,14 @@ export default function SigninScreen({ navigation, route }) {
             </Text>
             <Text style={styles.text1}> Register with your account </Text>
           </View>
-            <Image source={require('../../../../assets/chef.gif')} 
+          <Image
+            source={require("../../../../assets/chef.gif")}
             style={{
-            height: 250, width: 300
-            }}/>
-            {/* <Lottie source={require('../../../../assets/chef.gif')}/> */}
+              height: 250,
+              width: 300,
+            }}
+          />
+          {/* <Lottie source={require('../../../../assets/chef.gif')}/> */}
           <View style={{ marginTop: 20 }}>
             <View>
               <TextInput
@@ -182,14 +184,14 @@ export default function SigninScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: "center",
   },
   title: {
     color: "#AC4425",
     fontSize: 38,
   },
   text1: {
-    color: '#AC4410',
+    color: "#AC4410",
     fontSize: 16,
   },
   text2: {

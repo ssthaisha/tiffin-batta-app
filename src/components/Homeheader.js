@@ -5,6 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { colors, parameters } from "../global/styles";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/reducers/userSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Homeheader({ navigation }) {
   const BadgeIcon = withBadge(0)(Icon);
@@ -12,15 +13,14 @@ export default function Homeheader({ navigation }) {
   const dispatch = useDispatch();
 
   const handleLogout = async () => {
+    console.log("test logout");
     dispatch(setUser(null));
     try {
       await AsyncStorage.removeItem("user");
-
-    }catch(err) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
       alert("Error in storing data");
     }
-
   };
   return (
     <View style={styles.header}>
@@ -31,7 +31,12 @@ export default function Homeheader({ navigation }) {
           marginLeft: 15,
         }}
       >
-        <Icon name="menu" color={colors.grey5} size={35} onPress={() => navigation.openDrawer()} />
+        <Icon
+          name="menu"
+          color={colors.grey5}
+          size={35}
+          onPress={() => navigation.openDrawer()}
+        />
       </View>
       <View
         style={{

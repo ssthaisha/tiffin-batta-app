@@ -14,7 +14,13 @@ export default function ChefHeader({ navigation }) {
           marginLeft: 5,
         }}
       >
-        <Ionicons name="arrow-back" size={35} color={colors.grey5} onPress={() => navigation.goBack()} />
+        {/* <Ionicons name="arrow-back" size={35} color={colors.grey5} onPress={() => navigation.goBack()} /> */}
+        <Icon
+          name="menu"
+          color={colors.grey5}
+          size={35}
+          onPress={() => navigation.openDrawer()}
+        />
       </View>
       <View
         style={{

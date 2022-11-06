@@ -29,7 +29,7 @@ export default function Register() {
   const textInput2 = useRef(2);
   const textInput3 = useRef(3);
 
-  const [name, setName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRe, setPasswordRe] = useState("");
@@ -46,14 +46,14 @@ export default function Register() {
   const dispatch = useDispatch();
 
   const isValid =
-    name.length > 3 && email.length > 5 && password === passwordRe;
+    fullName.length > 3 && email.length > 5 && password === passwordRe;
 
   const handleRegister = async () => {
     if (isValid) {
       setLoading(true);
       try {
         const res = await registerUser({
-          name,
+          fullName,
           email,
           password,
           role: "CUSTOMER",
@@ -65,14 +65,14 @@ export default function Register() {
         //   url: "/auth/signup",
         //   headers: { "Content-Type": "application/json" },
         //   data: {
-        //     name,
+        //     fullName,
         //     email,
         //     password,
         //     role: "CUSTOMER",
         //   },
         // });
 
-        alert(`${res.data.email} ${res.data.name} account registered!!`);
+        alert(`${res.data.email} ${res.data.fullName} account registered!!`);
         setLoading(false);
         dispatch(loginSuccess(res.data));
       } catch (err) {
@@ -109,10 +109,10 @@ export default function Register() {
           <View>
             <TextInput
               style={styles.textInput1Style}
-              placeholder="UserName"
+              placeholder="Full Name"
               ref={textInput1}
-              value={name}
-              onChangeText={(t) => setName(t)}
+              value={fullName}
+              onChangeText={(t) => setFullName(t)}
             />
           </View>
           <View>

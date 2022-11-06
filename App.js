@@ -16,17 +16,15 @@ import YourProfile from "./src/screens/Chefs/YourProfile";
 import MyProfile from "./src/screens/Customers/MyProfile";
 
 export default function App() {
-  // return (
-    
-  //   <Provider store={store}>
-  //   <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
-
-  //     <NavigationContainer>
-  //       <AppContainer /> 
-  //     </NavigationContainer>
-  //     <FlashMessage position={"top"} />
-  //   </Provider>
-  // );
+  return (
+    <Provider store={store}>
+      <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
+      <NavigationContainer>
+        <AppContainer />
+      </NavigationContainer>
+      <FlashMessage position={"top"} />
+    </Provider>
+  );
 
   return (
     <View style={styles.container}>
@@ -35,7 +33,7 @@ export default function App() {
       {/* <Login /> */}
       {/* <SubscribersList /> */}
       {/* <ChefHomeScreen/> */}
-      <MyProfile/>
+      <MyProfile />
       {/* <YourProfile/> */}
     </View>
   );

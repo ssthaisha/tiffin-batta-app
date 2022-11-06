@@ -37,13 +37,20 @@ function* loginFlow(action) {
     console.log(response, "log in");
     // const {data:{data:{userdetail,usertypedetail}}} = response;
     // const {...response.data.data.usertypedetail, ...response.data.data.userdetail} = user;
-    // yield put(loginSuccess(response.data));
+    yield put(loginSuccess(response.data));
     yield call(storeUserAndTokens(response.data));
     // showMessage({
     //   message: "Login success !!!",
     //   type: "success",
     // });
-    // yield call(storeTokens(response.data.data.token));
+    showMessage({
+      type: "success",
+      message: "Logged in test!!",
+      duration: 3000,
+      style: {
+        paddingVertical: 20,
+      },
+    });
   } catch (errorPromise) {
     const error = yield errorPromise;
     yield put(loginError({ message: "Login" }));
