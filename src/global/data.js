@@ -502,7 +502,10 @@ export const CHEFSDATA = [
     {chefsname: "Lucky Karki", Image: require("../../assets/image10.jpg"),
      id: "0", address:"Balkumari,Lalitpur", lunchtime:"10:00am"}
     ];
-
+    export const DRIVERSDATA = [
+      {name: "Anu Nepali", Image: require("../../assets/image10.jpg"),
+       id: "0", address:"Balkumari,Lalitpur",ride:"Hero honda"}
+      ];
   export const NEWSUBS = [
     {
       id: 0,
@@ -548,3 +551,19 @@ image: require("../../assets/image10.jpg"),
 oName:"DIET FRIENDLY",
 },
 ]
+export const SUBSLIST = [{
+  id: 0,
+  chefName:"Aayusha Shrestha",
+  daysremaining: "5",
+  deliveryTime: "9:30am",
+  image: require("../../assets/image10.jpg"),
+  oName:"Mixed Set",
+},
+{
+  id: 1,
+  chefName:"Aayusha Shrestha",
+  daysremaining: "5",
+  deliveryTime: "9:30am",
+  image: require("../../assets/image10.jpg"),
+  oName:"Mixed Set",
+}]

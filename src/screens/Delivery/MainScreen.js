@@ -7,12 +7,12 @@ import {
   FlatList,
   Dimensions,
   ScrollView,
+  ScrollView,
 } from "react-native";
 import { colors, parameters } from "../../global/styles";
 import RequestCard from "../../components/RequestCard";
 import MainHeader from "../../components/Mainheader";
 import { Pending } from "../../global/data";
-// import { ScrollView } from "react-native-gesture";
 // import ScrollView
 
 export default function MainScreen() {

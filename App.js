@@ -14,6 +14,8 @@ import SubscribersList from "./src/screens/Chefs/SubscribersList";
 import ChefHomeScreen from "./src/screens/Chefs/ChefHomeScreen";
 import YourProfile from "./src/screens/Chefs/YourProfile";
 import MyProfile from "./src/screens/Customers/MyProfile";
+import DriversProfile from "./src/screens/Delivery/DriversProfile";
+import MainScreen from "./src/screens/Delivery/MainScreen";
 
 export default function App() {
   return (
@@ -34,6 +36,9 @@ export default function App() {
       {/* <SubscribersList /> */}
       {/* <ChefHomeScreen/> */}
       <MyProfile />
+      {/* <MyProfile/> */}
+      <MainScreen />
+      {/* <DriversProfile/> */}
       {/* <YourProfile/> */}
     </View>
   );
