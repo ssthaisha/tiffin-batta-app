@@ -1,7 +1,7 @@
 import axios from "axios";
 // import {API_URL} from 'config';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { API_URL, API_URL5 } from "../constants";
+import { API_URL, API_URL4, API_URL5 } from "../constants";
 const axiosApiInstance = axios.create();
 // Response interceptor for API calls
 
@@ -128,7 +128,7 @@ const apiHandler = async (
 ) => {
   const headers = await getHeader(auth, form);
   return axiosApiInstance({
-    baseURL: API_URL5,
+    baseURL: API_URL4 ,
     url,
     method: requestType,
     headers,

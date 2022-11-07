@@ -7,6 +7,7 @@ import {
   Dimensions,
   TextInput,
   Image,
+  StatusBar
 } from "react-native";
 import { colors, parameters } from "../../../global/styles";
 import * as Animatable from "react-native-animatable";

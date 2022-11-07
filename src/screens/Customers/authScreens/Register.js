@@ -87,9 +87,10 @@ export default function Register() {
   };
 
   return (
+    <>
     <LinearGradient
       // Background Linear Gradient
-      colors={["#FD841F", "#FD841F", "#fefefe"]}
+      colors={["#FF9666", "#FF9666", "#fefefe"]}
       start={{ x: 0.9, y: 0 }}
       style={styles.background}
     >
@@ -207,6 +208,7 @@ export default function Register() {
         </View>
       </View>
     </LinearGradient>
+    </>
   );
 }
 

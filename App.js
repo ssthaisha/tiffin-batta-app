@@ -17,6 +17,7 @@ import MyProfile from "./src/screens/Customers/MyProfile";
 import DriversProfile from "./src/screens/Delivery/DriversProfile";
 import MainScreen from "./src/screens/Delivery/MainScreen";
 
+
 export default function App() {
   return (
     <Provider store={store}>
@@ -28,20 +29,21 @@ export default function App() {
     </Provider>
   );
 
-  return (
-    <View style={styles.container}>
-      <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
-      {/* <SignUpscreen /> */}
-      {/* <Login /> */}
-      {/* <SubscribersList /> */}
-      {/* <ChefHomeScreen/> */}
-      <MyProfile />
-      {/* <MyProfile/> */}
-      <MainScreen />
-      {/* <DriversProfile/> */}
-      {/* <YourProfile/> */}
-    </View>
-  );
+  // return (
+  //   <View style={styles.container}>
+  //     <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
+  //     {/* <SignUpscreen /> */}
+  //     {/* <Login /> */}
+  //     {/* <SubscribersList /> */}
+  //     {/* <ChefHomeScreen/> */}
+  //     {/* <MyProfile /> */}
+  //     {/* <MyProfile/> */}
+  //     {/* <MainScreen /> */}
+  //     {/* <DriversProfile/> */}
+  //     {/* <YourProfile/> */}
+  //     <HomeScreen/>
+  //   </View>
+  // );
   return (
     <View style={styles.container}>
       <StatusBar barstyle="light-content" backgroundColor={colors.statusbar} />

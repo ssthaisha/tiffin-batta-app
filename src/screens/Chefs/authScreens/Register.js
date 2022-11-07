@@ -7,6 +7,7 @@ import {
   Dimensions,
   TextInput,
   ActivityIndicator,
+  StatusBar
 } from "react-native";
 import { colors, parameters } from "../../../global/styles";
 import * as Animatable from "react-native-animatable";
@@ -90,6 +91,8 @@ export default function Register() {
   };
 
   return (
+  <>  
+    <StatusBar barstyle="light-content" backgroundColor="#AC4425" />
     <LinearGradient
       // Background Linear Gradient
       colors={["#AC4425", "#AC4425", "#fefefe", "#fefefe"]}
@@ -228,6 +231,7 @@ export default function Register() {
         </View>
       </View>
     </LinearGradient>
+    </>
   );
 }
 

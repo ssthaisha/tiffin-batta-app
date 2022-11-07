@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-import { View, Text, StyleSheet, Dimensions, TextInput } from "react-native";
+import { View, Text, StyleSheet, Dimensions, TextInput,StatusBar } from "react-native";
 import { colors, parameters } from "../../global/styles";
 import * as Animatable from "react-native-animatable";
 import { Icon, Button, SocialIcon } from "react-native-elements";
@@ -83,6 +83,7 @@ export default function SigninScreen({ navigation, route }) {
   // console.log(navigation, route, "route");
   return (
     <>
+    <StatusBar barstyle="light-content" backgroundColor="#668162" />
       <LinearGradient
         // Background Linear Gradient
         colors={["#668162", "#668162", "#fefefe"]}

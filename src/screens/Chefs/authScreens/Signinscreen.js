@@ -7,6 +7,7 @@ import {
   Dimensions,
   TextInput,
   Image,
+  StatusBar
 } from "react-native";
 import { colors, parameters } from "../../../global/styles";
 import * as Animatable from "react-native-animatable";
@@ -78,6 +79,7 @@ export default function SigninScreen({ navigation, route }) {
   // console.log(navigation, route, "route");
   return (
     <>
+      <StatusBar barstyle="light-content" backgroundColor="#AC4425" />
       <LinearGradient
         // Background Linear Gradient
         colors={[
@@ -171,7 +173,7 @@ export default function SigninScreen({ navigation, route }) {
           <View style={{ alignItems: "flex-end", marginHorizontal: 20 }}>
             <Button
               title="Create an account"
-              buttonStyle={parameters.createButton}
+              buttonStyle={styles.createButton}
               titleStyle={parameters.createButtonTitle}
               onPress={() => navigation.navigate("CustomerRegistration")}
             />
@@ -233,6 +235,18 @@ const styles = StyleSheet.create({
   SocialIcon: {
     borderRadius: 12,
     height: 50,
+  },
+  createButton: {
+    backgroundColor: "#fefefe",
+    justifyContent: "center",
+    alignContent: "center",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#AC4425",
+    height: 40,
+    paddingHorizontal: 20,
+    width: "45%",
+    marginTop: 10,
   },
   styledButton: {
     backgroundColor: "#AC4425",
