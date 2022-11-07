@@ -16,5 +16,9 @@ export const subscribeToChef = ({ id, chefId, periodId }) => {
 };
 
 export const getSubscribersList = ({ chefId }) => {
-  return apiHandler("GET", `/subscribe/list`, false, false);
+  return apiHandler("GET", `/subscribe/list/${chefId}`, false, false);
+};
+
+export const acceptSubscriptionRequest = ({ id }) => {
+  return apiHandler("GET", `/subscribe/approve/${id}`, false, false);
 };

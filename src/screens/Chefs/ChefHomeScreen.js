@@ -38,6 +38,16 @@ function ChefHomeScreen({ navigation }) {
       console.log(err, "testt");
     }
   };
+
+  const approveRequest = async () => {
+    try {
+      const res = await getSubscribersList({ chefId: user?._id });
+      setSubscribers(res.data || []);
+      console.log(res, "chefs list");
+    } catch (err) {
+      console.log(err, "testt");
+    }
+  };
   const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
@@ -76,7 +86,7 @@ function ChefHomeScreen({ navigation }) {
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             style={{ marginHorizontal: 10, marginVertical: 10 }}
-            data={subscribers}
+            data={subscribers.filter((a) => a.requestAccedpted)}
             keyExtractor={(item) => item.id}
             extraData={indexCheck}
             renderItem={({ item, index }) => (
@@ -125,7 +135,7 @@ function ChefHomeScreen({ navigation }) {
             <FlatList
               horizontal={false}
               styles={{ marginTop: 40, margingBottom: 8 }}
-              data={NEWSUBS}
+              data={subscribers.filter((a) => !a.requestAccedpted)}
               keyExtractor={(item, index) => index.toString()}
               renderItem={({ item }) => (
                 <View
