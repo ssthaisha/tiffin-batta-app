@@ -7,6 +7,8 @@ import {
   Dimensions,
   TextInput,
   Image,
+  StatusBar,
+  KeyboardAvoidingView
 } from "react-native";
 import { colors, parameters } from "../../../global/styles";
 import * as Animatable from "react-native-animatable";
@@ -87,9 +89,11 @@ export default function SigninScreen({ navigation, route }) {
         start={{ x: 1.1, y: 0 }}
         style={styles.background}
       >
-        <View style={styles.container}>
-          <Spinner textContent="Loading..." visible={loading} />
-          <View style={{ marginLeft: 20, marginTop: 80, alignItems: "center" }}>
+        <KeyboardAvoidingView style={styles.container}>
+        <Spinner textContent="Loading..." visible={loading} />
+          <View
+            style={{ marginLeft: 20, marginTop: 80, alignItems: "center" }}
+          >
             <Text style={styles.title}> Sign-in </Text>
           </View>
           <View style={{ alignItems: "center", marginTop: 10 }}>
@@ -171,7 +175,7 @@ export default function SigninScreen({ navigation, route }) {
               onPress={() => navigation.navigate("CustomerRegistration")}
             />
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </LinearGradient>
     </>
   );

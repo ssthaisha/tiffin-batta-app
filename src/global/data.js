@@ -206,7 +206,7 @@ export const Pending = [{
   pickUpPoint: "Gwarko, Lalitpur",
   deliveryPoint: "Jawalakhel, Lalitpur",
   noOfDaysToDeliver: "6",
-  rate:600,
+  rate:300,
 },
 {
   id: 1,
@@ -216,7 +216,7 @@ export const Pending = [{
   pickUpPoint: "Gwarko, Lalitpur",
   deliveryPoint: "Jawalakhel, Lalitpur",
   noOfDaysToDeliver: "6",
-  rate:600,
+  rate:300,
 },
 {
   id: 2,
@@ -226,7 +226,7 @@ export const Pending = [{
   pickUpPoint: "Gwarko, Lalitpur",
   deliveryPoint: "Jawalakhel, Lalitpur",
   noOfDaysToDeliver: "6",
-  rate:600,
+  rate:300,
 },
 {
   id: 3,
@@ -236,7 +236,7 @@ export const Pending = [{
   pickUpPoint: "Gwarko, Lalitpur",
   deliveryPoint: "Jawalakhel, Lalitpur",
   noOfDaysToDeliver: "6",
-  rate:600,
+  rate:300,
 },
 
   {
@@ -247,7 +247,7 @@ export const Pending = [{
     pickUpPoint: "Gwarko, Lalitpur",
     deliveryPoint: "Jawalakhel, Lalitpur",
     noOfDaysToDeliver: "6",
-    rate:600,
+    rate:300,
   },
   {
     id: 7,
@@ -257,7 +257,7 @@ export const Pending = [{
     pickUpPoint: "Gwarko, Lalitpur",
     deliveryPoint: "Jawalakhel, Lalitpur",
     noOfDaysToDeliver: "6",
-    rate:600,
+    rate:300,
   },
   {
     id: 8,
@@ -267,7 +267,7 @@ export const Pending = [{
     pickUpPoint: "Gwarko, Lalitpur",
     deliveryPoint: "Jawalakhel, Lalitpur",
     noOfDaysToDeliver: "6",
-    rate:600,
+    rate:300,
   },
   {
     id: 9,
@@ -277,7 +277,7 @@ export const Pending = [{
     pickUpPoint: "Gwarko, Lalitpur",
     deliveryPoint: "Jawalakhel, Lalitpur",
     noOfDaysToDeliver: "6",
-    rate:600,
+    rate:300,
   },
   {
     id: 10,
@@ -287,7 +287,7 @@ export const Pending = [{
     pickUpPoint: "Gwarko, Lalitpur",
     deliveryPoint: "Jawalakhel, Lalitpur",
     noOfDaysToDeliver: "6",
-    rate:600,
+    rate:300,
   },
   {
     id: 11,
@@ -297,7 +297,7 @@ export const Pending = [{
     pickUpPoint: "Gwarko, Lalitpur",
     deliveryPoint: "Jawalakhel, Lalitpur",
     noOfDaysToDeliver: "6",
-    rate:600,
+    rate:300,
   },
   {
   id:12,
@@ -307,7 +307,7 @@ export const Pending = [{
   pickUpPoint: "Gwarko, Lalitpur",
   deliveryPoint: "Jawalakhel, Lalitpur",
   noOfDaysToDeliver: "6",
-  rate:600,
+  rate:300,
 },
 {
   id: 12,
@@ -317,7 +317,7 @@ export const Pending = [{
   pickUpPoint: "Gwarko, Lalitpur",
   deliveryPoint: "Jawalakhel, Lalitpur",
   noOfDaysToDeliver: "6",
-  rate:600,
+  rate:300,
 },
 
 ];
@@ -329,7 +329,7 @@ export const Accepted = [{
   pickUpPoint: "Gwarko, Lalitpur",
   deliveryPoint: "Jawalakhel, Lalitpur",
   noOfDaysToDeliver: "6",
-  rate:600,
+  rate:300,
 },
 {
   id: 1,
@@ -339,7 +339,7 @@ export const Accepted = [{
   pickUpPoint: "Gwarko, Lalitpur",
   deliveryPoint: "Jawalakhel, Lalitpur",
   noOfDaysToDeliver: "6",
-  rate:600,
+  rate:300,
 },
 {
   id: 2,
@@ -349,7 +349,7 @@ export const Accepted = [{
   pickUpPoint: "Gwarko, Lalitpur",
   deliveryPoint: "Jawalakhel, Lalitpur",
   noOfDaysToDeliver: "6",
-  rate:600,
+  rate:300,
 },
 {
   id: 3,
@@ -359,7 +359,7 @@ export const Accepted = [{
   pickUpPoint: "Gwarko, Lalitpur",
   deliveryPoint: "Jawalakhel, Lalitpur",
   noOfDaysToDeliver: "6",
-  rate:600,
+  rate:300,
 },
 {
   id: 4,
@@ -369,7 +369,7 @@ export const Accepted = [{
   pickUpPoint: "Gwarko, Lalitpur",
   deliveryPoint: "Jawalakhel, Lalitpur",
   noOfDaysToDeliver: "6",
-  rate:600,
+  rate:300,
 },
 {
   id: 5,
@@ -379,7 +379,7 @@ export const Accepted = [{
   pickUpPoint: "Gwarko, Lalitpur",
   deliveryPoint: "Jawalakhel, Lalitpur",
   noOfDaysToDeliver: "6",
-  rate:600,
+  rate:300,
 },
 ];
 
@@ -390,7 +390,7 @@ export const SUBSCRIBERS = [{
   deliveryPoint: "Jawalakhel, Lalitpur",
   noOfDaysToDeliver: "6",
   deliveryTime: "9:30am",
-  rate:600,
+  rate:300,
   image: require("../../assets/image10.jpg"),
   oName:"Mixed Set",
 },
@@ -567,3 +567,45 @@ export const SUBSLIST = [{
   image: require("../../assets/image10.jpg"),
   oName:"Mixed Set",
 }]
+
+export const DELIVERYSUBS = [{
+  id: 0,
+  customerName:"Lucky Karki",
+  chefDistance: "1",
+  chefName:"Maya Shrestha",
+  customerDistance: "3",
+  pickUpPoint: "Gwarko, Lalitpur",
+  deliveryPoint: "Jawalakhel, Lalitpur",
+  daysremaining: "6",
+  customerCon:987654321,rate:300,
+  chefCon:987654321 
+  ,
+
+},
+{
+  id: 1,
+  customerName:"Lucky Karki",
+  chefDistance: "1",
+  chefName:"Maya Shrestha",
+  customerDistance: "3",
+  pickUpPoint: "Gwarko, Lalitpur",
+  deliveryPoint: "Jawalakhel, Lalitpur",
+  daysremaining: "6",
+  rate:300,
+  customerCon:987654321,
+  chefCon:987654321, 
+},
+{
+  id: 2,
+  customerName:"Lucky Karki",
+  chefDistance: "1",
+  chefName:"Maya Shrestha",
+  customerDistance: "3",
+  pickUpPoint: "Gwarko, Lalitpur",
+  deliveryPoint: "Jawalakhel, Lalitpur",
+  daysremaining: "6",
+  rate:300,
+  customerCon:987654321,
+  chefCon:987654321, 
+},
+]

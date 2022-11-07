@@ -16,8 +16,9 @@ import { Icon, ListItem, Button } from "react-native-elements";
 import ChefHeader from "../../components/ChefHeader";
 import { colors, parameters } from "../../global/styles";
 const { width } = Dimensions.get("window");
-import { foodData, specialfoodData, CHEFSDATA, USERSDATA, SUBSLIST, DRIVERSDATA } from "../../global/data";
+import {DELIVERYSUBS, CHEFSDATA, USERSDATA, SUBSLIST, DRIVERSDATA } from "../../global/data";
 import SubList from "../../components/sublist";
+import DSubsList from "../../components/delSubList";
 
 
 const SCREEN_WIDTH = width  - 20;
@@ -152,6 +153,30 @@ export default function DriversProfile() {
             Ongoing works
           </Text>
         </View>
+        <FlatList
+          horizontal={false}
+          styles={{ marginTop: 15, margingBottom: 8 }}
+          data={DELIVERYSUBS}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <View style={{ marginVertical: 7, marginLeft: 5 }}>
+              <DSubsList
+                screenWidth={SCREEN_WIDTH }
+                chefName={item.chefName}
+                chefDistance={item.chefDistance}
+                customerDistance={item.customerDistance}
+                pickUpPoint={item.pickUpPoint}
+                deliveryPoint={item.deliveryPoint}
+                daysremaining={item.daysremaining}
+                rate={item.rate}
+                customerName={item.customerName}
+                chefCon={item.chefCon}
+                customerCon={item.customerCon}
+              />
+            </View>
+          )}
+        />
+        
                 </View>
                 </>
     )}
@@ -166,4 +191,16 @@ export default function DriversProfile() {
             alignItems: "center",
             justifyContent: "center"
         },
+        styledButton: {
+            backgroundColor: "#FF9666",
+            justifyContent: "center",
+            alignContent: "center",
+            borderRadius: 12,
+            borderWidth: 1,
+            borderColor: colors.grey3,
+            height: 30,
+            paddingHorizontal: 10,
+            paddingVertical:-3
+        
+          },
     })

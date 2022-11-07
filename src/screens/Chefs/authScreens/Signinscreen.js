@@ -7,6 +7,8 @@ import {
   Dimensions,
   TextInput,
   Image,
+  StatusBar,
+  KeyboardAvoidingView
 } from "react-native";
 import { colors, parameters } from "../../../global/styles";
 import * as Animatable from "react-native-animatable";
@@ -78,6 +80,7 @@ export default function SigninScreen({ navigation, route }) {
   // console.log(navigation, route, "route");
   return (
     <>
+      <StatusBar barstyle="light-content" backgroundColor="#AC4425" />
       <LinearGradient
         // Background Linear Gradient
         colors={[
@@ -92,9 +95,11 @@ export default function SigninScreen({ navigation, route }) {
         start={{ x: 1.1, y: 0 }}
         style={styles.background}
       >
-        <View style={styles.container}>
-          <Spinner textContent="Loading..." visible={loading} />
-          <View style={{ marginLeft: 20, marginTop: 90, alignItems: "center" }}>
+        <KeyboardAvoidingView style={styles.container}>
+        <Spinner textContent="Loading..." visible={loading} />
+          <View
+            style={{ marginLeft: 20, marginTop: 90, alignItems: "center" }}
+          >
             <Text style={styles.title}> Sign-in </Text>
           </View>
           <View style={{ alignItems: "center", marginTop: 10 }}>
@@ -171,12 +176,12 @@ export default function SigninScreen({ navigation, route }) {
           <View style={{ alignItems: "flex-end", marginHorizontal: 20 }}>
             <Button
               title="Create an account"
-              buttonStyle={parameters.createButton}
+              buttonStyle={styles.createButton}
               titleStyle={parameters.createButtonTitle}
               onPress={() => navigation.navigate("CustomerRegistration")}
             />
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </LinearGradient>
     </>
   );
@@ -233,6 +238,18 @@ const styles = StyleSheet.create({
   SocialIcon: {
     borderRadius: 12,
     height: 50,
+  },
+  createButton: {
+    backgroundColor: "#fefefe",
+    justifyContent: "center",
+    alignContent: "center",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#AC4425",
+    height: 40,
+    paddingHorizontal: 20,
+    width: "45%",
+    marginTop: 10,
   },
   styledButton: {
     backgroundColor: "#AC4425",
