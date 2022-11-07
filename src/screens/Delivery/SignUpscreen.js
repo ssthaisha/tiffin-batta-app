@@ -7,7 +7,8 @@ import {
   Dimensions,
   TextInput,
   ActivityIndicator,
-  StatusBar
+  StatusBar,
+  KeyboardAvoidingView
 } from "react-native";
 import { colors, parameters } from "../../global/styles";
 import * as Animatable from "react-native-animatable";
@@ -98,7 +99,7 @@ export default function Register() {
       start={{ x: 0.9, y: 0 }}
       style={styles.background}
     >
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}>
         <Spinner textContent="Loading..." visible={loading} />
         <View style={{ marginLeft: 5, marginTop: 90, alignItems: "center" }}>
           <Text style={styles.title}> Register your account </Text>
@@ -229,7 +230,7 @@ export default function Register() {
             onPress={handleRegister}
           />
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </LinearGradient>
     </>
   );

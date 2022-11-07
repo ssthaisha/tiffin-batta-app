@@ -46,6 +46,15 @@ export default function YourProfile({ navigation }) {
                   >
                     {item.chefsname}
                   </Text>
+                  <TouchableOpacity>
+                    <View style={{
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginLeft: -100,
+                    }}>
+                      <Ionicons name="bookmark-outline" size={35} color={colors.grey2} />
+                    </View>
+                  </TouchableOpacity>
                 </View>
 
                 <View
@@ -57,7 +66,17 @@ export default function YourProfile({ navigation }) {
                     alignItems: "flex-end",
                   }}
                 >
-                  <Image source={item.Image} style={styles.imageStyle} />
+                  <Image
+                    source={item.Image}
+                    style={styles.imageStyle}
+                  />
+                  <View style={{ marginTop: 160, marginLeft: -35, }}><Button
+                    title="+"
+                    buttonStyle={styles.createButton}
+                    titleStyle={styles.buttonTitle}
+                    color={colors.grey3}
+                    borderRadius="3"></Button>
+                  </View>
                 </View>
 
                 <View style={{ marginVertial: 15, alignItems: "center" }}>
@@ -191,7 +210,13 @@ export default function YourProfile({ navigation }) {
             buttonStyle={styles.styledButton}
             titleStyle={parameters.createButtonTitle}
             title="Add items"
-            icon={<Icon name="arrow-right" size={20} />}
+            icon={
+              <Icon
+                name="arrow-right"
+                size={20}
+
+              />
+            }
           />
         </View>
       </View>
@@ -211,16 +236,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   createButton: {
-    backgroundColor: "#fefefe",
+    backgroundColor: "#FF9666",
     justifyContent: "center",
     alignContent: "center",
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "#FD841F",
-    height: 40,
-    paddingHorizontal: 20,
-    width: "45%",
-    marginTop: 10,
+    borderColor: colors.grey3,
+    height: 30,
+    paddingHorizontal: 10,
+    paddingVertical: -3
+
   },
   styledButton: {
     backgroundColor: "#FF9666",

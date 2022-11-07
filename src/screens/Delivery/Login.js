@@ -90,7 +90,7 @@ export default function SigninScreen({ navigation, route }) {
         start={{ x: 0.8, y: 0 }}
         style={styles.background}
       >
-        <View style={styles.container}>
+        <KeyboardAvoidingView style={styles.container}>
         <Spinner textContent="Loading..." visible={loading} />
           <View
             style={{ marginLeft: 20, marginTop: 80, alignItems: "center" }}
@@ -173,7 +173,7 @@ export default function SigninScreen({ navigation, route }) {
               onPress={() => navigation.navigate("CustomerRegistration")}
             />
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </LinearGradient>
     </>
   );

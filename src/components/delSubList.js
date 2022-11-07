@@ -13,23 +13,29 @@ import {
 import { Icon } from "react-native-elements";
 import { colors, parameters } from "../global/styles";
 
-export default function RequestCard({
+export default function DSubsList({
+    customerName,
     chefDistance,
     chefName,
     customerDistance,
     pickUpPoint,
     deliveryPoint,
-    noOfDaysToDeliver,
+    daysremaining,
     screenWidth,
     rate,
+    chefCon,
+    customerCon
 }) {
   return (
     <TouchableOpacity>
       <View style={{ ...styles.cardView, width: screenWidth }}>
         
         <View>
-          <Text style={styles.chefName}>ChefName:{chefName}</Text>
+          <Text style={styles.chefName}>ChefName: {chefName}</Text>
         </View>
+        <View>
+            <Text style={styles.distance}>Customer:{customerName} </Text>
+          </View>
         <View style={{ flex: 1, flexDirection: "column" }}>
           <View style={styles.distance}>
             <Text>Pickupoint:{pickUpPoint}</Text>
@@ -60,14 +66,21 @@ export default function RequestCard({
             <Text style={styles.Min}>, {customerDistance} Min</Text>
           </View>
           <View>
+            <Text style={styles.distance}>Chef's Contact:{chefCon} </Text>
+          </View>
+          <View>
+            <Text style={styles.distance}>Customer Contact:{customerCon} </Text>
+          </View>
+          <View>
             <Text style={styles.distance}>NRs:{rate} </Text>
           </View>
+         
           
         </View>
 
         <View style={styles.review}>
-        <Text style={styles.numberOfReview}>Days to be delivered: </Text>
-          <Text style={styles.average}>{noOfDaysToDeliver}</Text>
+        <Text style={styles.numberOfReview}>Days remaining: </Text>
+          <Text style={styles.average}>{daysremaining}</Text>
         </View>
       </View>
     </TouchableOpacity>

@@ -44,13 +44,13 @@ export default function App() {
   //     <HomeScreen/>
   //   </View>
   // );
-  return (
-    <View style={styles.container}>
-      <StatusBar barstyle="light-content" backgroundColor={colors.statusbar} />
-      <SigninScreen />
-      {/* <Register /> */}
-    </View>
-  );
+  // return (
+  //   <View style={styles.container}>
+  //     <StatusBar barstyle="light-content" backgroundColor={colors.statusbar} />
+  //     <SigninScreen />
+  //     {/* <Register /> */}
+  //   </View>
+  // );
 }
 
 const styles = StyleSheet.create({
