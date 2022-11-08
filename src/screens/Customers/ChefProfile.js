@@ -62,7 +62,7 @@ export default function ChefProfile({
           </View>
 
           <TouchableOpacity onPress={handleSubscribe}>
-            <Text>Subscribe</Text>
+           <View style={{marginHorizontal:50,marginTop:5,backgroundColor:colors.buttons}}> <Text>Subscribe</Text> </View>
           </TouchableOpacity>
           <View
             style={{

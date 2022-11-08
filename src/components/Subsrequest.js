@@ -70,10 +70,11 @@ export default function Subsrequest({
    
       </View>
       <View style ={{marginVertical:8,marginHorizontal:20}}>
-        <Button 
-        color="#AC4425"
-        title="ACCEPT REQUEST" >
-            </Button>
+            <Button
+              title="ACCEPT REQUEST"
+              buttonStyle={styles.styledButton}
+              titleStyle={parameters.buttonTitle}
+            />
         </View>
       </View>
     </TouchableOpacity>
@@ -131,5 +132,16 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginRight: 0,
     marginLeft: 0,
+  },
+  styledButton: {
+    backgroundColor: "#AC4425",
+    justifyContent: "center",
+    alignContent: "center",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#43484d",
+    height: 50,
+    paddingHorizontal: 20,
+    width: "100%",
   },
 });

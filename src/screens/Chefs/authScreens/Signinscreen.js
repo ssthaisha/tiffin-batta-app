@@ -99,7 +99,7 @@ export default function SigninScreen({ navigation, route }) {
         <KeyboardAwareScrollView contentContainerStyle={styles.container}>
           <Spinner textContent="Loading..." visible={loading} />
           <View
-            contentContainerStyle={{
+            style={{
               marginLeft: 20,
               marginTop: 90,
               alignItems: "center",
@@ -107,7 +107,7 @@ export default function SigninScreen({ navigation, route }) {
           >
             <Text style={styles.title}> Sign-in </Text>
           </View>
-          <View contentContainerStyle={{ alignItems: "center", marginTop: 10 }}>
+          <View style={{ alignItems: "center", marginTop: 10 }}>
             <Text style={styles.text1}>
               {" "}
               Please enter the email and password{" "}

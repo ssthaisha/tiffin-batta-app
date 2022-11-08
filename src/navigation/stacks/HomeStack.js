@@ -66,6 +66,13 @@ const CustomersHomeStack = () => {
           headerShown: false,
         }}
       />
+       <Drawer.Screen
+        name="Chef"
+        component={ChefProfile}
+        options={{
+          headerShown: false,
+        }}
+      />
       {/* <Drawer.Screen
         name="WeekMenu"
         component={WeekMenu}
