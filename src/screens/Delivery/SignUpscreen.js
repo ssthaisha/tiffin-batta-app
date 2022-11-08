@@ -105,23 +105,9 @@ export default function Register() {
           <View style={{ marginLeft: 5, marginTop: 90, alignItems: "center" }}>
             <Text style={styles.title}> Register your account </Text>
           </View>
-          <View style={{ alignItems: "center", marginTop: 8 }}>
-            <Text style={styles.text1}> Help Us Deliver Our Food </Text>
-            <Text style={styles.text1}>
-              {" "}
-              Become A Part Of TiffinBatta Family{" "}
-            </Text>
-          </View>
+         
           <View style={{ marginTop: 20 }}>
-            <View>
-              <TextInput
-                style={styles.textInput1Style}
-                placeholder="UserName"
-                ref={textInput1}
-                value={name}
-                onChangeText={(t) => setName(t)}
-              />
-            </View>
+           
             <View style={{ alignItems: "center", marginTop: 8 }}>
               <Text style={styles.text1}> Help Us Deliver Our Food </Text>
               <Text style={styles.text1}>
