@@ -26,7 +26,6 @@ import Lottie from "lottie-react-native";
 import { ScreenWidth } from "react-native-elements/dist/helpers";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import { storeUserAndTokens } from "../../../services/utils";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 export default function SigninScreen({ navigation, route }) {
   const [TextInput2Fossued, setTextInput2Fossued] = useState(false);
@@ -123,7 +122,7 @@ export default function SigninScreen({ navigation, route }) {
             }}
           />
           {/* <Lottie source={require('../../../../assets/chef.gif')}/> */}
-          <View style={{ marginTop: 20 }}>
+          <View style={{ marginTop: 20, width: 300 }}>
             <View>
               <TextInput
                 style={styles.textInput1Style}
@@ -134,7 +133,7 @@ export default function SigninScreen({ navigation, route }) {
               />
             </View>
 
-            <View contentContainerStyle={styles.textInput2Styles}>
+            <View style={styles.textInput2Styles} sty>
               <Animatable.View>
                 <Icon
                   name="lock"
@@ -144,7 +143,7 @@ export default function SigninScreen({ navigation, route }) {
                 />
               </Animatable.View>
               <TextInput
-                style={{ width: "80%" }}
+                style={{ width: "60%" }}
                 placeholder="Password"
                 ref={textInput2}
                 onFocus={() => {
@@ -170,7 +169,7 @@ export default function SigninScreen({ navigation, route }) {
               <View></View>
             </View>
           </View>
-          <View style={{ marginHorizontal: 20, marginTop: 20 }}>
+          <View style={{ marginHorizontal: 20, marginTop: 20, width: 260 }}>
             <Button
               title="SIGN-IN"
               buttonStyle={styles.styledButton}
@@ -183,6 +182,12 @@ export default function SigninScreen({ navigation, route }) {
             contentContainerStyle={{
               alignItems: "flex-end",
               marginHorizontal: 20,
+              width: 300,
+            }}
+            style={{
+              alignItems: "flex-end",
+              marginHorizontal: 20,
+              // width: 300,
             }}
           >
             <Button
@@ -270,7 +275,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#43484d",
     height: 50,
-    paddingHorizontal: 120,
+    paddingHorizontal: 20,
     width: "100%",
   },
   buttonTitle: {

@@ -12,9 +12,9 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from "react-native-elements";
 import { colors, parameters } from "../../global/styles";
-import { foodData } from "../../global/data";
+// import { foodData } from "../../global/data";
 import { SafeAreaView } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
+// import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 export default function FoodDetails({}) {
   const { height } = Dimensions.get("window");
@@ -28,7 +28,7 @@ export default function FoodDetails({}) {
             flexDirection: "row",
             justifyContent: "space-between",
           }}
-          source={require("../../../../assets/image11.jpg")}
+          source={require("../../../assets/image11.jpg")}
         >
           <TouchableOpacity
             style={{
