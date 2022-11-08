@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   KeyboardAvoidingView,
 } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import { colors, parameters } from "../../../global/styles";
 import * as Animatable from "react-native-animatable";
 import { Icon, Button } from "react-native-elements";
