@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
   KeyboardAvoidingView,
 } from "react-native";
-import { colors, parameters } from "../../../global/styles";
+import { colors, parameters } from "../../global/styles";
 import * as Animatable from "react-native-animatable";
 import { Icon, Button } from "react-native-elements";
 // import Header from "../../../component/Header";
@@ -17,26 +17,33 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
-import { loginSuccess } from "../../../store/reducers/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { loginSuccess } from "../../store/reducers/userSlice";
 import Spinner from "react-native-loading-spinner-overlay/lib";
-import { registerUser } from "../../../services/APIs/users";
-import { API_URL } from "../../../constants";
+import { registerUser, updateUser } from "../../services/APIs/users";
+import { API_URL } from "../../constants";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import AddressPicker from "../../components/AddressPicker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
+import { showMessage } from "react-native-flash-message";
 
-export default function Register() {
+export default function ChefProfileEdit({ navigation, route }) {
   const [TextInput3Fossued, setTextInput3Fossued] = useState(false);
 
   const textInput1 = useRef(1);
   const textInput2 = useRef(2);
   const textInput3 = useRef(3);
 
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordRe, setPasswordRe] = useState("");
-  const [showPw, setShowPw] = useState(false);
-  const [showPwRe, setShowPwRe] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+
+  const [fullName, setFullName] = useState(user?.fullName || user?.name || "");
+  const [email, setEmail] = useState(user?.email || "");
+  const [address, setAddress] = useState(user?.address || "");
+  const [location, setLocation] = useState({
+    latitude: 27.671521240933117,
+    longitude: 85.33875189721584,
+  });
+  const [openAddressPicker, setOpenAddressPicker] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
@@ -47,39 +54,29 @@ export default function Register() {
 
   const dispatch = useDispatch();
 
-  const isValid =
-    fullName.length > 3 && email.length > 5 && password === passwordRe;
+  const isValid = true;
 
-  const handleRegister = async () => {
+  const handleUpdate = async () => {
     if (isValid) {
       setLoading(true);
       try {
-        const res = await registerUser({
+        const res = await updateUser({
           fullName,
           email,
-          password,
+          address,
+          latitude: location.latitude,
+          longitude: location.longitude,
+          _id: user?._id,
+          userId: user?._id,
           role: "CUSTOMER",
         });
-
-        // const res = await axios({
-        //   method: "POST",
-        //   baseURL: API_URL,
-        //   url: "/auth/signup",
-        //   headers: { "Content-Type": "application/json" },
-        //   data: {
-        //     fullName,
-        //     email,
-        //     password,
-        //     role: "CUSTOMER",
-        //   },
-        // });
-
-        alert(`${res.data.email} ${res.data.fullName} account registered!!`);
+        showMessage({ type: "success", message: "Updated!" });
         setLoading(false);
         dispatch(loginSuccess(res.data));
       } catch (err) {
         console.log(err);
         setLoading(false);
+        showMessage({ type: "error", message: "Error updating!" });
         alert(`${JSON.stringify(err)}`);
         console.log(`${JSON.stringify(err)}`);
       }
@@ -88,6 +85,7 @@ export default function Register() {
     }
   };
 
+  console.log(route, "check route");
   return (
     <>
       <LinearGradient
@@ -98,16 +96,10 @@ export default function Register() {
       >
         <KeyboardAwareScrollView style={styles.container}>
           <Spinner textContent="Loading..." visible={loading} />
-          <View style={{ marginLeft: 5, marginTop: 150, alignItems: "center" }}>
-            <Text style={styles.title}> Register your account </Text>
+          <View style={{ marginLeft: 5, marginTop: 20, alignItems: "center" }}>
+            <Text style={styles.title}> Edit Profile </Text>
           </View>
-          <View style={{ alignItems: "center", marginTop: 10 }}>
-            <Text style={styles.text1}>
-              {" "}
-              Become A Part Of TiffinBatta Family{" "}
-            </Text>
-            <Text style={styles.text1}> Create New Account </Text>
-          </View>
+          <View style={{ alignItems: "center", marginTop: 10 }}></View>
           <View style={{ marginTop: 20 }}>
             <View>
               <TextInput
@@ -127,85 +119,51 @@ export default function Register() {
                 onChangeText={(t) => setEmail(t)}
               />
             </View>
-
-            <View style={styles.textInput3Styles}>
-              <Animatable.View>
-                <Icon
-                  name="lock"
-                  iconStyle={{ color: colors.grey3 }}
-                  type="material"
-                  style={{}}
+            <TouchableOpacity
+              onPress={() => setOpenAddressPicker(!openAddressPicker)}
+            >
+              <Text
+                style={styles.textInput2Styles}
+                // placeholder="Email"
+                // ref={textInput2}
+                // onChangeText={(t) => setEmail(t)}
+              >
+                {`${location.latitude},${location.longitude}`}
+              </Text>
+            </TouchableOpacity>
+            {openAddressPicker && (
+              <View
+                style={{
+                  width: Dimensions.get("window").width * 0.9,
+                  height: 400,
+                  justifyContent: "center",
+                  paddingHorizontal: Dimensions.get("window").width * 0.15,
+                }}
+              >
+                <AddressPicker
+                  navigation={navigation}
+                  setProfileLocation={setLocation}
+                  givenLocation={location}
                 />
-              </Animatable.View>
-
+              </View>
+            )}
+            <View>
               <TextInput
-                style={{ width: "80%", paddingHorizontal: 10 }}
-                placeholder="Password"
-                ref={textInput3}
-                onFocus={() => {
-                  setTextInput3Fossued(false);
-                }}
-                onBlur={() => {
-                  setTextInput3Fossued(true);
-                }}
-                secureTextEntry={!showPw}
-                textContentType={"password"}
-                value={password}
-                onChangeText={(t) => setPassword(t)}
-                // right={<TextInput.Icon name="eye" />}
+                style={styles.textInput1Style}
+                placeholder="Address"
+                ref={textInput1}
+                value={address}
+                onChangeText={(t) => setAddress(t)}
               />
-              <Animatable.View style={{ paddingHorizontal: 10 }}>
-                <Ionicons
-                  name={showPw ? "eye-off" : "eye"}
-                  size={22}
-                  color="black"
-                  onPress={() => setShowPw(!showPw)}
-                />
-              </Animatable.View>
-            </View>
-
-            <View style={styles.textInput3Styles}>
-              <Animatable.View>
-                <Icon
-                  name="lock"
-                  iconStyle={{ color: colors.grey3 }}
-                  type="material"
-                  style={{}}
-                />
-              </Animatable.View>
-
-              <TextInput
-                style={{ width: "80%", paddingHorizontal: 10 }}
-                placeholder="Confirm Password"
-                ref={textInput3}
-                onFocus={() => {
-                  setTextInput3Fossued(false);
-                }}
-                onBlur={() => {
-                  setTextInput3Fossued(true);
-                }}
-                secureTextEntry={!showPwRe}
-                textContentType={"password"}
-                value={passwordRe}
-                onChangeText={(t) => setPasswordRe(t)}
-                // right={<TextInput.Icon name="eye" />}
-              />
-              <Animatable.View style={{ paddingHorizontal: 10 }}>
-                <Ionicons
-                  name={showPwRe ? "eye-off" : "eye"}
-                  size={22}
-                  color="black"
-                  onPress={() => setShowPwRe(!showPwRe)}
-                />
-              </Animatable.View>
             </View>
           </View>
+
           <View style={{ marginHorizontal: 20, marginTop: 40 }}>
             <Button
-              title="Create Account"
+              title="Update"
               buttonStyle={styles.styledButton}
               titleStyle={parameters.buttonTitle}
-              onPress={handleRegister}
+              onPress={handleUpdate}
             />
           </View>
         </KeyboardAwareScrollView>

@@ -113,7 +113,7 @@ export default function AppContainer() {
         />
       ) : (
         <Stack.Screen
-          name="Home"
+          name="Root"
           component={getStack(user.role)}
           options={{ headerShown: false }}
         />

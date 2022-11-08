@@ -15,6 +15,7 @@ import ChefHeader from "../../components/ChefHeader";
 import { colors, parameters } from "../../global/styles";
 const { width } = Dimensions.get("window");
 import { foodData, specialfoodData, CHEFSDATA } from "../../global/data";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 const itemWidth = width / 2 - 20;
 
@@ -47,12 +48,18 @@ export default function YourProfile({ navigation }) {
                     {item.chefsname}
                   </Text>
                   <TouchableOpacity>
-                    <View style={{
-                      alignItems: "center",
-                      justifyContent: "center",
-                      marginLeft: -100,
-                    }}>
-                      <Ionicons name="bookmark-outline" size={35} color={colors.grey2} />
+                    <View
+                      style={{
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginLeft: -100,
+                      }}
+                    >
+                      <Ionicons
+                        name="bookmark-outline"
+                        size={35}
+                        color={colors.grey2}
+                      />
                     </View>
                   </TouchableOpacity>
                 </View>
@@ -66,16 +73,15 @@ export default function YourProfile({ navigation }) {
                     alignItems: "flex-end",
                   }}
                 >
-                  <Image
-                    source={item.Image}
-                    style={styles.imageStyle}
-                  />
-                  <View style={{ marginTop: 160, marginLeft: -35, }}><Button
-                    title="+"
-                    buttonStyle={styles.createButton}
-                    titleStyle={styles.buttonTitle}
-                    color={colors.grey3}
-                    borderRadius="3"></Button>
+                  <Image source={item.Image} style={styles.imageStyle} />
+                  <View style={{ marginTop: 160, marginLeft: -35 }}>
+                    <Button
+                      title="+"
+                      buttonStyle={styles.createButton}
+                      titleStyle={styles.buttonTitle}
+                      color={colors.grey3}
+                      borderRadius="3"
+                    ></Button>
                   </View>
                 </View>
 
@@ -210,13 +216,7 @@ export default function YourProfile({ navigation }) {
             buttonStyle={styles.styledButton}
             titleStyle={parameters.createButtonTitle}
             title="Add items"
-            icon={
-              <Icon
-                name="arrow-right"
-                size={20}
-
-              />
-            }
+            icon={<Icon name="arrow-right" size={20} />}
           />
         </View>
       </View>
@@ -244,8 +244,7 @@ const styles = StyleSheet.create({
     borderColor: colors.grey3,
     height: 30,
     paddingHorizontal: 10,
-    paddingVertical: -3
-
+    paddingVertical: -3,
   },
   styledButton: {
     backgroundColor: "#FF9666",

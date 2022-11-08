@@ -16,6 +16,7 @@ import { Button } from "react-native-elements";
 import { colors, parameters } from "../../../global/styles";
 import { foodData } from "../../../global/data";
 import { SafeAreaView } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 export default function Weekmenu() {
   const { height } = Dimensions.get("window");

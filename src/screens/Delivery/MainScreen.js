@@ -13,6 +13,7 @@ import RequestCard from "../../components/RequestCard";
 import MainHeader from "../../components/Mainheader";
 import { Pending } from "../../global/data";
 // import ScrollView
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 export default function MainScreen() {
   const SCREEN_WIDTH = Dimensions.get("window").width;

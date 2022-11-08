@@ -1,6 +1,13 @@
 import React, { useState, useRef } from "react";
 
-import { View, Text, StyleSheet, Dimensions, TextInput,StatusBar } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  TextInput,
+  StatusBar,
+} from "react-native";
 import { colors, parameters } from "../../global/styles";
 import * as Animatable from "react-native-animatable";
 import { Icon, Button, SocialIcon } from "react-native-elements";
@@ -13,7 +20,8 @@ import { useDispatch } from "react-redux";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { loginSuccess, login } from "../../store/reducers/userSlice";
 import { showMessage } from "react-native-flash-message";
-import Lottie from 'lottie-react-native';
+import Lottie from "lottie-react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 export default function SigninScreen({ navigation, route }) {
   const [TextInput2Fossued, setTextInput2Fossued] = useState(false);
@@ -53,20 +61,22 @@ export default function SigninScreen({ navigation, route }) {
         //   },
         // });
 
-        dispatch(login(({
-          email,
-          password,
-          userName: email,
-          userRole: 'CUSTOMER',
-        })));
+        dispatch(
+          login({
+            email,
+            password,
+            userName: email,
+            userRole: "CUSTOMER",
+          })
+        );
         showMessage({
-          type: 'success',
+          type: "success",
           message: "Logged in!!",
           duration: 3000,
           style: {
             paddingVertical: 20,
-          }
-        })
+          },
+        });
         // alert(`${res.data.email} ${res.data.name} logged in!!`);
         setLoading(false);
       } catch (err) {
@@ -83,18 +93,16 @@ export default function SigninScreen({ navigation, route }) {
   // console.log(navigation, route, "route");
   return (
     <>
-    <StatusBar barstyle="light-content" backgroundColor="#668162" />
+      <StatusBar barstyle="light-content" backgroundColor="#668162" />
       <LinearGradient
         // Background Linear Gradient
         colors={["#668162", "#668162", "#fefefe"]}
         start={{ x: 0.8, y: 0 }}
         style={styles.background}
       >
-        <KeyboardAvoidingView style={styles.container}>
-        <Spinner textContent="Loading..." visible={loading} />
-          <View
-            style={{ marginLeft: 20, marginTop: 80, alignItems: "center" }}
-          >
+        <KeyboardAwareScrollView style={styles.container}>
+          <Spinner textContent="Loading..." visible={loading} />
+          <View style={{ marginLeft: 20, marginTop: 80, alignItems: "center" }}>
             <Text style={styles.title}> Sign-in </Text>
           </View>
           <View style={{ alignItems: "center", marginTop: 10 }}>
@@ -105,8 +113,15 @@ export default function SigninScreen({ navigation, route }) {
             <Text style={styles.text1}> Register with your account </Text>
           </View>
 
-          <View style={{height:250,width:300, alignItems:'center', marginLeft:30}}>
-            <Lottie source={require('../../../assets/deliver.json')} autoPlay/>
+          <View
+            style={{
+              height: 250,
+              width: 300,
+              alignItems: "center",
+              marginLeft: 30,
+            }}
+          >
+            <Lottie source={require("../../../assets/deliver.json")} autoPlay />
           </View>
 
           <View style={{ marginTop: 30 }}>
@@ -173,7 +188,7 @@ export default function SigninScreen({ navigation, route }) {
               onPress={() => navigation.navigate("CustomerRegistration")}
             />
           </View>
-        </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
       </LinearGradient>
     </>
   );

@@ -8,7 +8,7 @@ import {
   TextInput,
   ActivityIndicator,
   StatusBar,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
 } from "react-native";
 import { colors, parameters } from "../../global/styles";
 import * as Animatable from "react-native-animatable";
@@ -91,147 +91,146 @@ export default function Register() {
   };
 
   return (
-  <>
-    <StatusBar barstyle="light-content" backgroundColor="#668162" />
-    <LinearGradient
-      // Background Linear Gradient
-      colors={["#668162", "#668162", "#fefefe"]}
-      start={{ x: 0.9, y: 0 }}
-      style={styles.background}
-    >
-      <KeyboardAvoidingView style={styles.container}>
-        <Spinner textContent="Loading..." visible={loading} />
-        <View style={{ marginLeft: 5, marginTop: 90, alignItems: "center" }}>
-          <Text style={styles.title}> Register your account </Text>
-        </View>
-        <View style={{ alignItems: "center", marginTop: 8 }}>
-          <Text style={styles.text1}>
-            {" "}Help Us Deliver Our Food
-            {" "}
-          </Text>
-          <Text style={styles.text1}> Become A Part Of TiffinBatta Family </Text>
-        </View>
-        <View style={{ marginTop: 20 }}>
-          <View>
-            <TextInput
-              style={styles.textInput1Style}
-              placeholder="UserName"
-              ref={textInput1}
-              value={name}
-              onChangeText={(t) => setName(t)}
-            />
+    <>
+      <StatusBar barstyle="light-content" backgroundColor="#668162" />
+      <LinearGradient
+        // Background Linear Gradient
+        colors={["#668162", "#668162", "#fefefe"]}
+        start={{ x: 0.9, y: 0 }}
+        style={styles.background}
+      >
+        <KeyboardAwareScrollView style={styles.container}>
+          <Spinner textContent="Loading..." visible={loading} />
+          <View style={{ marginLeft: 5, marginTop: 90, alignItems: "center" }}>
+            <Text style={styles.title}> Register your account </Text>
           </View>
-          <View>
-            <TextInput
-              style={styles.textInput1Style}
-              placeholder="ContactNo"
-              ref={textInput1}
-              value={contact}
-              onChangeText={(t) => setContact(t)}
-            />
+          <View style={{ alignItems: "center", marginTop: 8 }}>
+            <Text style={styles.text1}> Help Us Deliver Our Food </Text>
+            <Text style={styles.text1}>
+              {" "}
+              Become A Part Of TiffinBatta Family{" "}
+            </Text>
           </View>
-          <View>
-            <TextInput
-              style={styles.textInput1Style}
-              placeholder="Driver's License no."
-              ref={textInput1}
-              value={License}
-              onChangeText={(t) => setLicense(t)}
-            />
-          </View>
-          <View>
-            <TextInput
-              style={styles.textInput2Styles}
-              placeholder="Email"
-              ref={textInput2}
-              value={email}
-              onChangeText={(t) => setEmail(t)}
-            />
-          </View>
-          
-
-          <View style={styles.textInput3Styles}>
-            <Animatable.View>
-              <Icon
-                name="lock"
-                iconStyle={{ color: colors.grey3 }}
-                type="material"
-                style={{}}
+          <View style={{ marginTop: 20 }}>
+            <View>
+              <TextInput
+                style={styles.textInput1Style}
+                placeholder="UserName"
+                ref={textInput1}
+                value={name}
+                onChangeText={(t) => setName(t)}
               />
-            </Animatable.View>
-
-            <TextInput
-              style={{ width: "80%", paddingHorizontal: 10 }}
-              placeholder="Password"
-              ref={textInput3}
-              onFocus={() => {
-                setTextInput3Fossued(false);
-              }}
-              onBlur={() => {
-                setTextInput3Fossued(true);
-              }}
-              secureTextEntry={!showPw}
-              textContentType={"password"}
-              value={password}
-              onChangeText={(t) => setPassword(t)}
-              // right={<TextInput.Icon name="eye" />}
-            />
-            <Animatable.View style={{ paddingHorizontal: 10 }}>
-              <Ionicons
-                name={showPw ? "eye-off" : "eye"}
-                size={22}
-                color="black"
-                onPress={() => setShowPw(!showPw)}
+            </View>
+            <View>
+              <TextInput
+                style={styles.textInput1Style}
+                placeholder="ContactNo"
+                ref={textInput1}
+                value={contact}
+                onChangeText={(t) => setContact(t)}
               />
-            </Animatable.View>
+            </View>
+            <View>
+              <TextInput
+                style={styles.textInput1Style}
+                placeholder="Driver's License no."
+                ref={textInput1}
+                value={License}
+                onChangeText={(t) => setLicense(t)}
+              />
+            </View>
+            <View>
+              <TextInput
+                style={styles.textInput2Styles}
+                placeholder="Email"
+                ref={textInput2}
+                value={email}
+                onChangeText={(t) => setEmail(t)}
+              />
+            </View>
+
+            <View style={styles.textInput3Styles}>
+              <Animatable.View>
+                <Icon
+                  name="lock"
+                  iconStyle={{ color: colors.grey3 }}
+                  type="material"
+                  style={{}}
+                />
+              </Animatable.View>
+
+              <TextInput
+                style={{ width: "80%", paddingHorizontal: 10 }}
+                placeholder="Password"
+                ref={textInput3}
+                onFocus={() => {
+                  setTextInput3Fossued(false);
+                }}
+                onBlur={() => {
+                  setTextInput3Fossued(true);
+                }}
+                secureTextEntry={!showPw}
+                textContentType={"password"}
+                value={password}
+                onChangeText={(t) => setPassword(t)}
+                // right={<TextInput.Icon name="eye" />}
+              />
+              <Animatable.View style={{ paddingHorizontal: 10 }}>
+                <Ionicons
+                  name={showPw ? "eye-off" : "eye"}
+                  size={22}
+                  color="black"
+                  onPress={() => setShowPw(!showPw)}
+                />
+              </Animatable.View>
+            </View>
+
+            <View style={styles.textInput3Styles}>
+              <Animatable.View>
+                <Icon
+                  name="lock"
+                  iconStyle={{ color: colors.grey3 }}
+                  type="material"
+                  style={{}}
+                />
+              </Animatable.View>
+
+              <TextInput
+                style={{ width: "80%", paddingHorizontal: 10 }}
+                placeholder="Confirm Password"
+                ref={textInput3}
+                onFocus={() => {
+                  setTextInput3Fossued(false);
+                }}
+                onBlur={() => {
+                  setTextInput3Fossued(true);
+                }}
+                secureTextEntry={!showPwRe}
+                textContentType={"password"}
+                value={passwordRe}
+                onChangeText={(t) => setPasswordRe(t)}
+                // right={<TextInput.Icon name="eye" />}
+              />
+              <Animatable.View style={{ paddingHorizontal: 10 }}>
+                <Ionicons
+                  name={showPwRe ? "eye-off" : "eye"}
+                  size={22}
+                  color="black"
+                  onPress={() => setShowPwRe(!showPwRe)}
+                />
+              </Animatable.View>
+            </View>
           </View>
-
-          <View style={styles.textInput3Styles}>
-            <Animatable.View>
-              <Icon
-                name="lock"
-                iconStyle={{ color: colors.grey3 }}
-                type="material"
-                style={{}}
-              />
-            </Animatable.View>
-
-            <TextInput
-              style={{ width: "80%", paddingHorizontal: 10 }}
-              placeholder="Confirm Password"
-              ref={textInput3}
-              onFocus={() => {
-                setTextInput3Fossued(false);
-              }}
-              onBlur={() => {
-                setTextInput3Fossued(true);
-              }}
-              secureTextEntry={!showPwRe}
-              textContentType={"password"}
-              value={passwordRe}
-              onChangeText={(t) => setPasswordRe(t)}
-              // right={<TextInput.Icon name="eye" />}
+          <View style={{ marginHorizontal: 20, marginTop: 40 }}>
+            <Button
+              title="Create Account"
+              buttonStyle={parameters.styledButton}
+              titleStyle={parameters.buttonTitle}
+              onPress={handleRegister}
             />
-            <Animatable.View style={{ paddingHorizontal: 10 }}>
-              <Ionicons
-                name={showPwRe ? "eye-off" : "eye"}
-                size={22}
-                color="black"
-                onPress={() => setShowPwRe(!showPwRe)}
-              />
-            </Animatable.View>
           </View>
-        </View>
-        <View style={{ marginHorizontal: 20, marginTop: 40 }}>
-          <Button
-            title="Create Account"
-            buttonStyle={parameters.styledButton}
-            titleStyle={parameters.buttonTitle}
-            onPress={handleRegister}
-          />
-        </View>
-      </KeyboardAvoidingView>
-    </LinearGradient>
+        </KeyboardAwareScrollView>
+      </LinearGradient>
     </>
   );
 }

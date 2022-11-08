@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import { getSubscribersList } from "../../services/APIs/customerAPIs";
 import { useSelector } from "react-redux";
 // import { useSelector } from "react-redux";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 

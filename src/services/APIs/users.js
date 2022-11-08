@@ -4,8 +4,16 @@ export const registerUser = (data) => {
   return apiHandler("POST", "/auth/signup", false, false, data);
 };
 
+export const updateUser = ({ _id, ...data }) => {
+  return apiHandler("PUT", `/auth/${_id}`, false, false, data);
+};
+
 export const registerChef = (data) => {
   return apiHandler("POST", "/chefs/signup", false, false, data);
+};
+
+export const updateChef = ({ _id, ...data }) => {
+  return apiHandler("PUT", `/chef/${_id}`, false, false, data);
 };
 
 export const registerDriver = (data) => {

@@ -8,7 +8,7 @@ import {
   TextInput,
   Image,
   StatusBar,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
 } from "react-native";
 import { colors, parameters } from "../../../global/styles";
 import * as Animatable from "react-native-animatable";
@@ -25,6 +25,7 @@ import { showMessage } from "react-native-flash-message";
 import Lottie from "lottie-react-native";
 import { ScreenWidth } from "react-native-elements/dist/helpers";
 import { storeUserAndTokens } from "../../../services/utils";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 export default function SigninScreen({ navigation, route }) {
   const [TextInput2Fossued, setTextInput2Fossued] = useState(false);
@@ -95,14 +96,18 @@ export default function SigninScreen({ navigation, route }) {
         start={{ x: 1.1, y: 0 }}
         style={styles.background}
       >
-        <KeyboardAvoidingView style={styles.container}>
-        <Spinner textContent="Loading..." visible={loading} />
+        <KeyboardAwareScrollView style={styles.container}>
+          <Spinner textContent="Loading..." visible={loading} />
           <View
-            style={{ marginLeft: 20, marginTop: 90, alignItems: "center" }}
+            contentContainerStyle={{
+              marginLeft: 20,
+              marginTop: 90,
+              alignItems: "center",
+            }}
           >
             <Text style={styles.title}> Sign-in </Text>
           </View>
-          <View style={{ alignItems: "center", marginTop: 10 }}>
+          <View contentContainerStyle={{ alignItems: "center", marginTop: 10 }}>
             <Text style={styles.text1}>
               {" "}
               Please enter the email and password{" "}
@@ -128,7 +133,7 @@ export default function SigninScreen({ navigation, route }) {
               />
             </View>
 
-            <View style={styles.textInput2Styles}>
+            <View contentContainerStyle={styles.textInput2Styles}>
               <Animatable.View>
                 <Icon
                   name="lock"
@@ -173,7 +178,12 @@ export default function SigninScreen({ navigation, route }) {
             />
           </View>
 
-          <View style={{ alignItems: "flex-end", marginHorizontal: 20 }}>
+          <View
+            contentContainerStyle={{
+              alignItems: "flex-end",
+              marginHorizontal: 20,
+            }}
+          >
             <Button
               title="Create an account"
               buttonStyle={styles.createButton}
@@ -181,7 +191,7 @@ export default function SigninScreen({ navigation, route }) {
               onPress={() => navigation.navigate("CustomerRegistration")}
             />
           </View>
-        </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
       </LinearGradient>
     </>
   );

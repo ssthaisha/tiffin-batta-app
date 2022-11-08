@@ -29,6 +29,7 @@ import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { BASE_URL5 } from "../../constants";
 import Spinner from "react-native-loading-spinner-overlay/lib";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 

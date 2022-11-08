@@ -90,6 +90,7 @@ import { scaleH, scaleW } from "../../services/scale";
 // import { useLocalization } from "../../context/LocalizationContext";
 
 // import BackgroundTimer from "react-native-background-timer";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 const styles = StyleSheet.create({
   container: {

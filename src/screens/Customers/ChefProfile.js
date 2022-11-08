@@ -18,6 +18,7 @@ import { foodData, specialfoodData, CHEFSDATA } from "../../global/data";
 import { BASE_URL5 } from "../../constants";
 import { subscribeToChef } from "../../services/APIs/customerAPIs";
 import { useSelector } from "react-redux";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 const itemWidth = width / 2 - 20;
 

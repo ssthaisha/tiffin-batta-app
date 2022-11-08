@@ -18,6 +18,9 @@ import MainScreen from "../../screens/Delivery/MainScreen";
 
 import { Icon } from "react-native-elements";
 import { colors } from "../../global/styles";
+import ProfileEdit from "../../screens/Customers/ProfileEdit";
+import ChefProfileEdit from "../../screens/Chefs/ChefProfileEdit";
+import AddressPicker from "../../screens/Customers/AddressPicker";
 
 const Drawer = createDrawerNavigator();
 
@@ -28,7 +31,7 @@ const CustomersHomeStack = () => {
       screenOptions={{ header: () => null }}
     >
       <Drawer.Screen
-        name="Root"
+        name="Home"
         component={HomeScreen}
         options={{
           headerShown: false,
@@ -41,13 +44,21 @@ const CustomersHomeStack = () => {
           ),
         }}
       />
+
       <Drawer.Screen
-        name="Chef"
-        component={ChefProfile}
+        name="Edit Profile"
+        component={ProfileEdit}
         options={{
           headerShown: false,
         }}
       />
+      {/* <Drawer.Screen
+        name="AddressPicker"
+        component={AddressPicker}
+        options={{
+          headerShown: false,
+        }}
+      /> */}
       <Drawer.Screen
         name="Maps"
         component={MapScreen}
@@ -73,7 +84,7 @@ const ChefsHomeStack = () => {
       screenOptions={{ header: () => null }}
     >
       <Drawer.Screen
-        name="Root"
+        name="Home"
         component={ChefHomeScreen}
         options={{
           headerShown: false,
@@ -89,6 +100,13 @@ const ChefsHomeStack = () => {
       <Drawer.Screen
         name="Profile"
         component={MyProfile}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Edit Profile"
+        component={ChefProfileEdit}
         options={{
           headerShown: false,
         }}
