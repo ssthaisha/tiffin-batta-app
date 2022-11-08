@@ -8,7 +8,6 @@ import {
   TextInput,
   Image,
   StatusBar,
-  KeyboardAvoidingView
 } from "react-native";
 import { colors, parameters } from "../../../global/styles";
 import * as Animatable from "react-native-animatable";
@@ -24,6 +23,7 @@ import { loginSuccess, login } from "../../../store/reducers/userSlice";
 import { showMessage } from "react-native-flash-message";
 import Lottie from "lottie-react-native";
 import { ScreenWidth } from "react-native-elements/dist/helpers";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import { storeUserAndTokens } from "../../../services/utils";
 
 export default function SigninScreen({ navigation, route }) {
@@ -95,7 +95,7 @@ export default function SigninScreen({ navigation, route }) {
         start={{ x: 1.1, y: 0 }}
         style={styles.background}
       >
-        <KeyboardAvoidingView style={styles.container}>
+        <KeyboardAwareScrollView contentContainerStyle={styles.container}>
         <Spinner textContent="Loading..." visible={loading} />
           <View
             style={{ marginLeft: 20, marginTop: 90, alignItems: "center" }}
@@ -181,7 +181,7 @@ export default function SigninScreen({ navigation, route }) {
               onPress={() => navigation.navigate("CustomerRegistration")}
             />
           </View>
-        </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
       </LinearGradient>
     </>
   );

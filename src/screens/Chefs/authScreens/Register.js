@@ -8,7 +8,6 @@ import {
   TextInput,
   ActivityIndicator,
   StatusBar,
-  KeyboardAvoidingView
 } from "react-native";
 import { colors, parameters } from "../../../global/styles";
 import * as Animatable from "react-native-animatable";
@@ -23,6 +22,8 @@ import { loginSuccess } from "../../../store/reducers/userSlice";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { registerChef } from "../../../services/APIs/users";
 import { API_URL } from "../../../constants";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
+
 
 export default function Register() {
   const [TextInput3Fossued, setTextInput3Fossued] = useState(false);
@@ -100,7 +101,7 @@ export default function Register() {
       start={{ x: 0.9, y: 0 }}
       style={styles.background}
     >
-      <KeyboardAvoidingView style={styles.container}>
+      <KeyboardAwareScrollView style={styles.container}>
         <Spinner textContent="Loading..." visible={loading} />
         <View style={{ marginLeft: 5, marginTop: 90, alignItems: "center" }}>
           <Text style={styles.title}> Register your account </Text>
@@ -230,7 +231,7 @@ export default function Register() {
             onPress={handleRegister}
           />
         </View>
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
     </LinearGradient>
     </>
   );

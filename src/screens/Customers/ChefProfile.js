@@ -110,7 +110,7 @@ export default function ChefProfile({
               }}
             >
               {" "}
-              Based On Subscription
+              My FoodItems
             </Text>
           </View>
           <View
@@ -185,6 +185,10 @@ export default function ChefProfile({
                   <TouchableOpacity
                     style={{ width: itemWidth, marginBottom: 10 }}
                     key={item.id}
+                    onPress={() =>
+                      navigation.navigate("Week", {
+                        details: item,
+                      })}
                   >
                     <Image
                       style={{
@@ -196,6 +200,7 @@ export default function ChefProfile({
                     />
                     <Text>{item.name}</Text>
                     <Text>Price: {item.price}</Text>
+                    
                   </TouchableOpacity>
                 )}
               />

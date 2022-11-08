@@ -33,7 +33,7 @@ export default function FoodCard({
       <View
         style={{
           ...styles.cardView,
-          width: screenWidth,
+          width: screenWidth-2,
           marginTop: 10,
           marginRight: 5,
           marginLeft: 5,
@@ -57,7 +57,7 @@ export default function FoodCard({
                 marginTop: 3,
               }}
             />
-            <Text style={styles.Min}> {farAway} Min</Text>
+            
           </View>
           <View style={{ flex: 9, flexDirection: "row" }}>
             <Text style={styles.address}>{kitchenAddress}</Text>
@@ -98,10 +98,10 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   distance: {
-    flex: 4,
+    
     flexDirection: "row",
     borderRightColor: colors.grey4,
-    paddingHorizontal: 5,
+    paddingHorizontal: 3,
     borderRightWidth: 1,
   },
   Min: {

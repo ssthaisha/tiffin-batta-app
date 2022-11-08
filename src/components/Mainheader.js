@@ -57,7 +57,7 @@ export default function MainHeader() {
 const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
-    backgroundColor: colors.buttons,
+    backgroundColor: "#668162",
     height: parameters.headerHeight,
     justifyContent: "space-between",
   },

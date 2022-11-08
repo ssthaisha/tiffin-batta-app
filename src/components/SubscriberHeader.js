@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row",
-    backgroundColor: colors.buttons,
+    backgroundColor: "#AC4425",
     height: parameters.headerHeight,
     justifyContent: "space-evenly",
   },

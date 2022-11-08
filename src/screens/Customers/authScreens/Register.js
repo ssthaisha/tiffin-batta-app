@@ -7,8 +7,8 @@ import {
   Dimensions,
   TextInput,
   ActivityIndicator,
-  KeyboardAvoidingView
 } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import { colors, parameters } from "../../../global/styles";
 import * as Animatable from "react-native-animatable";
 import { Icon, Button } from "react-native-elements";
@@ -95,7 +95,7 @@ export default function Register() {
       start={{ x: 0.9, y: 0 }}
       style={styles.background}
     >
-      <KeyboardAvoidingView style={styles.container}>
+      <KeyboardAwareScrollView style={styles.container}>
         <Spinner textContent="Loading..." visible={loading} />
         <View style={{ marginLeft: 5, marginTop: 150, alignItems: "center" }}>
           <Text style={styles.title}> Register your account </Text>
@@ -207,7 +207,7 @@ export default function Register() {
             onPress={handleRegister}
           />
         </View>
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
     </LinearGradient>
     </>
   );

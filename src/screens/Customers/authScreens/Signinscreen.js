@@ -8,9 +8,9 @@ import {
   TextInput,
   Image,
   StatusBar,
-  KeyboardAvoidingView
 } from "react-native";
 import { colors, parameters } from "../../../global/styles";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import * as Animatable from "react-native-animatable";
 import { Icon, Button, SocialIcon } from "react-native-elements";
 // import Header from "../../component/Header";
@@ -89,7 +89,7 @@ export default function SigninScreen({ navigation, route }) {
         start={{ x: 1.1, y: 0 }}
         style={styles.background}
       >
-        <KeyboardAvoidingView style={styles.container}>
+              <KeyboardAwareScrollView style={styles.container}>
         <Spinner textContent="Loading..." visible={loading} />
           <View
             style={{ marginLeft: 20, marginTop: 80, alignItems: "center" }}
@@ -175,7 +175,7 @@ export default function SigninScreen({ navigation, route }) {
               onPress={() => navigation.navigate("CustomerRegistration")}
             />
           </View>
-        </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
       </LinearGradient>
     </>
   );

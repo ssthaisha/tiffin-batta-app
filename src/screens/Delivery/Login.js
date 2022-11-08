@@ -14,6 +14,7 @@ import Spinner from "react-native-loading-spinner-overlay/lib";
 import { loginSuccess, login } from "../../store/reducers/userSlice";
 import { showMessage } from "react-native-flash-message";
 import Lottie from 'lottie-react-native';
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
 export default function SigninScreen({ navigation, route }) {
   const [TextInput2Fossued, setTextInput2Fossued] = useState(false);
@@ -90,7 +91,7 @@ export default function SigninScreen({ navigation, route }) {
         start={{ x: 0.8, y: 0 }}
         style={styles.background}
       >
-        <KeyboardAvoidingView style={styles.container}>
+        <KeyboardAwareScrollView style={styles.container}>
         <Spinner textContent="Loading..." visible={loading} />
           <View
             style={{ marginLeft: 20, marginTop: 80, alignItems: "center" }}
@@ -168,12 +169,12 @@ export default function SigninScreen({ navigation, route }) {
           <View style={{ alignItems: "flex-end", marginHorizontal: 20 }}>
             <Button
               title="Create an account"
-              buttonStyle={parameters.createButton}
+              buttonStyle={styles.createButton}
               titleStyle={parameters.createButtonTitle}
               onPress={() => navigation.navigate("CustomerRegistration")}
             />
           </View>
-        </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
       </LinearGradient>
     </>
   );
@@ -248,5 +249,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     marginTop: -3,
+  },
+  createButton: {
+    backgroundColor: "#fefefe",
+    justifyContent: "center",
+    alignContent: "center",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#668162",
+    height: 40,
+    paddingHorizontal: 20,
+    width: "45%",
+    marginTop: 10,
   },
 });

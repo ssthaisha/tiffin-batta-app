@@ -16,6 +16,8 @@ import YourProfile from "./src/screens/Chefs/YourProfile";
 import MyProfile from "./src/screens/Customers/MyProfile";
 import DriversProfile from "./src/screens/Delivery/DriversProfile";
 import MainScreen from "./src/screens/Delivery/MainScreen";
+import FoodDetails from "./src/screens/Customers/FoodDetails";
+import Weekmenu from "./src/screens/Customers/Weekmenu";
 
 
 export default function App() {
@@ -31,18 +33,19 @@ export default function App() {
 
   // return (
   //   <View style={styles.container}>
-  //     <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
-  //     {/* <SignUpscreen /> */}
-  //     {/* <Login /> */}
-  //     {/* <SubscribersList /> */}
-  //     {/* <ChefHomeScreen/> */}
-  //     {/* <MyProfile /> */}
-  //     {/* <MyProfile/> */}
-  //     {/* <MainScreen /> */}
-  //     {/* <DriversProfile/> */}
-  //     {/* <YourProfile/> */}
-  //     <HomeScreen/>
-  //   </View>
+  // //     <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
+  // //     {/* <SignUpscreen /> */}
+  // //     {/* <Login /> */}
+  // //     {/* <SubscribersList /> */}
+  // //     {/* <ChefHomeScreen/> */}
+  // //     {/* <MyProfile /> */}
+  // //     {/* <MyProfile/> */}
+  // //     {/* <MainScreen /> */}
+  // //     {/* <DriversProfile/> */}
+  // //     {/* <YourProfile/> */}
+  // <FoodDetails/>
+  // {/* <Weekmenu/> */}
+  // //   </View>
   // );
   // return (
   //   <View style={styles.container}>
