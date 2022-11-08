@@ -9,6 +9,7 @@ import {
   Dimensions,
   StyleSheet,
   RefreshControl,
+  StatusBar
 } from "react-native";
 import { Icon } from "react-native-elements";
 import ChefHomeheader from "../../components/chefHomeHeader";
@@ -58,6 +59,7 @@ function ChefHomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+    <StatusBar barstyle="light-content" backgroundColor="#AC4425" />
       <ChefHomeheader navigation={navigation} />
       <ScrollView
         stickyHeaderIndices={[0]}

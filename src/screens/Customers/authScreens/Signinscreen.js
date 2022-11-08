@@ -11,6 +11,7 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import { colors, parameters } from "../../../global/styles";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import * as Animatable from "react-native-animatable";
 import { Icon, Button, SocialIcon } from "react-native-elements";
 // import Header from "../../component/Header";

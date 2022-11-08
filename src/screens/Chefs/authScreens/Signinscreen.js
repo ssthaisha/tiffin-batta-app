@@ -24,6 +24,7 @@ import { loginSuccess, login } from "../../../store/reducers/userSlice";
 import { showMessage } from "react-native-flash-message";
 import Lottie from "lottie-react-native";
 import { ScreenWidth } from "react-native-elements/dist/helpers";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import { storeUserAndTokens } from "../../../services/utils";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
@@ -96,7 +97,7 @@ export default function SigninScreen({ navigation, route }) {
         start={{ x: 1.1, y: 0 }}
         style={styles.background}
       >
-        <KeyboardAwareScrollView style={styles.container}>
+        <KeyboardAwareScrollView contentContainerStyle={styles.container}>
           <Spinner textContent="Loading..." visible={loading} />
           <View
             contentContainerStyle={{

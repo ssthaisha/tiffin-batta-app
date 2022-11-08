@@ -11,6 +11,7 @@ import {
   Image,
   Dimensions,
   RefreshControl,
+  
 } from "react-native";
 import { Icon } from "react-native-elements";
 import Homeheader from "../../components/Homeheader";
@@ -184,60 +185,22 @@ export default function HomeScreen({ navigation }) {
             justifyContent: "space-evenly",
           }}
         >
-          <TouchableOpacity>
             <Text style={styles.selectchef}>Choose Your Chef</Text>
-          </TouchableOpacity>
           <Image
             source={require("../../../assets/image13.jpg")}
             style={{ width: 40, height: 50, borderRadius: 30 }}
           />
         </View>
-
-        <View>
-          <Text
-            style={{
-              color: colors.grey2,
-              paddingHorizontal: 10,
-              fontSize: 24,
-              fontWeight: "bold",
-              backgroundColor: colors.grey5,
-              paddingLeft: 20,
-            }}
-          >
-            Category
-          </Text>
-        </View>
-        <View>
-          <FlatList
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            data={filterData}
-            keyExtractor={(item) => item.id}
-            // extraData={indexCheck}
-            renderItem={({ item, index }) => <CategoryCard item={item} />}
-          />
-          <Text
-            style={{
-              color: colors.grey2,
-              paddingHorizontal: 10,
-              fontSize: 24,
-              fontWeight: "bold",
-              backgroundColor: colors.grey5,
-              paddingLeft: 20,
-            }}
-            onPress={() => navigation.navigate("Chef")}
-          >
-            Subscribe to our Chefs
-          </Text>
-        </View>
+        
         <FlatList
-          styles={{ marginTop: 15, margingBottom: 10 }}
-          horizontal={true}
+          styles={{ marginTop: 15, margingBottom: 10 ,marginHorizontal:10,alignItems:"space-evenly"}}
+          horizontal={false}
+          numColumns={2}
           data={activeChefs}
-          keyExtractor={(item, index) => item._id}
+          keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
             <FoodCard
-              screenWidth={SCREEN_WIDTH * 0.7}
+              screenWidth={SCREEN_WIDTH * 0.48}
               images={{ uri: BASE_URL5 + item.image }}
               ChefName={item.fullName}
               farAway={item.farAway || "23 Mins"}
@@ -252,41 +215,8 @@ export default function HomeScreen({ navigation }) {
             />
           )}
         />
-        <View>
-          <Text
-            style={{
-              color: colors.grey2,
-              paddingHorizontal: 10,
-              fontSize: 24,
-              fontWeight: "bold",
-              backgroundColor: colors.grey5,
-              paddingLeft: 20,
-              marginVertical: 10,
-            }}
-          >
-            {" "}
-            One Time Delivery Available On
-          </Text>
-        </View>
-        <FlatList
-          styles={{ marginTop: 15, margingBottom: 10 }}
-          horizontal={true}
-          data={activeChefs.filter((a) => a.oneTimeDelivery)}
-          keyExtractor={(item, index) => item._id}
-          renderItem={({ item }) => (
-            <View style={{ marginTop: 10, marginRight: 5, marginLeft: 5 }}>
-              <FoodCard
-                screenWidth={SCREEN_WIDTH * 0.7}
-                images={{ uri: BASE_URL5 + item.image }}
-                ChefName={item.fullName}
-                farAway={item.farAway || "23 Mins"}
-                kitchenAddress={item.address}
-                averageReview={item.averageReview || 3.5}
-                numberOfReview={item.numberOfReview || 10}
-              />
-            </View>
-          )}
-        />
+      
+       
       </ScrollView>
       <View style={styles.floatButton}>
         <TouchableOpacity onPress={() => navigation.navigate("Maps")}>
@@ -369,7 +299,7 @@ const styles = StyleSheet.create({
   selectchef: {
     alignItems: "center",
     backgroundColor: colors.buttons,
-    borderRadius: 15,
+    borderRadius: 8,
     borderColor: colors.grey3,
     borderWidth: 1,
     fontSize: 24,

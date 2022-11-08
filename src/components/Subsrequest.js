@@ -71,7 +71,7 @@ export default function Subsrequest({
       </View>
       <View style ={{marginVertical:8,marginHorizontal:20}}>
         <Button 
-        color={colors.buttons}
+        color="#AC4425"
         title="ACCEPT REQUEST" >
             </Button>
         </View>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 5,
     borderTopLeftRadius: 5,
     borderWidth: 1,
-    borderColor: colors.buttons,
+    borderColor: "#AC4425",
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
   },
