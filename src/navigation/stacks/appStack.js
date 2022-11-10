@@ -1,9 +1,8 @@
 // import React from 'react';
 // import {View, Text} from 'react-native';
 // import {createStackNavigator} from '@react-navigation/stack';
-// import {Weekmenu} from '../../screens/Customers/Weekmenu'
-// // import ReqClaimStepper from '../../screens/reqClaimStepper';
-// // import RequestClaim from '../../screens/requestClaim';
+// import ReqClaimStepper from '../../screens/reqClaimStepper';
+// import RequestClaim from '../../screens/requestClaim';
 
 // const Stack = createStackNavigator();
 
@@ -11,17 +10,17 @@
 //   return (
 //     <Stack.Navigator>
 //       <Stack.Screen
-//         name="Weekmenu"
-//         component={Weekmenu}
+//         name="ClaimStepper"
+//         component={ReqClaimStepper}
 //         options={{headerShown: false}}
 //       />
 
-// {/* //       <Stack.Screen
-// //         name="RequestClaim"
-// //         component={RequestClaim}
-// //         options={{headerShown: false}}
-// //       /> */}
-// //     </Stack.Navigator>
+//       <Stack.Screen
+//         name="RequestClaim"
+//         component={RequestClaim}
+//         options={{headerShown: false}}
+//       />
+//     </Stack.Navigator>
 //   );
 // };
 
