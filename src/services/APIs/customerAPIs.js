@@ -22,3 +22,18 @@ export const getSubscribersList = ({ chefId }) => {
 export const acceptSubscriptionRequest = ({ id }) => {
   return apiHandler("GET", `/subscribe/approve/${id}`, false, false);
 };
+
+export const updateMyLocation = ({
+  chefId,
+  customerId,
+  latitude,
+  longitude,
+}) => {
+  return apiHandler(
+    "POST",
+    `/locations/update/${chefId}/${customerId}`,
+    false,
+    false,
+    { latitude, longitude }
+  );
+};

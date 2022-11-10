@@ -15,7 +15,8 @@ import {
   View,
   SafeAreaView,
   TouchableOpacity,
-  ScrollView, TextInput,
+  ScrollView,
+  TextInput,
   PermissionsAndroid,
 } from "react-native";
 import { Button, Icon } from "react-native-elements";
@@ -93,7 +94,8 @@ import { scaleH, scaleW } from "../../services/scale";
 // import BackgroundTimer from "react-native-background-timer";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import { colors } from "../../global/styles";
-import * as Location from "expo-location"
+import * as Location from "expo-location";
+import { updateMyLocation } from "../../services/APIs/customerAPIs";
 
 const styles = StyleSheet.create({
   container: {
@@ -209,7 +211,7 @@ const MapScreen = ({ navigation, route }) => {
   //     currentRouteHistory,
   //   } = useSelector((state) => state.routes);
   const { user } = useSelector((state) => state.auth);
-  
+
   const [location, setLocation] = useState({
     latitude: 27.7120278000006,
     longitude: 85.32022859425095,
@@ -227,11 +229,10 @@ const MapScreen = ({ navigation, route }) => {
   const [showLabel, setShowLabel] = useState(false);
   const [estimatedTime, setEstimatedTime] = useState("");
   const [estimatedDistance, setEstimatedDistance] = useState("");
-  const [myLocation, setMyLocation] = useState("");
+  // const [myLocation, setMyLocation] = useState("");
   const [destination, setDestination] = useState("");
   const textInput1 = useRef(1);
   const textInput2 = useRef(2);
-
 
   // const teams = useSelector(state => state.teams);
 
@@ -244,7 +245,6 @@ const MapScreen = ({ navigation, route }) => {
     </View>
   );
 
-
   //   console.log(selectedLocation, selectedRoute, "selectedLocation");
   //   const [selectedRoute, setSelectedRoute] = useState(drivingRoute);
   //   const [selectedRoutes, setSelectedRoutes] = useState(
@@ -253,7 +253,68 @@ const MapScreen = ({ navigation, route }) => {
   //rest of code will be performing for iOS on background too
 
   // BackgroundTimer.stopBackgroundTimer(); //after this call all code on background stop run.
-      
+  const [myLocation, setMyLocation] = useState(null);
+  const [driving, setDriving] = useState(false);
+  React.useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        // setErrorMsg("Permission to access location was denied");
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setMyLocation(location);
+      // setLocation(location);
+      // console.log(location);
+
+      // setPin({
+      //   latitude:location.coords.latitude,
+      //   longitude:location.coords.longitude,
+      // })
+    })();
+  }, []);
+
+  const [secondsLeft, setSecondsLeft] = useState(3601);
+  const [timerOn, setTimerOn] = useState(false);
+
+  const updateLocation = async () => {
+    try {
+      const res = await updateMyLocation({
+        chefId: 1,
+        customerId: 2,
+        latitude: myLocation?.coords?.latitude,
+        longitude: myLocation?.coords?.longitude,
+      });
+      console.log(res, myLocation, "update location response");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    let interval;
+    if (driving) {
+      interval = setInterval(() => {
+        console.log(
+          "In setInterval",
+          myLocation?.coords?.latitude,
+          myLocation?.coords?.longitude
+        );
+        updateLocation();
+        // setSecondsLeft(secondsLeft - 1);
+        // The logic of changing counter value to come soon.
+      }, 5000);
+    } else {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [driving]);
+
+  const handleDrive = () => {
+    setDriving(!driving);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {location.latitude ? (
@@ -282,22 +343,25 @@ const MapScreen = ({ navigation, route }) => {
       ) : (
         renderLoading()
       )}
-      <View style={{
-        padding: 5,
-        paddingTop: 30,
-        marginTop: -30,
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        borderWidth: 1,
-        borderColor: colors.grey4,
-        backgroundColor: "#fefefe",
-      }}>
-        <View style={{ flexDirection: "row", alignItems: "flex-start", }}>
+      <View
+        style={{
+          padding: 5,
+          paddingTop: 30,
+          marginTop: -30,
+          borderTopLeftRadius: 30,
+          borderTopRightRadius: 30,
+          borderWidth: 1,
+          borderColor: colors.grey4,
+          backgroundColor: "#fefefe",
+        }}
+      >
+        <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
           <Icon
             type="material-community"
             name="map-marker"
             color={colors.grey2}
-            size={26} />
+            size={26}
+          />
           <Text>Current Location: </Text>
           <View>
             <TextInput
@@ -309,12 +373,13 @@ const MapScreen = ({ navigation, route }) => {
             />
           </View>
         </View>
-        <View style={{ flexDirection: "row", alignItems: "flex-start", }}>
+        <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
           <Icon
             type="material-community"
             name="map-marker"
             color={colors.grey2}
-            size={26} />
+            size={26}
+          />
           <Text>Your Destination: </Text>
           <View>
             <TextInput
@@ -327,9 +392,18 @@ const MapScreen = ({ navigation, route }) => {
           </View>
         </View>
         <Button
-          title="Start diving"
-          buttonStyle={{ marginHorizontal: 30, backgroundColor: colors.buttons, marginVertical: 10, borderRadius: 12, borderColor: colors.grey3, borderWidth: 1 }}>
-        </Button>
+          title={`${driving ? "End" : "Start"}  Driving`}
+          buttonStyle={{
+            marginHorizontal: 30,
+            backgroundColor: driving ? "red" : "green",
+            marginVertical: 10,
+            borderRadius: 12,
+            borderColor: colors.grey3,
+            borderWidth: 1,
+            paddingVertical: 10,
+          }}
+          onPress={handleDrive}
+        ></Button>
       </View>
     </SafeAreaView>
   );
@@ -1127,4 +1201,3 @@ export default MapScreen;
                   })}
                  */
 }
-
