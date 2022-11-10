@@ -9,7 +9,7 @@ import {
   Dimensions,
   StyleSheet,
   RefreshControl,
-  StatusBar
+  StatusBar,
 } from "react-native";
 import { Icon } from "react-native-elements";
 import ChefHomeheader from "../../components/chefHomeHeader";
@@ -41,9 +41,9 @@ function ChefHomeScreen({ navigation }) {
     }
   };
 
-  const approveRequest = async () => {
+  const approveRequest = async (id) => {
     try {
-      const res = await getSubscribersList({ chefId: user?._id });
+      const res = await acceptSubscriptionRequest({ id });
       setSubscribers(res.data || []);
       console.log(res, "chefs list");
     } catch (err) {
@@ -59,7 +59,7 @@ function ChefHomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-    <StatusBar barstyle="light-content" backgroundColor="#AC4425" />
+      <StatusBar barstyle="light-content" backgroundColor="#AC4425" />
       <ChefHomeheader navigation={navigation} />
       <ScrollView
         stickyHeaderIndices={[0]}
@@ -146,7 +146,7 @@ function ChefHomeScreen({ navigation }) {
                 >
                   <Subsrequest
                     screenWidth={SCREEN_WIDTH - 10}
-                    customerName={item.customerName}
+                    customerName={item.fullName}
                     customerDistance={item.customerDistance}
                     deliveryPoint={item.deliveryPoint}
                     noOfDaysToDeliver={item.noOfDaysToDeliver}
@@ -154,6 +154,8 @@ function ChefHomeScreen({ navigation }) {
                     rate={item.rate}
                     image={item.image}
                     oName={item.oName}
+                    {...item}
+                    onApprove={approveRequest}
                   />
                 </View>
               )}

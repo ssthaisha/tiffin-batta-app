@@ -21,7 +21,7 @@ const itemWidth = width / 2 - 20;
 
 export default function YourProfile({ navigation }) {
   const [indexCheck, setindexCheck] = useState("0");
-
+  const { user } = useState((state) => state.auth);
   return (
     <>
       <View style={styles.container}>
@@ -45,7 +45,7 @@ export default function YourProfile({ navigation }) {
                       color: colors.buttons,
                     }}
                   >
-                    {item.chefsname}
+                    {user?.fullName}
                   </Text>
                   <TouchableOpacity>
                     <View

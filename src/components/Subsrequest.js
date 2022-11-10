@@ -15,69 +15,73 @@ import { colors, parameters } from "../global/styles";
 
 export default function Subsrequest({
   customerName,
-    customerDistance,
-    deliveryTime,
-    deliveryPoint,
-    noOfDaysToDeliver,
-    screenWidth,
-    rate,
-    image,
-    oName,
-
+  customerDistance,
+  deliveryTime,
+  deliveryPoint,
+  noOfDaysToDeliver,
+  screenWidth,
+  rate,
+  image,
+  oName,
+  ...rest
 }) {
   return (
     <TouchableOpacity>
-      <View style={{ ...styles.cardView, width: screenWidth-20 }}>
-        <View style = {{flexDirection:"row"}}>
-        <View>
-        <Image
-        style={{ height: 60, width: 60, borderRadius: 30 ,marginHorizontal:10,marginTop:5}}
-        source={image}
-      />
-        </View>
-        <View>
-        <View>
-          <Text style={styles.chefName}>{customerName}</Text>
-        </View>
-        
-          <View style={styles.distance}>
-            <Text>DeliveryTime:{deliveryTime}</Text>
-            
-            </View>
-          <View style={styles.distance}>
-            <Text>Deliverypoint: {deliveryPoint}</Text>
-            <Icon
-              name="place"
-              type="material"
-              color={colors.grey2}
-              size={18}
-              iconStyle={{
-                marginTop: -2,
-                paddingTop:2
+      <View style={{ ...styles.cardView, width: screenWidth - 20 }}>
+        <View style={{ flexDirection: "row" }}>
+          <View>
+            <Image
+              style={{
+                height: 60,
+                width: 60,
+                borderRadius: 30,
+                marginHorizontal: 10,
+                marginTop: 5,
               }}
+              source={image}
             />
-            <Text style={styles.Min}>, {customerDistance} Min</Text>
           </View>
           <View>
-            <Text style={styles.distance}>OrderName: {oName}</Text>
+            <View>
+              <Text style={styles.chefName}>{customerName}</Text>
+            </View>
+
+            <View style={styles.distance}>
+              <Text>DeliveryTime:{deliveryTime}</Text>
+            </View>
+            <View style={styles.distance}>
+              <Text>Deliverypoint: {deliveryPoint}</Text>
+              <Icon
+                name="place"
+                type="material"
+                color={colors.grey2}
+                size={18}
+                iconStyle={{
+                  marginTop: -2,
+                  paddingTop: 2,
+                }}
+              />
+              <Text style={styles.Min}>, {customerDistance} Min</Text>
+            </View>
+            <View>
+              <Text style={styles.distance}>OrderName: {oName}</Text>
+            </View>
+            <View>
+              <Text style={styles.distance}>
+                Days to be delivered: {noOfDaysToDeliver}
+              </Text>
+            </View>
           </View>
-          <View >
-        <Text style={styles.distance}>Days to be delivered: {noOfDaysToDeliver}</Text>
         </View>
-        </View>
-      
-  
-   
-      </View>
-      <View style ={{marginVertical:8,marginHorizontal:20}}>
-        <Button 
-        color="#AC4425"
-        title="ACCEPT REQUEST" >
-            </Button>
+        <View style={{ marginVertical: 8, marginHorizontal: 20 }}>
+          <Button
+            color="#AC4425"
+            onPress={() => onApprove(rest._id)}
+            title="ACCEPT REQUEST"
+          ></Button>
         </View>
       </View>
     </TouchableOpacity>
-  
   );
 }
 
