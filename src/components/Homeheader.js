@@ -8,7 +8,6 @@ import { setUser } from "../store/reducers/userSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Homeheader({ navigation }) {
-  const BadgeIcon = withBadge(0)(Icon);
 
   const dispatch = useDispatch();
 
@@ -56,9 +55,9 @@ export default function Homeheader({ navigation }) {
           marginRight: 15,
         }}
       >
-        <BadgeIcon
+        <Icon
           type="material-community"
-          name="cart"
+          name="logout"
           color={colors.grey5}
           size={35}
           onPress={handleLogout}

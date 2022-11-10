@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 5,
     borderTopLeftRadius: 5,
     borderWidth: 1,
-    borderColor: colors.buttons,
+    borderColor: "#AC4425",
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
   },

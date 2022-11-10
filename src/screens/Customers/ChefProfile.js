@@ -62,7 +62,7 @@ export default function ChefProfile({
           </View>
 
           <TouchableOpacity onPress={handleSubscribe}>
-            <Text>Subscribe</Text>
+          <Text style={{marginLeft:60,borderWidth:1,borderColor:colors.grey3,borderRadius:12,paddingBottom:-20,paddingTop:10, marginRight:50,marginTop:10,backgroundColor:colors.buttons, paddingHorizontal:25,fontSize:25,color:colors.grey1}}>Subscribe us for a week</Text>
           </TouchableOpacity>
           <View
             style={{
@@ -90,7 +90,7 @@ export default function ChefProfile({
                 alignItems: "center",
               }}
             >
-              {details.fullName}
+              {details.Bio}
             </Text>
           </View>
         </View>

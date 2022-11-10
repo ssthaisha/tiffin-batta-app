@@ -136,4 +136,15 @@ const styles = StyleSheet.create({
     marginRight: 0,
     marginLeft: 0,
   },
+  styledButton: {
+    backgroundColor: "#AC4425",
+    justifyContent: "center",
+    alignContent: "center",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "#43484d",
+    height: 50,
+    paddingHorizontal: 20,
+    width: "100%",
+  },
 });

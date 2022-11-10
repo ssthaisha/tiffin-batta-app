@@ -43,9 +43,9 @@ export default function MainHeader() {
           marginRight: 15,
         }}
       >
-        <BadgeIcon
+        <Icon
           type="material-community"
-          name="bell"
+          name="logout"
           color={colors.grey5}
           size={35}
         />

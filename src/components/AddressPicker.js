@@ -62,6 +62,7 @@ import Spinner from "react-native-loading-spinner-overlay";
 import { scaleH, scaleW } from "../services/scale";
 // import { useLocalization } from "../context/LocalizationContext";
 // import { pick } from "lodash";
+import * as Location from "expo-location";
 
 const styles = StyleSheet.create({
   container: {
@@ -127,7 +128,11 @@ const AddressPicker = ({
     latitude: 27.671521240933117,
     longitude: 85.33875189721584,
   };
-  const [location, setLocation] = useState({
+  const [location, setLocation] = React.useState({
+    latitude: 27.671521240933117,
+    longitude: 85.33875189721584,
+  });
+  const [pin, setPin] = React.useState({
     latitude: 27.671521240933117,
     longitude: 85.33875189721584,
   });
@@ -291,6 +296,26 @@ const AddressPicker = ({
     // searchRef.current?.getCurrentLocation();
   }, []);
 
+  React.useEffect(() => {
+    (async () => {
+      
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+      console.log(location);
+
+      setPin({
+        latitude:location.coords.latitude,
+        longitude:location.coords.longitude,
+      })
+    })();
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <Spinner visible={false} />
@@ -308,16 +333,23 @@ const AddressPicker = ({
           }}
           style={StyleSheet.absoluteFillObject}
           followsUserLocation
-          showsUserLocation
+          showsUserLocation={true}
+          onUserLocationChange={(e) => {
+            console.log("onUserLocationChange",e.nativeEvent) 
+            setPin({
+              latitude:e.nativeEvent.coordinate.latitude,
+              longitude:e.nativeEvent.coordinate.longitude,
+            })
+          }}
           zoomEnabled
           zoomControlEnabled
           onMapReady={() => setMapReady(true)}
         >
           {mapReady ? (
             <Marker
-              ref={pickerRef}
+              ref={pickerRef} 
               draggable
-              coordinate={givenLocation}
+              coordinate={pin}
               onDragEnd={(e) => {
                 // setSelectedLocation({ ...e.nativeEvent.coordinate });
                 handleDragEnd({ ...e.nativeEvent.coordinate });
