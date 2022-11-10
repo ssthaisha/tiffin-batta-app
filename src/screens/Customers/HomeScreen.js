@@ -13,7 +13,7 @@ import {
   RefreshControl,
   
 } from "react-native";
-import { Icon } from "react-native-elements";
+import { Button, Icon } from "react-native-elements";
 import Homeheader from "../../components/Homeheader";
 import { colors, parameters } from "../../global/styles";
 
@@ -30,7 +30,7 @@ import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { BASE_URL5 } from "../../constants";
 import Spinner from "react-native-loading-spinner-overlay/lib";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
+import BackgroundTimer from "react-native-background-timer";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
@@ -40,6 +40,46 @@ export default function HomeScreen({ navigation }) {
   const [activeChefs, setActiveChefs] = useState([]);
   const [loading, setLoading] = useState(false);
   const { user } = useSelector((state) => state.auth);
+  const [secondsLeft, setSecondsLeft]= useState(3601);
+  const [timerOn, setTimerOn]= useState(false);
+
+  useEffect(()=>{
+    if(timerOn) startTimer();
+    else BackgroundTimer.stopBackgroundTimer();
+
+    return()=>{
+      BackgroundTimer.stopBackgroundTimer();
+    }
+  },[timerOn])
+
+    const startTimer=()=> {
+      BackgroundTimer.runBackgroundTimer(()=>{
+        setSecondsLeft(secs => {
+          if (secs > 0) return secs -1
+          else return 0
+        })
+      },1000)
+    }
+useEffect(()=> {
+  if(secondsLeft === 0) BackgroundTimer.stopBackgroundTimer()},[secondsLeft]
+)
+  
+
+  const clockify = () =>{
+    let hours= Math.floor(secondsLeft/60/60)
+    let mins= Math.floor(secondsLeft/60%60)
+    let seconds= Math.floor(secondsLeft%60)
+    
+    let displayHours = hours<10? '0${hours}': hours
+    let displayMins = mins<10? '0${mins}': mins
+    let displaySecs = seconds<10? '0${seconds}': seconds
+  
+    return{
+      displayHours,
+      displayMins,
+      displaySecs,
+    }
+  } 
 
   const getAllActiveChefs = async () => {
     setLoading(true);
@@ -174,6 +214,12 @@ export default function HomeScreen({ navigation }) {
               />
             </View>
           </View>
+        </View>
+
+        <View style={styles.cont}>
+          <Text style={styles.time}>{clockify().displayHours}Hours {clockify().displayMins}Mins{" "} {clockify().displaySecs}secs</Text>
+          <Button title={"start/stop"}
+          onPress={()=> setTimerOn(timerOn=>!timerOn)}></Button>
         </View>
 
         <View
@@ -319,4 +365,15 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: "center",
   },
+  cont:{
+     backgroundColor:'#000',
+     justifyContent:"center",
+     alignItems:'center',
+     flex:1,
+  },
+  time:{
+     color:'#fff',
+     textAlign:'center',
+     fontSize:30,
+  }
 });

@@ -13,6 +13,7 @@ import MyProfile from "../../screens/Customers/MyProfile";
 import ChefHomeScreen from "../../screens/Chefs/ChefHomeScreen";
 import YourProfile from "../../screens/Chefs/YourProfile";
 import SubscribersList from "../../screens/Chefs/SubscribersList";
+import Weekmenu from "../../screens/Customers/Weekmenu";
 
 import MainScreen from "../../screens/Delivery/MainScreen";
 
@@ -73,13 +74,13 @@ const CustomersHomeStack = () => {
           headerShown: false,
         }}
       />
-      {/* <Drawer.Screen
-        name="WeekMenu"
-        component={WeekMenu}
+      <Drawer.Screen
+        name="Weekmenu"
+        component={Weekmenu}
         options={{
           headerShown: false,
         }}
-      /> */}
+      />
     </Drawer.Navigator>
   );
 };
