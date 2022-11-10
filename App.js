@@ -19,43 +19,45 @@ import MainScreen from "./src/screens/Delivery/MainScreen";
 import FoodDetails from "./src/screens/Customers/FoodDetails";
 import Weekmenu from "./src/screens/Customers/Weekmenu";
 import DeliveryMap from "./src/screens/Delivery/DeliveryMap";
+import MapScreen from "./src/screens/Customers/MapScreen";
 
 
 export default function App() {
-  // return (
-  //   <Provider store={store}>
-  //     <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
-  //     <NavigationContainer>
-  //       <AppContainer />
-  //     </NavigationContainer>
-  //     <FlashMessage position={"top"} />
-  //   </Provider>
-  // );
-
   return (
-    <View style={styles.container}>
-  //     <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
-  //     {/* <SignUpscreen /> */}
-  //     {/* <Login /> */}
-  //     {/* <SubscribersList /> */}
-  //     {/* <ChefHomeScreen/> */}
-  //     {/* <MyProfile /> */}
-  //     {/* <MyProfile/> */}
-  //     {/* <MainScreen /> */}
-  {/* //     <DriversProfile/> */}
-  //     {/* <YourProfile/> */}
-  {/* <FoodDetails/> */}
-  <DeliveryMap/>
-  {/* <Weekmenu/> */}
-  //   </View>
+    <Provider store={store}>
+      <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
+      <NavigationContainer>
+        <AppContainer />
+      </ NavigationContainer>
+      <FlashMessage position={"top"} />
+    </Provider>
   );
+
   // return (
   //   <View style={styles.container}>
-  //     <StatusBar barstyle="light-content" backgroundColor={colors.statusbar} />
-  //     <SigninScreen />
-  //     {/* <Register /> */}
-  //   </View>
+  // //     <StatusBar barstyle="light-content" backgroundColor={colors.buttons} />
+  // //     {/* <SignUpscreen /> */}
+  // //     {/* <Login /> */}
+  // //     {/* <SubscribersList /> */}
+  // //     {/* <ChefHomeScreen/> */}
+  // //     {/* <MyProfile /> */}
+  // //     {/* <MyProfile/> */}
+  // //     {/* <MainScreen /> */}
+  // {/* //     <DriversProfile/> */}
+  // //     {/* <YourProfile/> */}
+  // {/* <FoodDetails/> */}
+  // {/* <DeliveryMap/> */}
+  // {/* <Weekmenu/> */}
+  // <MapScreen/>
+  // //   </View>
   // );
+  // // return (
+  // //   <View style={styles.container}>
+  // //     <StatusBar barstyle="light-content" backgroundColor={colors.statusbar} />
+  // //     <SigninScreen />
+  // //     {/* <Register /> */}
+  // //   </View>
+  // // );
 }
 
 const styles = StyleSheet.create({

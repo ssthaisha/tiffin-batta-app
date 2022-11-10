@@ -15,9 +15,10 @@ import {
   View,
   SafeAreaView,
   TouchableOpacity,
-  ScrollView,
+  ScrollView,TextInput,
   PermissionsAndroid,
 } from "react-native";
+import { Button, Icon } from "react-native-elements";
 // import { PERMISSIONS, request } from "react-native-permissions";
 import MapView, { Callout, Marker } from "react-native-maps";
 import Geolocation from "react-native-geolocation-service";
@@ -91,6 +92,7 @@ import { scaleH, scaleW } from "../../services/scale";
 
 // import BackgroundTimer from "react-native-background-timer";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
+import { colors } from "../../global/styles";
 
 const styles = StyleSheet.create({
   container: {
@@ -121,6 +123,32 @@ const styles = StyleSheet.create({
     maxWidth: getDeviceWidth() / 1.4,
     flexShrink: 1,
   },
+    textInput1Style: {
+      borderWidth: 1,
+      borderColor: "#86939e",
+      marginHorizontal: 10,
+      borderRadius: 8,
+      marginBottom: 10,
+      paddingHorizontal: 80,
+      paddingVertical: 3,
+      marginTop:-5,
+      fontSize: 14,
+      backgroundColor: "#fefefe",
+    },
+    
+    textInput2Style: {
+      borderWidth: 1,
+      borderColor: "#86939e",
+      marginHorizontal: 10,
+      borderRadius: 8,
+      marginBottom: 10,
+      paddingHorizontal: 87,
+      marginTop:-5,
+      paddingVertical: 3,
+      fontSize: 14,
+      backgroundColor: "#fefefe",
+    },
+    
   // Arrow below the bubble
   arrow: {
     alignSelf: "center",
@@ -198,6 +226,12 @@ const MapScreen = ({ navigation, route }) => {
   const [showLabel, setShowLabel] = useState(false);
   const [estimatedTime, setEstimatedTime] = useState("");
   const [estimatedDistance, setEstimatedDistance] = useState("");
+  const [myLocation, setMyLocation] = useState("");
+  const [destination, setDestination] = useState("");
+  const textInput1 = useRef(1);
+  const textInput2 = useRef(2);
+
+
   // const teams = useSelector(state => state.teams);
 
   const mapRef = useRef(null);
@@ -246,6 +280,55 @@ const MapScreen = ({ navigation, route }) => {
       ) : (
         renderLoading()
       )}
+      <View style={{
+          padding: 5,
+          paddingTop: 30,
+          marginTop: -30,
+          borderTopLeftRadius: 30,
+          borderTopRightRadius: 30,
+          borderWidth:1,
+          borderColor:colors.grey4,
+          backgroundColor: "#fefefe",
+        }}>
+          <View style={{flexDirection:"row",alignItems:"flex-start",}}>
+          <Icon
+          type="material-community"
+          name="map-marker"
+          color={colors.grey2}
+          size={26}/>
+          <Text>Current Location: </Text>
+          <View>
+              <TextInput
+                style={styles.textInput1Style}
+                placeholder="Your Location"
+                ref={textInput1}
+                value={myLocation}
+                onChangeText={(t) => setMyLocation(t)}
+              />
+          </View>
+          </View>
+          <View style={{flexDirection:"row",alignItems:"flex-start",}}>
+          <Icon
+          type="material-community"
+          name="map-marker"
+          color={colors.grey2}
+          size={26}/>
+          <Text>Your Destination: </Text>
+          <View>
+              <TextInput
+                style={styles.textInput2Style}
+                placeholder="Destination"
+                ref={textInput2}
+                value={destination}
+                onChangeText={(t) => setDestination(t)}
+              />
+          </View>
+          </View>
+        <Button 
+        title="Start diving"
+        buttonStyle={{marginHorizontal:30,backgroundColor:colors.buttons,marginVertical:10,borderRadius:12,borderColor:colors.grey3,borderWidth:1}}>
+        </Button>
+      </View>
     </SafeAreaView>
   );
 };
@@ -1042,3 +1125,4 @@ export default MapScreen;
                   })}
                  */
 }
+
