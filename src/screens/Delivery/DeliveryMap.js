@@ -238,6 +238,10 @@ const DeliveryMapScreen = ({ navigation, route }) => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         // setErrorMsg("Permission to access location was denied");
+        showMessage({
+          type: "error",
+          message: "Permission not granted!",
+        });
         return;
       }
 
