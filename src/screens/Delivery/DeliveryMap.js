@@ -263,7 +263,7 @@ const DeliveryMapScreen = ({ navigation, route }) => {
   const updateLocation = async () => {
     try {
       let location = await Location.getCurrentPositionAsync({});
-      // setMyLocation(location);
+      setMyLocation(location);
       const res = await updateMyLocation({
         chefId: 1,
         customerId: 2,
