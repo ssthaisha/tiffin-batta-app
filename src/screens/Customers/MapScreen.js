@@ -96,6 +96,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview"
 import { colors } from "../../global/styles";
 import * as Location from "expo-location";
 import { updateMyLocation } from "../../services/APIs/customerAPIs";
+import { useContext } from "react";
+import { SocketContext } from "../../contexts/socketContext";
 
 const styles = StyleSheet.create({
   container: {
@@ -255,6 +257,27 @@ const MapScreen = ({ navigation, route }) => {
   // BackgroundTimer.stopBackgroundTimer(); //after this call all code on background stop run.
   const [myLocation, setMyLocation] = useState(null);
   const [driving, setDriving] = useState(false);
+  const socket = useContext(SocketContext);
+  const { driverRecentLocation } = useSelector((state) => state.auth);
+  useEffect(() => {
+    let isMounted = true;
+    socket?.on("location", (a) => {
+      const location = JSON.parse(a);
+      console.log(a, location, driverLocation, "avan");
+      dispatch(
+        updateRecentDriverLocation({
+          lat: location.latitude,
+          lng: location.longitude,
+        })
+      );
+    });
+    return () => {
+      // socket?.off("connect");
+      // socket?.off("disconnect");
+      isMounted = false;
+      // socket?.disconnect();
+    };
+  }, [socket]);
   React.useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -335,7 +358,11 @@ const MapScreen = ({ navigation, route }) => {
             showsUserLocation
             zoomEnabled
             zoomControlEnabled
-          ></MapView>
+          >
+            {driverRecentLocation ? (
+              <Marker coordinate={driverRecentLocation} title={"Delivery"} />
+            ) : null}
+          </MapView>
 
           {/* <TouchableOpacity style={{ position: 'absolute', bottom: 50, right: 100 }}><Text>Zoom In</Text></TouchableOpacity>
                    <TouchableOpacity style={{ position: 'absolute', bottom: 50, left: 100 }}><Text>Zoom Out</Text></TouchableOpacity> */}
@@ -343,68 +370,6 @@ const MapScreen = ({ navigation, route }) => {
       ) : (
         renderLoading()
       )}
-      <View
-        style={{
-          padding: 5,
-          paddingTop: 30,
-          marginTop: -30,
-          borderTopLeftRadius: 30,
-          borderTopRightRadius: 30,
-          borderWidth: 1,
-          borderColor: colors.grey4,
-          backgroundColor: "#fefefe",
-        }}
-      >
-        <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
-          <Icon
-            type="material-community"
-            name="map-marker"
-            color={colors.grey2}
-            size={26}
-          />
-          <Text>Current Location: </Text>
-          <View>
-            <TextInput
-              style={styles.textInput1Style}
-              placeholder="Your Location"
-              ref={textInput1}
-              value={myLocation}
-              onChangeText={(t) => setMyLocation(t)}
-            />
-          </View>
-        </View>
-        <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
-          <Icon
-            type="material-community"
-            name="map-marker"
-            color={colors.grey2}
-            size={26}
-          />
-          <Text>Your Destination: </Text>
-          <View>
-            <TextInput
-              style={styles.textInput2Style}
-              placeholder="Destination"
-              ref={textInput2}
-              value={destination}
-              onChangeText={(t) => setDestination(t)}
-            />
-          </View>
-        </View>
-        <Button
-          title={`${driving ? "End" : "Start"}  Driving`}
-          buttonStyle={{
-            marginHorizontal: 30,
-            backgroundColor: driving ? "red" : "green",
-            marginVertical: 10,
-            borderRadius: 12,
-            borderColor: colors.grey3,
-            borderWidth: 1,
-            paddingVertical: 10,
-          }}
-          onPress={handleDrive}
-        ></Button>
-      </View>
     </SafeAreaView>
   );
 };

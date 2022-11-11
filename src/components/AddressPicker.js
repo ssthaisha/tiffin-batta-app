@@ -296,25 +296,24 @@ const AddressPicker = ({
     // searchRef.current?.getCurrentLocation();
   }, []);
 
-  React.useEffect(() => {
-    (async () => {
-      
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
+  // React.useEffect(() => {
+  //   (async () => {
+  //     let { status } = await Location.requestForegroundPermissionsAsync();
+  //     if (status !== "granted") {
+  //       setErrorMsg("Permission to access location was denied");
+  //       return;
+  //     }
 
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-      console.log(location);
+  //     let location = await Location.getCurrentPositionAsync({});
+  //     setLocation(location);
+  //     console.log(location);
 
-      setPin({
-        latitude:location.coords.latitude,
-        longitude:location.coords.longitude,
-      })
-    })();
-  }, []);
+  //     // setPin({
+  //     //   latitude: location.coords.latitude,
+  //     //   longitude: location.coords.longitude,
+  //     // });
+  //   })();
+  // }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -335,11 +334,11 @@ const AddressPicker = ({
           followsUserLocation
           showsUserLocation={true}
           onUserLocationChange={(e) => {
-            console.log("onUserLocationChange",e.nativeEvent) 
+            console.log("onUserLocationChange", e.nativeEvent);
             setPin({
-              latitude:e.nativeEvent.coordinate.latitude,
-              longitude:e.nativeEvent.coordinate.longitude,
-            })
+              latitude: e.nativeEvent.coordinate.latitude,
+              longitude: e.nativeEvent.coordinate.longitude,
+            });
           }}
           zoomEnabled
           zoomControlEnabled
@@ -347,9 +346,9 @@ const AddressPicker = ({
         >
           {mapReady ? (
             <Marker
-              ref={pickerRef} 
+              ref={pickerRef}
               draggable
-              coordinate={pin}
+              coordinate={givenLocation}
               onDragEnd={(e) => {
                 // setSelectedLocation({ ...e.nativeEvent.coordinate });
                 handleDragEnd({ ...e.nativeEvent.coordinate });

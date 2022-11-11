@@ -13,7 +13,8 @@ let initialState = {
   updateProfileError: {},
   remainingQuizCategories: [],
   screensCrumbs: [],
-  newUserName: '',
+  newUserName: "",
+  driverRecentLocation: null,
 };
 
 const userSlice = createSlice({
@@ -79,7 +80,10 @@ const userSlice = createSlice({
     },
     updateNewUserName(state, action) {
       state.newUserName = action.payload;
-    }
+    },
+    updateRecentDriverLocation(state, action) {
+      state.driverRecentLocation = action.payload;
+    },
   },
 });
 export const {
@@ -96,6 +100,7 @@ export const {
   getRemainingQuizCategories,
   getRemainingQuizCategoriesSuccess,
   updateScreenCrumbs,
-  updateNewUserName
+  updateNewUserName,
+  updateRecentDriverLocation,
 } = userSlice.actions;
 export default userSlice.reducer;

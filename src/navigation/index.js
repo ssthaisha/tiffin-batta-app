@@ -22,6 +22,7 @@ import {
   Platform,
 } from "react-native";
 import { getAppUpdate } from "../services/APIs/utilities";
+import { SocketContextProvider } from "../contexts/socketContext";
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -96,30 +97,32 @@ export default function AppContainer() {
     //   />
     // </Drawer.Navigator>
 
-    <Stack.Navigator initialRouteName={"Splash"}>
-      {loading ? (
-        <Stack.Screen
-          name="Splash"
-          component={Splash}
-          options={{
-            headerShown: false,
-          }}
-        />
-      ) : !user ? (
-        <Stack.Screen
-          name="Auth"
-          component={AuthStack}
-          options={{
-            headerShown: false,
-          }}
-        />
-      ) : (
-        <Stack.Screen
-          name="Root"
-          component={getStack(user.role)}
-          options={{ headerShown: false }}
-        />
-      )}
-    </Stack.Navigator>
+    <SocketContextProvider>
+      <Stack.Navigator initialRouteName={"Splash"}>
+        {loading ? (
+          <Stack.Screen
+            name="Splash"
+            component={Splash}
+            options={{
+              headerShown: false,
+            }}
+          />
+        ) : !user ? (
+          <Stack.Screen
+            name="Auth"
+            component={AuthStack}
+            options={{
+              headerShown: false,
+            }}
+          />
+        ) : (
+          <Stack.Screen
+            name="Root"
+            component={getStack(user.role)}
+            options={{ headerShown: false }}
+          />
+        )}
+      </Stack.Navigator>
+    </SocketContextProvider>
   );
 }
