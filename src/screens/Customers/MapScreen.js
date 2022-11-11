@@ -304,7 +304,7 @@ const MapScreen = ({ navigation, route }) => {
         updateLocation();
         // setSecondsLeft(secondsLeft - 1);
         // The logic of changing counter value to come soon.
-      }, 5000);
+      }, 3000);
     } else {
       clearInterval(interval);
     }
