@@ -15,14 +15,14 @@ import { Pending } from "../../global/data";
 // import ScrollView
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
-export default function MainScreen() {
+export default function MainScreen({ navigation }) {
   const SCREEN_WIDTH = Dimensions.get("window").width;
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   return (
     <View>
       <View>
-        <MainHeader />
+        <MainHeader navigation={navigation} />
       </View>
       <ScrollView>
         <View

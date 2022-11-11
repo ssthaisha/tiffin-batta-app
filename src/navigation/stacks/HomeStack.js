@@ -21,6 +21,8 @@ import { colors } from "../../global/styles";
 import ProfileEdit from "../../screens/Customers/ProfileEdit";
 import ChefProfileEdit from "../../screens/Chefs/ChefProfileEdit";
 import AddressPicker from "../../screens/Customers/AddressPicker";
+import DeliveryMap from "../../screens/Delivery/DeliveryMap";
+import DeliveryMapScreen from "../../screens/Delivery/DeliveryMap";
 
 const Drawer = createDrawerNavigator();
 
@@ -66,7 +68,7 @@ const CustomersHomeStack = () => {
           headerShown: false,
         }}
       />
-       <Drawer.Screen
+      <Drawer.Screen
         name="Chef"
         component={ChefProfile}
         options={{
@@ -136,4 +138,35 @@ const ChefsHomeStack = () => {
   );
 };
 
-export { CustomersHomeStack, ChefsHomeStack };
+const DriversHomeStack = () => {
+  return (
+    <Drawer.Navigator
+      initialRouteName={"Home"}
+      screenOptions={{ header: () => null }}
+    >
+      <Drawer.Screen
+        name="Home"
+        component={MainScreen}
+        options={{
+          headerShown: false,
+          drawerIcon: ({ focussed, size }) => (
+            <Icon
+              type="material-community"
+              name="home"
+              color={focussed ? "#7cc" : colors.grey2}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Maps"
+        component={DeliveryMapScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Drawer.Navigator>
+  );
+};
+
+export { CustomersHomeStack, ChefsHomeStack, DriversHomeStack };

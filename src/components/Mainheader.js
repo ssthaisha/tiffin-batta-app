@@ -3,9 +3,25 @@ import { View, Text, StyleSheet, TouchableOpacity, Switch } from "react-native";
 import { Icon, withBadge } from "react-native-elements";
 import { Ionicons } from "@expo/vector-icons";
 import { colors, parameters } from "../global/styles";
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/reducers/userSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function MainHeader() {
+export default function MainHeader({ navigation }) {
   const BadgeIcon = withBadge(0)(Icon);
+
+  const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+    console.log("\ntttttt\n");
+    dispatch(setUser(null));
+    try {
+      await AsyncStorage.removeItem("user");
+    } catch (err) {
+      console.log(e);
+      alert("Error in storing data");
+    }
+  };
 
   return (
     <View style={styles.header}>
@@ -17,7 +33,12 @@ export default function MainHeader() {
           marginLeft: 15,
         }}
       >
-        <Icon name="menu" color={colors.grey5} size={35} />
+        <Icon
+          name="menu"
+          color={colors.grey5}
+          size={35}
+          onPress={() => navigation.openDrawer()}
+        />
       </View>
       <View
         style={{
@@ -48,6 +69,7 @@ export default function MainHeader() {
           name="logout"
           color={colors.grey5}
           size={35}
+          onPress={handleLogout}
         />
       </View>
     </View>

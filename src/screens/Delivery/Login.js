@@ -15,7 +15,7 @@ import { Icon, Button, SocialIcon } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
-import { signInUser } from "../../services/APIs/users";
+import { signInDriver, signInUser } from "../../services/APIs/users";
 import { useDispatch } from "react-redux";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { loginSuccess, login } from "../../store/reducers/userSlice";
@@ -41,34 +41,14 @@ export default function SigninScreen({ navigation, route }) {
     if (true) {
       setLoading(true);
       try {
-        // const res = await signInUser({
-        //   email,
-        //   password,
-        //   userName: email,
-        //   userRole: 'CUSTOMER',
-        // });
+        const res = await signInDriver({
+          email,
+          password,
+          userName: email,
+          userRole: "DRIVER",
+        });
 
-        // const res = await axios({
-        //   method: "POST",
-        //   baseURL: API_URL,
-        //   url: "/auth/signup",
-        //   headers: { "Content-Type": "application/json" },
-        //   data: {
-        //     name,
-        //     email,
-        //     password,
-        //     role: "CUSTOMER",
-        //   },
-        // });
-
-        dispatch(
-          login({
-            email,
-            password,
-            userName: email,
-            userRole: "CUSTOMER",
-          })
-        );
+        dispatch(loginSuccess(res.data));
         showMessage({
           type: "success",
           message: "Logged in!!",
@@ -108,7 +88,7 @@ export default function SigninScreen({ navigation, route }) {
           <View style={{ alignItems: "center", marginTop: 10 }}>
             <Text style={styles.text1}>
               {" "}
-              Please enter the email and password{" "}
+              Please enter the phone number and password{" "}
             </Text>
             <Text style={styles.text1}> Register with your account </Text>
           </View>
@@ -128,9 +108,10 @@ export default function SigninScreen({ navigation, route }) {
             <View>
               <TextInput
                 style={styles.textInput1Style}
-                placeholder="Email"
+                placeholder="Username/Phone number"
                 ref={textInput1}
                 value={email}
+                keyboardType={"phone-pad"}
                 onChangeText={(t) => setEmail(t)}
               />
             </View>
@@ -185,7 +166,7 @@ export default function SigninScreen({ navigation, route }) {
               title="Create an account"
               buttonStyle={styles.createButton}
               titleStyle={parameters.createButtonTitle}
-              onPress={() => navigation.navigate("CustomerRegistration")}
+              onPress={() => navigation.navigate("DriverRegistration")}
             />
           </View>
         </KeyboardAwareScrollView>

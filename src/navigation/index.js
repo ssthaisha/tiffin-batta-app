@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Splash from "../screens/Splash";
 import AuthStack from "./stacks/AuthStack";
-import HomeStack from "./stacks/HomeStack";
+import HomeStack, { DriversHomeStack } from "./stacks/HomeStack";
 import { CustomersHomeStack, ChefsHomeStack } from "./stacks/HomeStack";
 import {
   Alert,
@@ -58,6 +58,8 @@ export default function AppContainer() {
       return ChefsHomeStack;
     } else if (role === "CUSTOMER") {
       return CustomersHomeStack;
+    } else if (role === "DRIVER") {
+      return DriversHomeStack;
     }
     return AuthStack;
   };
