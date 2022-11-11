@@ -31,6 +31,7 @@ import { AppLoading } from "expo";
 import { BASE_URL5 } from "../../constants";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
+import { color } from "react-native-reanimated";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
@@ -299,8 +300,9 @@ const styles = StyleSheet.create({
   selectchef: {
     alignItems: "center",
     backgroundColor: colors.buttons,
-    borderRadius: 8,
+    borderRadius: 5,
     borderColor: colors.grey3,
+    color:colors.grey1,
     borderWidth: 1,
     fontSize: 24,
     justifyContent: "center",
