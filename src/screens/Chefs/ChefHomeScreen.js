@@ -19,7 +19,10 @@ import { NEWSUBS, SUBSDATA } from "../../global/data";
 import FoodCard from "../../components/Foodcard";
 import Subsrequest from "../../components/Subsrequest";
 import { useEffect } from "react";
-import { getSubscribersList } from "../../services/APIs/customerAPIs";
+import {
+  acceptSubscriptionRequest,
+  getSubscribersList,
+} from "../../services/APIs/customerAPIs";
 import { useSelector } from "react-redux";
 // import { useSelector } from "react-redux";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";

@@ -23,6 +23,7 @@ export default function Subsrequest({
   rate,
   image,
   oName,
+  onApprove,
   ...rest
 }) {
   return (
